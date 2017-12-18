@@ -17,6 +17,3 @@ Shortcuts list:
 2. Alt+Q to change volume down;
 3. Ctrl(Command)+ Arrow Up to change volume up;
 4. Ctrl(Command)+ Arrow Down to change volume down;
-
-Privacy:
-Your data is yours and yours only. I will never share or distribute your data.
