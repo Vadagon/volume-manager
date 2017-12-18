@@ -10,7 +10,7 @@ Features:
 - Change volume of the tab by shortcuts.
 - Boost Volume.
 - Mute all tabs.
-*to enable/disable any feature go to options of the extension
+- *to enable/disable any feature go to options of the extension
 
 Shortcuts list:
 1. Ctrl(Command)+Q to change volume up;
