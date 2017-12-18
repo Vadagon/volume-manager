@@ -9,7 +9,7 @@ Features:
 - Shows noise Tabs.
 - Change volume of the tab by shortcuts.
 - Boost Volume.
--* Mute all tabs.
+- Mute all tabs.
 *to enable/disable any feature go to options of the extension
 
 Shortcuts list:
