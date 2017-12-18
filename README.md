@@ -1,5 +1,5 @@
 # volume-manager
-Chrome Extension to control and boost volume of any Tab - https://goo.gl/d13F9f
+Chrome Extension to control and boost volume of any Tab - https://volume-manager.org/
 
 Volume Manager helps control volume of any tab. 
 You can volume up any a tab with music and volume down a tab with skype (for example).
