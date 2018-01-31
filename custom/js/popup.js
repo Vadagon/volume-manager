@@ -107,8 +107,13 @@ chrome.tabs.query({audible: !0}, function(tabs){
 	var hhhtml = '<h6 class="footer">'+
 				 	'Can you spend few seconds to <a href="https://goo.gl/c4TMmx" target="_blank">Rate <i class="material-icons">star_rate</i>my work</a> ?'+
 				 '</h6>';
-	if(Math.random() < 0.07)
+    var hhhtmll = '<h6 class="footer">'+
+				 	'Please leave a comment about last update of the extension <3'+
+				 '</h6>';
+	if(Math.random() < 0.05)
 		$('body').append(hhhtml);
+	if(Math.random() < 0.02)
+		$('body').append(hhhtmll);
 
 });
 });
