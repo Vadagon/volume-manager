@@ -11,12 +11,16 @@ port.onMessage.addListener(function(msg) {
       tabsLevels = msg.tabsLevels;
       console.log(tabsLevels);
       $('#curContoller').attr('tabID', msg.curTab.id);
+      $('#curContoller [type="range"]').val(tabsLevels[msg.curTab.id]>1?100:tabsLevels[msg.curTab.id]*100);
+      if (tabsLevels[msg.curTab.id]>1){
+      	$('#curContoller [type="checkbox"]').attr('checked', true); 
+      	$('#curContoller [type="range"]').attr('disabled', true);
+      }
 chrome.tabs.query({audible: !0}, function(tabs){
 	var aTabs = '';
 	for (var i = tabs.length - 1; i >= 0; i--) {
 		if(tabsLevels.hasOwnProperty(tabs[i].id)){
 			// tabsLevels[tabs[i].id] = {volume: 100, boost: false};
-			console.log(tabsLevels[tabs[i].id])
 			if (tabsLevels[tabs[i].id]>1) {
 				var voll = 800;
 				var boost = 'checked=""';
@@ -59,6 +63,9 @@ chrome.tabs.query({audible: !0}, function(tabs){
 		console.log('switch the tab');
 		chrome.tabs.update(parseInt($(this).closest('tr')[0].id), {active: true});
 	})
+	$('.options').click(function(){
+		chrome.runtime.openOptionsPage() ;
+	})
 	$('input[type="checkbox"]').change(function(){
 		if (this.id!="curBoost") {
 			var checkboxId = $(this).parent().parent()[0].id;
@@ -91,8 +98,6 @@ chrome.tabs.query({audible: !0}, function(tabs){
 			$('#'+msg.curTab.id+' input[type="range"]').val($(this).val())
 		}
 	});
-
-
 
 
 
