@@ -11,7 +11,8 @@ port.onMessage.addListener(function(msg) {
       tabsLevels = msg.tabsLevels;
       console.log(tabsLevels);
       $('#curContoller').attr('tabID', msg.curTab.id);
-      $('#curContoller [type="range"]').val(tabsLevels[msg.curTab.id]>1?100:tabsLevels[msg.curTab.id]*100);
+      if (tabsLevels[msg.curTab.id])
+      	$('#curContoller [type="range"]').val(tabsLevels[msg.curTab.id]>1?100:tabsLevels[msg.curTab.id]*100);
       if (tabsLevels[msg.curTab.id]>1){
       	$('#curContoller [type="checkbox"]').attr('checked', true); 
       	$('#curContoller [type="range"]').attr('disabled', true);
