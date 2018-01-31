@@ -1,0 +1,11 @@
+md-content md-card{
+	cursor: pointer;
+	overflow: hidden;
+	position: relative;
+}
+.md-subhead{
+    margin: -10px 0;
+}
+.md-headline code{
+	float: right;
+}

@@ -6,114 +6,71 @@ var port = chrome.extension.connect({
 function changeVolume(id, val){
 	port.postMessage({id: parseInt(id), val: val});
 }
- // port.postMessage("Hi BackGround");
-port.onMessage.addListener(function(msg) {
-      tabsLevels = msg.tabsLevels;
-      console.log(tabsLevels);
-      $('#curContoller').attr('tabID', msg.curTab.id);
-      if (tabsLevels[msg.curTab.id])
-      	$('#curContoller [type="range"]').val(tabsLevels[msg.curTab.id]>1?100:tabsLevels[msg.curTab.id]*100);
-      if (tabsLevels[msg.curTab.id]>1){
-      	$('#curContoller [type="checkbox"]').attr('checked', true); 
-      	$('#curContoller [type="range"]').attr('disabled', true);
-      }
-chrome.tabs.query({audible: !0}, function(tabs){
-	var aTabs = '';
-	for (var i = tabs.length - 1; i >= 0; i--) {
-		if(tabsLevels.hasOwnProperty(tabs[i].id)){
-			// tabsLevels[tabs[i].id] = {volume: 100, boost: false};
-			if (tabsLevels[tabs[i].id]>1) {
-				var voll = 800;
-				var boost = 'checked=""';
-				var volDis = 'disabled=""';
-			}else{
-				var voll = tabsLevels[tabs[i].id]*100;
-				var boost = '';
-				var volDis = '';
+
+angular.module('main', ['ngMaterial'])
+
+.controller('AppCtrl', function($scope) {
+	$scope.currentLevel = 100;
+	$scope.noizeTabs = [];
+	$scope.controlledTabs = [];
+	$scope.currentFavIconUrl = '';
+
+	chrome.tabs.query({ currentWindow: true, active: true }, function(tabArray) {
+		console.log(tabArray[0]);
+		$scope.currentFavIconUrl = tabArray[0].favIconUrl;
+	});
+	port.onMessage.addListener(function(msg) {
+
+		// console.log(msg);
+		tabsLevels = msg.tabsLevels;
+		if (tabsLevels[msg.curTab.id])
+			if (tabsLevels[msg.curTab.id]>1){
+				$scope.isDisabledCurrent = true;
 			}
-			aTabs = aTabs + '<tr id="'+tabs[i].id+'">'+
-				'<td class="switchTab"><img src="'+tabs[i].favIconUrl+'"></td>'+
-				'<td class="showControllers">'+
-					'<p class="range-field">'+
-						'<span class="tabName switchTab">'+tabs[i].title+'</span>'+
-						'<input type="range" value="'+voll+'" '+volDis+' min="0" max="100" />'+
-					'</p>'+
-				'</td>'+
-				'<td>'+
-					'<input type="checkbox" '+boost+' id="boost'+i+'" />'+
-					'<label for="boost'+i+'"></label>'+
-				'</td>'+
-			'</tr>';
-		}else{
-			aTabs = aTabs + '<tr id="'+tabs[i].id+'">'+
-				'<td class="switchTab switchTab"><img src="'+tabs[i].favIconUrl+'"></td>'+
-				'<td colspan="2">'+
-					'<p class="range-field switchTab">'+
-						'<span class="tabName">'+tabs[i].title+'</span>'+
-						'<b>Click to switch the tab</b>'+
-					'</p>'+
-				'</td>'+
-			'</tr>';
+		if (tabsLevels[msg.curTab.id])	
+			$scope.currentLevel = tabsLevels[msg.curTab.id]*100;
+
+
+	      
+		
+		$scope.$apply();
+
+		$scope.changing = {};
+		$scope.changing.currentLevel = function (){
+			changeVolume(msg.curTab.id, $scope.currentLevel);
+			// if($scope.controlledTabs.find(function(el){ el.id == msg.curTab.id ? return true; }))
+				$scope.controlledTabs.find(function(el){ el.id == msg.curTab.id ? el.volumeLevel = $scope.currentLevel:false })
 		}
-	}
-	if (aTabs) {
-		$('.actived > tbody *').remove();
-		$('.actived > tbody').append(aTabs);
-	}
-	$('.switchTab').click(function(){
-		console.log('switch the tab');
-		chrome.tabs.update(parseInt($(this).closest('tr')[0].id), {active: true});
-	})
-	$('.options').click(function(){
-		chrome.runtime.openOptionsPage() ;
-	})
-	$('input[type="checkbox"]').change(function(){
-		if (this.id!="curBoost") {
-			var checkboxId = $(this).parent().parent()[0].id;
-		}else{
-			var checkboxId = msg.curTab.id;
+		$scope.changing.controlledTabs = function(id, val){
+			changeVolume(id, val);
+			if(id == msg.curTab.id)
+				$scope.currentLevel = val;
 		}
-		if(this.checked){
-			tabsLevels[checkboxId] = $('#'+checkboxId+' input[type="range"], [tabID="'+checkboxId+'"] input[type="range"]').val();
-			$('#'+checkboxId+' input[type="range"], [tabID="'+checkboxId+'"] input[type="range"]').val(100);
-			$('#'+checkboxId+' input[type="range"], [tabID="'+checkboxId+'"] input[type="range"]').attr('disabled', true);
-			$('#'+checkboxId+' input[type="checkbox"], [tabID="'+checkboxId+'"] input[type="checkbox"]').attr('checked', "true");
-			changeVolume(checkboxId, 800);
-		}else{
-			// console.log(tabsLevels[checkboxId]);
-			$('#'+checkboxId+' input[type="range"], [tabID="'+checkboxId+'"] input[type="range"]').val(tabsLevels[checkboxId]);
-			$('#'+checkboxId+' input[type="range"], [tabID="'+checkboxId+'"] input[type="range"]').attr('disabled', false);
-			$('#'+checkboxId+' input[type="checkbox"], [tabID="'+checkboxId+'"] input[type="checkbox"]').removeAttr('checked');
-			changeVolume(checkboxId, tabsLevels[checkboxId]);
+		$scope.redirect = function(id){
+			if(id == 'options'){
+				chrome.runtime.openOptionsPage();
+			}else{
+				chrome.tabs.update(id, {active: true});
+			}
 		}
+
+		chrome.tabs.query({audible: !0}, function(tabs){
+			// console.log(tabs);
+			for (var i = tabs.length - 1; i >= 0; i--) {
+				tabs[i].favIconUrl = tabs[i].favIconUrl;
+				tabs[i].tabName = tabs[i].title;
+				if(tabsLevels.hasOwnProperty(tabs[i].id)){
+					tabs[i].volumeLevel = tabsLevels[tabs[i].id]*100;
+					$scope.controlledTabs.push(tabs[i]);
+					// console.log($scope.controlledTabs);
+				}else{
+					tabs[i].volumeLevel = 100;
+					$scope.noizeTabs.push(tabs[i]);
+				}
+				$scope.$apply();
+			}
+		});
+
+
 	});
-	$(document).on('input', 'input[type="range"]', function() {
-		if (this.id!="currVolume") {
-			var tr = $(this).parent().parent().parent();
-			tabsLevels[tr[0].id] = $(this).val();
-			changeVolume(tr[0].id, $(this).val());
-			if (tr[0].id == msg.curTab.id)
-				$('#currVolume').val($(this).val())
-		}else{
-			changeVolume(msg.curTab.id, $(this).val());
-			$('#'+msg.curTab.id+' input[type="range"]').val($(this).val())
-		}
-	});
-
-
-
-
-
-	var hhhtml = '<h6 class="footer">'+
-				 	'Can you spend few seconds to <a href="https://goo.gl/c4TMmx" target="_blank">Rate <i class="material-icons">star_rate</i>my work</a> ?'+
-				 '</h6>';
-    var hhhtmll = '<h6 class="footer">'+
-				 	'Please leave a comment about last update of the extension <3'+
-				 '</h6>';
-	if(Math.random() < 0.05)
-		$('body').append(hhhtml);
-	if(Math.random() < 0.02)
-		$('body').append(hhhtmll);
-
-});
 });

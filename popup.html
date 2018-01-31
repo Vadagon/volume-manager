@@ -1,59 +1,69 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-	<title>Volume Controller</title>
-	<link rel="stylesheet" href="materialize/css/materialize.min.css">
-	<link href="materialize/iconfont/material-icons.css" rel="stylesheet">
-	<script src="materialize/js/jquery.min.js"></script>
-	<script src="materialize/js/materialize.min.js"></script>
-
-
-	<script src="custom/js/popup.js"></script>
-	<link rel="stylesheet" href="custom/css/popup.css">
+    <title>Volume Controller</title>
+    <link rel="stylesheet" href="plugins/css/plugins.min.css">
+    <script src="plugins/js/jquery.min.js"></script>
+    <script src="plugins/js/plugins.min.js"></script>
+    <script src="custom/js/popup.js"></script>
+    <link rel="stylesheet" href="custom/css/popup.css">
 </head>
-<body>
 
-<div class="container">
-	<h5>
-        <img src="images/icon512.png" style="float: left; height: 50px; margin-right: 17.5px;">
-		Simple Sound Volume Controller
-	</h5>
-	<h6>You can controll volume of the current tab with the slider below or <a class="options" href="#">using keyboard</a>:<br><br>
-	Ctrl(Cmd) + Q and Alt + Q</h6>
-	<!-- <h6>Please spend few seconds to <a href="#">Rate <i class="material-icons">star_rate</i>my work</a></h6> -->
-	<div id="curContoller">
-		<div>
-			<p class="range-field">
-			<input type="range" id="currVolume" min="0" max="100" value="100" />
-			</p>
-			<span class="volumeSpans">0%</span>
-			<span class="volumeSpans">VOLUME</span>
-			<span class="volumeSpans">100%</span>
-		</div>
-		<div>
-			<input type="checkbox" id="curBoost" />
-			<label for="curBoost">Boost</label>
-		</div>
-	</div>
-
-
-
-
-
-</div>
-	<table class="striped actived">
-	<thead>
-	<tr>
-		<th colspan="3">Tabs playing audio right now</th>
-	</tr>
-	</thead>
-	<tbody>
-		<tr>
-			<td colspan="3" style="text-align: center;"><b>No tabs playing now</b></td>
-		</tr>
-
-	</tbody>
-	</table>
-
+<body ng-app="main">
+    <div ng-controller="AppCtrl" ng-cloak>
+        <div style="padding:10px">
+            <h2>
+            <img src="images/icon512.png" id="logoImg">
+            Simple Sound Volume Controller
+        </h2>
+            <p>You can controll volume of the current tab with the slider below or <a href="#" class="options" ng-click="redirect('options')">using keyboard!</a>
+        </div>
+        <md-subheader class="md-no-sticky">Current Tab</md-subheader>
+        <md-content id="currentTab">
+            <md-list-item class="md-2-line">
+                <img ng-src="{{currentFavIconUrl}}" class="md-avatar md-icon-button" />
+                <div class="md-list-item-text">
+                    <div layout="column">
+                        <div flex="80">
+                            <md-slider flex ng-change="changing.currentLevel()" ng-model="currentLevel" step="1" min="0" max="100" aria-label="currentLevel" class="md-primary"></md-slider>
+                            <span class="volumeSpans">VOLUME: {{currentLevel>100?100:currentLevel}}%</span>
+                        </div>
+                        <div flex flex-offset="66">
+                            <span class="volumeSpans">BOOST: {{currentLevel>100?currentLevel/100-1:0}}x</span>
+                            <md-slider ng-change="changing.currentLevel()" flex ng-model="currentLevel" step="50" min="100" max="800" aria-label="currentBoost" class="md-warn md-hue-2"></md-slider>
+                        </div>
+                    </div>
+                </div>
+            </md-list-item>
+        </md-content>
+        <md-subheader class="md-no-sticky" ng-if="!controlledTabs.length && !noizeTabs.length">Can you spen few seconds to <a href="https://goo.gl/c4TMmx" style="top: 0;">rate my work</a>?</md-subheader>
+        <md-subheader class="md-no-sticky" ng-if="controlledTabs.length || noizeTabs.length">Tabs playing audio right now</md-subheader>
+        <md-content style="overflow-y: hidden;">
+            <md-list-item class="md-2-line" ng-repeat="x in controlledTabs">
+                <img ng-click="redirect(x.id)" ng-src="{{x.favIconUrl}}" class="md-avatar md-icon-button" />
+                <div class="md-list-item-text">
+                    <h4>{{x.tabName}}</h4>
+                    <div layout="row">
+                        <div flex="80">
+                            <md-slider flex ng-change="changing.controlledTabs(x.id, x.volumeLevel)" ng-model="x.volumeLevel" step="1" min="0" max="100" aria-label="currentLevel" class="md-primary"></md-slider>
+                        </div>
+                        <div flex="5"></div>
+                        <div flex="15">
+                            <md-slider ng-change="changing.controlledTabs(x.id, x.volumeLevel)" flex ng-model="x.volumeLevel" step="50" min="100" max="800" aria-label="currentBoost" class="md-warn md-hue-2"></md-slider>
+                        </div>
+                    </div>
+                </div>
+            </md-list-item>
+            <md-list-item class="md-2-line" ng-repeat="x in noizeTabs" ng-click="redirect(x.id)">
+                <img ng-src="{{x.favIconUrl}}" class="md-avatar" />
+                <div class="md-list-item-text">
+                    <h4>{{x.tabName}}</h4>
+                    <p>Click to switch the tab</p>
+                </div>
+            </md-list-item>
+        </md-content>
+    </div>
 </body>
+
 </html>
