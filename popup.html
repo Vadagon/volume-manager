@@ -15,14 +15,14 @@
         <div style="padding:10px">
             <h2>
             <img src="images/icon512.png" id="logoImg">
-            Simple Sound Volume Controller
+            Volume Manager
         </h2>
-            <p>You can controll volume of the current tab with the slider below or <a href="#" class="options" ng-click="redirect('options')">using keyboard!</a>
+            <p>You can control volume of the current tab with the slider below or <a href="#" class="options" ng-click="redirect('options')">using keyboard!</a>
         </div>
         <md-subheader class="md-no-sticky">Current Tab</md-subheader>
         <md-content id="currentTab">
             <md-list-item class="md-2-line">
-                <img ng-src="{{currentFavIconUrl}}" class="md-avatar md-icon-button" />
+                <img ng-src="{{currentFavIconUrl.length?currentFavIconUrl:filePNG}}" class="md-avatar md-icon-button" />
                 <div class="md-list-item-text">
                     <div layout="column">
                         <div flex="80">
@@ -37,7 +37,8 @@
                 </div>
             </md-list-item>
         </md-content>
-        <md-subheader class="md-no-sticky" ng-if="!controlledTabs.length && !noizeTabs.length">Can you spen few seconds to <a href="https://goo.gl/c4TMmx" style="top: 0;">rate my work</a>?</md-subheader>
+        <md-subheader class="md-no-sticky" ng-if="!controlledTabs.length && !noizeTabs.length && shows">Can you spen few seconds to <a href="https://goo.gl/c4TMmx" style="top: 0;">rate my work</a>?</md-subheader>
+        <md-subheader class="md-no-sticky" ng-if="!controlledTabs.length && !noizeTabs.length && !shows">Go to <a href="#" style="top: 0;" ng-click="redirect('options')">options</a> to setting up the extension!</md-subheader>
         <md-subheader class="md-no-sticky" ng-if="controlledTabs.length || noizeTabs.length">Tabs playing audio right now</md-subheader>
         <md-content style="overflow-y: hidden;">
             <md-list-item class="md-2-line" ng-repeat="x in controlledTabs">

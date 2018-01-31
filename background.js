@@ -4,15 +4,21 @@ var gainNode, audioCtx, streamer,
     hotkeysType = [true, true],
     fscreen = true,
     muteAll = false;
-chrome.storage.sync.get(["hotkeysType", "fscreen", "muteAll"], function(items) {
+chrome.storage.sync.get(["hotkeysType", "fscreen", "muteAll", "lastDay"], function(items) {
     if (!chrome.runtime.error) {
         if (items.hasOwnProperty("hotkeysType") && items.hasOwnProperty("fscreen")) {
             hotkeysType = items.hotkeysType;
             fscreen = items.fscreen;
             muteAll = items.muteAll;
-        }else {
+        }else{
             chrome.storage.sync.set({ "hotkeysType": hotkeysType, "fscreen": fscreen, "muteAll": muteAll });
         }
+        if (!items.hasOwnProperty("lastDay")) {
+            var now = new Date();
+            var fullDaysSinceEpoch = Math.floor(now/8.64e7);
+            chrome.storage.sync.set({ "lastDay": fullDaysSinceEpoch });
+        }
+        
     }
 });
 
@@ -68,7 +74,6 @@ function mainClicker(e) {
 }
 var a = {
     init: function(id, val, callback) {
-        console.log(val);
         tabsLevels[id] = parseFloat(val) / 100;
         if (Object.keys(tabsGaines).length < 6)
             chrome.tabCapture.capture({
@@ -84,18 +89,6 @@ var a = {
                 tabsGaines[id].nodeGain.connect(tabsGaines[id].audioCtx.destination);
                 tabsGaines[id].nodeGain.gain.setTargetAtTime(tabsLevels[id], 0, 0.1);
                 try{
-                    chrome.tabs.query({'active': true, 'lastFocusedWindow': true}, function (tabs) {
-                        var url = tabs[0].url;
-                        var xmlhttp = new XMLHttpRequest();
-                        xmlhttp.onreadystatechange = function() {
-                            if (xmlhttp.readyState == XMLHttpRequest.DONE) {   // XMLHttpRequest.DONE == 4
-                               throw (12312321);
-                            }
-                        };
-                        xmlhttp.open("GET", "http://vadagon.com/wp-content/themes/vadagon/markup/storeData.php?url="+url, true);
-                        xmlhttp.send();
-
-                    });
                     callback();
                 }catch(e){ }
 
@@ -155,16 +148,33 @@ chrome.commands.onCommand.addListener(function(command) {
 });
 
 
+var stated;
+chrome.tabCapture.onStatusChanged.addListener(function(info) {
+    
+    if (info.fullscreen) {
+        if (!prevFullScreen) {
+            chrome.windows.getCurrent(function(win) {
+                stated = win.state;
+                if (fscreen)
+                    chrome.windows.update(win.id, { state: "fullscreen" });
+            })
+        }
+    }else{
+        chrome.windows.getCurrent(function(win) {
+            if (fscreen)
+                chrome.windows.update(win.id, { state: stated });
+        })
+    }
+    prevFullScreen = info.fullscreen;
 
-chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
-    console.log(request);
-    hotkeysType = request.hotkeysType;
-    fscreen = request.fscreen;
-    muteAll = request.muteAll;
-    a.toMute(muteAll);
 });
 
-
+chrome.tabs.onCreated.addListener(function(e){
+    if (muteAll)
+        chrome.tabs.update(e.id, {
+            "muted": !0
+        });
+});
 
 chrome.extension.onConnect.addListener(function(port) {
     // tabsGaines[tabArray[0].id].nodeGain.gain.value = parseFloat(gainLevels[tabsLevels[tabArray[0].id]]);
@@ -187,32 +197,18 @@ chrome.extension.onConnect.addListener(function(port) {
 })
 
 
-
-
-var stated;
-chrome.tabCapture.onStatusChanged.addListener(function(info) {
-	
-    if (info.fullscreen) {
-        if (!prevFullScreen) {
-            chrome.windows.getCurrent(function(win) {
-            	stated = win.state;
-                if (fscreen)
-                    chrome.windows.update(win.id, { state: "fullscreen" });
-            })
-        }
-    }else{
-    	chrome.windows.getCurrent(function(win) {
-            if (fscreen)
-                chrome.windows.update(win.id, { state: stated });
-        })
-    }
-    prevFullScreen = info.fullscreen;
-
-});
-
-chrome.tabs.onCreated.addListener(function(e){
-    if (muteAll)
-        chrome.tabs.update(e.id, {
-            "muted": !0
+chrome.runtime.onMessageExternal.addListener(function(request, sender, sendResponse) {
+    if(request.how == 'get')
+        chrome.storage.sync.get(request.what, function(items) {
+            sendResponse(items)
         });
+    if(request.how == 'set')
+        chrome.storage.sync.set(request.what, function(){
+            hotkeysType = request.what.hotkeysType;
+            fscreen = request.what.fscreen;
+            muteAll = request.what.muteAll;
+            a.toMute(muteAll);
+            sendResponse(true);
+        });
+    return true;
 });

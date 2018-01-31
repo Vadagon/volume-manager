@@ -1,12 +1,11 @@
 {
-  "name": "Simple Sound Volume Controller",
-  "version": "3.5",
+  "name": "Volume Manager",
+  "version": "10.1",
   "author": "Vadagon",
   "manifest_version": 2,
   "default_locale": "en",
-  "homepage_url": "https://goo.gl/vqsVS1",
-  "short_name": "Adjuster",
-  "description": "Adjust volume of any tab on a fly with a simple clicks + volume booster control",
+  "homepage_url": "https://volume-manager.org",
+  "description": "Control volume and boost volume of any Tab",
   "permissions": [
     "tabCapture",
     "activeTab",
@@ -15,7 +14,7 @@
     "<all_urls>"
   ],
   "browser_action": {
-    "default_title": "Click to control tabs' volume",
+    "default_title": "Click to open Volume Manager",
     "default_popup": "popup.html",  
     "default_icon": "images/icon512.png"
   },
@@ -36,7 +35,6 @@
     }
   ],
   "options_page": "options.html",
-  "content_security_policy": "script-src 'self' https://ssl.google-analytics.com; object-src 'self'",
   "offline_enabled": true,
   "commands": {
     "toggle-up-1": {
@@ -44,25 +42,28 @@
         "default": "Ctrl+Q",
         "mac": "Command+Q"
       },
-      "description": "1 Feature for changing volume up"
+      "description": "1st Feature for changing volume up"
     },
     "toggle-down-1": {
       "suggested_key": {
         "default": "Alt+Q"
       },
-      "description": "1 Feature for changing volume down"
+      "description": "1st Feature for changing volume down"
     },
     "toggle-up-2": {
       "suggested_key": {
         "default": "Ctrl+Up"
       },
-      "description": "2 Feature for changing volume up"
+      "description": "2nd Feature for changing volume up"
     },
     "toggle-down-2": {
       "suggested_key": {
         "default": "Ctrl+Down"
       },
-      "description": "2 Feature for changing volume down"
+      "description": "2nd Feature for changing volume down"
     }
+  },
+  "externally_connectable": {
+    "matches": ["*://*.volume-manager.org/*"]
   }
 }

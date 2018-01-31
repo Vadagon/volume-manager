@@ -1,8 +1,8 @@
 {
 	"application_title": {
-		"message": "Controlador de volumen de sonido simple"
+		"message": "Administrador de volumen"
 	},
 	"application_description": {
-		"message": "Ajuste el volumen de cualquier pestaña en una mosca con un simple clic + control de refuerzo de volumen"
+		"message": "Controle el volumen y aumente el volumen de sonido de cualquier pestaña"
 	}
 }

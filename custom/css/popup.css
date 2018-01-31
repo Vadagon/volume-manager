@@ -7,7 +7,6 @@ html, body{
 *{
 	margin: 0;
 	padding: 0;
-	vertical-align: middle;
 }
 md-slider {
 	min-width: 0 !important;
@@ -17,14 +16,14 @@ md-slider {
 }
 #logoImg{
 	float: left;
-    height: 50px;
-    margin-top: -8px;
-    margin-right: 17.5px;
+  height: 40px;
+  margin-top: 2px;
+  margin-right: 10px;
+  margin-left: -3px;
 }
 h2{
-    font-size: 19px;
-    margin-top: 8px;
-    line-height: 16px;
+    font-size: 36px;
+    line-height: 1;
     font-weight: lighter;
 }
 h2 + p{
@@ -33,7 +32,8 @@ h2 + p{
 }
 a{
 	position: relative;
-    top: -2px;
+  text-decoration: none;
+  color: #5454ff;
 }
 .volumeSpans{
 	white-space: nowrap;
@@ -52,15 +52,14 @@ md-list-item, md-list-item > div{
   /*min-height: 62px !important;*/
 }
 #currentTab md-list-item .md-avatar{
-  height: 40px;
-  width: 40px;
+  height: 32px;
+  width: 32px;
 }
 #currentTab .md-list-item-text > div > div:nth-child(2) md-slider{
   margin-top: -50px;
 }
 .md-list-item-text{
 	padding: 0 !important;
-	padding-left: 5px !important;
 }
 md-list-item .md-list-item-text{
   overflow: visible !important;

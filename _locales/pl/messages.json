@@ -1,8 +1,8 @@
 {
 	"application_title": {
-		"message": "Prosty kontroler głośności"
+		"message": "Menedżer woluminów"
 	},
 	"application_description": {
-		"message": "Dostosuj głośność każdej karty w locie za pomocą prostych przycisków + kontrolę wzmocnienia głośności"
+		"message": "Kontroluj głośność i głośność wzmocnienia dowolnej karty"
 	}
 }

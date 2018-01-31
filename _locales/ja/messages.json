@@ -1,8 +1,8 @@
 {
 	"application_title": {
-		"message": "シンプルなサウンドボリュームコントローラ"
+		"message": "ボリュームマネージャー"
 	},
 	"application_description": {
-		"message": "シンプルなクリック+ボリュームブースターコントロールで、オンザフライで任意のタブの音量を調整"
+		"message": "任意のタブの音量をコントロールして音量を上げる"
 	}
 }
