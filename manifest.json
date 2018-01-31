@@ -1,6 +1,7 @@
 {
   "name": "Simple sound volume controller",
-  "version": "1",
+  "version": "2.0",
+  "author": "Vadagon",
   "manifest_version": 2,
   "default_locale": "en",
   "homepage_url": "https://www.vadagon.com",
@@ -8,23 +9,53 @@
   "permissions": [
     "tabCapture",
     "activeTab",
-    "tabs"
+    "tabs",
+    "storage",
+    "<all_urls>"
   ],
   "browser_action": {
     "default_title": "Click to change the volume",
-    "default_icon": "lvl1.png"
+    "default_icon": "images/lvl1.png"
   },
   "background": {
     "scripts": ["background.js"]
   },
+  "content_scripts": [
+    {
+      "matches": ["https://*/*", "http://*/*", "<all_urls>"],
+      "css": ["custom/css/style.css"],
+      "js": ["custom/js/content.js"]
+    }
+  ],
+  "options_page": "options.html",
   "content_security_policy": "script-src 'self' https://ssl.google-analytics.com; object-src 'self'",
   "commands": {
-    "toggle-volume": {
+    "toggle-up-1": {
       "suggested_key": {
         "default": "Ctrl+Q",
-        "windows": "Ctrl+Q"
+        "mac": "Command+Q"
       },
-      "description": "Feature for changing volume around"
+      "description": "1 Feature for changing volume up"
+    },
+    "toggle-down-1": {
+      "suggested_key": {
+        "default": "Alt+Q"
+      },
+      "description": "1 Feature for changing volume down"
+    },
+    "toggle-up-2": {
+      "suggested_key": {
+        "default": "Ctrl+Y",
+        "mac": "Command+Y"
+      },
+      "description": "2 Feature for changing volume up"
+    },
+    "toggle-down-2": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+Y",
+        "mac": "Command+Shift+Y"
+      },
+      "description": "2 Feature for changing volume down"
     }
   }
 }
