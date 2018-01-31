@@ -1,8 +1,10 @@
 {
 	"application_title": {
-		"message": "Volume Manager"
+		"message": "Regolatore di volume del suono semplice",
+		"description": "Regolatore di volume del suono semplice."
 	},
 	"application_description": {
-		"message": "Controlla il volume e aumenta il volume di qualsiasi scheda"
+		"message": "Regolatore di volume del suono semplice",
+		"description": "Cambiare il volume del suono su un volo con un semplice click + volume booster"
 	}
 }

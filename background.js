@@ -1,186 +1,135 @@
-var gainNode, audioCtx, streamer,
-    tabsLevels = {},
-    tabsGaines = {},
-    hotkeysType = [true, true],
-    fscreen = true,
-    muteAll = false;
-chrome.storage.sync.get(["hotkeysType", "fscreen", "muteAll", "lastDay"], function(items) {
-    if (!chrome.runtime.error) {
-        if (items.hasOwnProperty("hotkeysType") && items.hasOwnProperty("fscreen")) {
-            hotkeysType = items.hotkeysType;
-            fscreen = items.fscreen;
-            muteAll = items.muteAll;
-        }else{
-            chrome.storage.sync.set({ "hotkeysType": hotkeysType, "fscreen": fscreen, "muteAll": muteAll });
-        }
-        if (!items.hasOwnProperty("lastDay")) {
-            var now = new Date();
-            var fullDaysSinceEpoch = Math.floor(now/8.64e7);
-            chrome.storage.sync.set({ "lastDay": fullDaysSinceEpoch });
-        }
-        
-    }
+var gainNode, audioCtx, streamer, 
+gainLevels = {
+	1: 0.1,
+	2: 0.6,
+	3: 1,
+	4: 8
+}, tabsLevels = {}, tabsGaines = {};
+window.tabsGaines = tabsGaines;
+window.tabsLevels = tabsLevels;
+chrome.tabs.onActivated.addListener(function(activeInfo) {
+    chrome.tabs.get(activeInfo.tabId, function (tab) {
+        mySuperCallback(tab.url);
+    });
 });
+chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, updatedTab) {
+    chrome.tabs.query({'active': true}, function (activeTabs) {
+        var activeTab = activeTabs[0];
+
+        if (activeTab == updatedTab) {
+            mySuperCallback(activeTab.url);
+        }
+    });
+});
+
+// Код на всякий случай, если нужно будет изменять уровни звука относительно ОСи
+// chrome.runtime.getPlatformInfo(function(info) {
+//     // Display host OS in the console
+//     console.log(info.os);
+//     os = info.os;
+// });
 
 // function for icons when user switch tabs
+function mySuperCallback(newUrl) {
+	chrome.tabs.query({ currentWindow: true, active: true }, function (tabArray) {
+		// chrome.browserAction.setIcon({path: icon});
+		if(tabsLevels.hasOwnProperty(tabArray[0].id))
+		    chrome.browserAction.setIcon({path: 'lvl'+tabsLevels[tabArray[0].id]+'.png'});
 
-function showVolumeInTabFunc(level) {
-    var showVolumeInTab = "var x = document.querySelectorAll('#VadagonVolumeStatus .VadagonVolumeStatusElems > span'); for (var i = " + 12 + " - 1; i >= 0; i--) {x[i].style.backgroundColor = '#1c1c1c';}";
-    showVolumeInTab = showVolumeInTab +
-        "var b = document.getElementById('VadagonVolumeStatus'); b.style.marginTop='-150px'; b.style.opacity = 0.85; " +
-        "if(T){clearTimeout(T);} var T = setTimeout(function() { b.style.marginTop='-125px'; b.style.opacity = 0;  }, 3000);";
-    if (level == 5) {
-        showVolumeInTab = showVolumeInTab + "for (var i = " + 10 + " - 1; i >= 0; i--) {x[i].style.backgroundColor = 'white';} x[10].style.backgroundColor = '#ff613f'; x[11].style.backgroundColor = '#ff613f';";
-    } else {
-        showVolumeInTab = showVolumeInTab + "for (var i = " + level * 10 + " - 1; i >= 0; i--) {x[i].style.backgroundColor = 'white';}";
-    }
-
-
-
-    chrome.tabs.executeScript(null, { code: showVolumeInTab }, function() {
-
-    })
+		if(!tabsLevels.hasOwnProperty(tabArray[0].id))
+		    chrome.browserAction.setIcon({path: 'off.png'});
+	});
 }
-chrome.tabs.onRemoved.addListener(function(a) {
+// chrome.tabs.onRemoved.addListener(function(tabid, removed) {
+// 	if (tabsLevels.hasOwnProperty(tabid)) {
+// 		tabsGaines[tabArray[0].id].audioCtx.close();
+// 		delete tabsLevels[tabid];
+// 		delete tabsGaines[tabid];
+// 	}
+// });
+chrome.tabs.onRemoved.addListener((a) => {
     Object.prototype.hasOwnProperty.call(tabsGaines, a) && tabsGaines[a].audioCtx.close()
-        .then(function() {
+        .then(() => {
             delete tabsLevels[a];
-            delete tabsGaines[a];
+			delete tabsGaines[a];
         })
 });
+function mainClicker(){
+	chrome.tabs.query({ currentWindow: true, active: true }, function (tabArray) {
+		if(tabsLevels.hasOwnProperty(tabArray[0].id)) {
+			tabsLevels[tabArray[0].id] == 4?tabsLevels[tabArray[0].id] = 1:tabsLevels[tabArray[0].id]++;
+			
+			if(tabsGaines[tabArray[0].id] == 'normalMode'){
+				chrome.tabCapture.capture({
+				    audio: true,
+				    video: false
+				}, function(stream) {
+					tabsGaines[tabArray[0].id] = {};
+					tabsGaines[tabArray[0].id].audioCtx = new window.AudioContext;
+					tabsGaines[tabArray[0].id].streamer = stream;
+			        tabsGaines[tabArray[0].id].source = tabsGaines[tabArray[0].id].audioCtx.createMediaStreamSource(stream);
+			        tabsGaines[tabArray[0].id].nodeGain = tabsGaines[tabArray[0].id].audioCtx.createGain();
+			        tabsGaines[tabArray[0].id].source.connect(tabsGaines[tabArray[0].id].nodeGain);
+			        tabsGaines[tabArray[0].id].nodeGain.connect(tabsGaines[tabArray[0].id].audioCtx.destination);
+			        tabsGaines[tabArray[0].id].nodeGain.gain.value = parseFloat(gainLevels[tabsLevels[tabArray[0].id]]);
+				});
+			}else if (gainLevels[tabsLevels[tabArray[0].id]]==1) {
+				tabsGaines[tabArray[0].id].streamer.getAudioTracks().forEach(function(track) {
+		            track.stop();
+		        });
+				Object.prototype.hasOwnProperty.call(tabsGaines, tabArray[0].id) && tabsGaines[tabArray[0].id].audioCtx.close()
+		        .then(() => {
+					tabsGaines[tabArray[0].id] = 'normalMode';
+		        })
+		    }else{
+				tabsGaines[tabArray[0].id].nodeGain.gain.value = parseFloat(gainLevels[tabsLevels[tabArray[0].id]]);
+		    }
 
-function mainClicker(e) {
-    chrome.tabs.query({ currentWindow: true, active: true }, function(tabArray) {
-        var id = tabArray[0].id;
-        if (a.getTab(id)) {
-            var resFloat = parseInt(Math.floor(tabsLevels[id] * 10) + e) / 10;
-            if (tabsLevels[id] > 1 && e < 0)
-                resFloat = 1;
-            if (resFloat <= 0)
-                resFloat = 0;
-            if (resFloat > 1)
-                resFloat = 5;
-            tabsLevels[id] = resFloat;
-            showVolumeInTabFunc(tabsLevels[id]);
-            a.volume(id, tabsLevels[id] * 100);
-        } else {
-            a.isMuted(function(isMuted){
-                showVolumeInTabFunc(isMuted?0:1);
-                a.init(id, isMuted?0:100);
-            })
-        }
+		}else{
 
-    });
+			chrome.tabCapture.capture({
+			    audio: true,
+			    video: false
+			}, function(stream) {
+				tabsLevels[tabArray[0].id] = 1;
+				tabsGaines[tabArray[0].id] = {};
+				tabsGaines[tabArray[0].id].audioCtx = new window.AudioContext;
+				tabsGaines[tabArray[0].id].streamer = stream;
+		        tabsGaines[tabArray[0].id].source = tabsGaines[tabArray[0].id].audioCtx.createMediaStreamSource(stream);
+		        tabsGaines[tabArray[0].id].nodeGain = tabsGaines[tabArray[0].id].audioCtx.createGain();
+		        tabsGaines[tabArray[0].id].source.connect(tabsGaines[tabArray[0].id].nodeGain);
+		        tabsGaines[tabArray[0].id].nodeGain.connect(tabsGaines[tabArray[0].id].audioCtx.destination);
+		        tabsGaines[tabArray[0].id].nodeGain.gain.value = parseFloat(gainLevels[tabsLevels[tabArray[0].id]]);
+				mySuperCallback();
+			});
+
+		}
+		mySuperCallback();
+
+	}); 
 }
-var a = {
-    init: function(id, val, callback) {
-        tabsLevels[id] = parseFloat(val) / 100;
-        if (Object.keys(tabsGaines).length < 6)
-            chrome.tabCapture.capture({
-                audio: !0,
-                video: !1
-            }, function(stream) {
-                tabsGaines[id] = {};
-                tabsGaines[id].audioCtx = new window.AudioContext;
-                tabsGaines[id].streamer = stream;
-                tabsGaines[id].source = tabsGaines[id].audioCtx.createMediaStreamSource(stream);
-                tabsGaines[id].nodeGain = tabsGaines[id].audioCtx.createGain();
-                tabsGaines[id].source.connect(tabsGaines[id].nodeGain);
-                tabsGaines[id].nodeGain.connect(tabsGaines[id].audioCtx.destination);
-                tabsGaines[id].nodeGain.gain.setTargetAtTime(tabsLevels[id], 0, 0.1);
-                try{
-                    callback();
-                }catch(e){ }
 
-            });
-    },
-    deInit: function(id) {
-        tabsGaines[id].streamer.getAudioTracks().forEach(function(track) {
-            track.stop();
-        });
-        Object.prototype.hasOwnProperty.call(tabsGaines, id) && tabsGaines[id].audioCtx.close()
-            .then(function() {
-                delete tabsGaines[id];
-                delete tabsLevels[id];
-            });
-    },
-    getTab: function(id) {
-        if (tabsLevels.hasOwnProperty(id))
-            return true;
-        return false;
-    },
-    isMuted: function(callback) {
-        return chrome.tabs.query({ currentWindow: true, active: true }, function(tabs) {
-            if (chrome.runtime.lastError) {
-                callback(false)
-            }else{
-                callback(tabs[0].mutedInfo.muted)
-            }
-        })
-    },
-    toMute: function(e) {
-        chrome.tabs.query({}, function(tabs) {
-            for (var i = 0; i < tabs.length; i++) {
-                chrome.tabs.update(tabs[i].id, {
-                    "muted": e
-                });
-            }
-        });    
-    },
-    volume: function(id, val) {
-        tabsLevels[id] = parseFloat(val) / 100;
-        tabsGaines[id].nodeGain.gain.setTargetAtTime(tabsLevels[id], 0, 0.1);
-        // console.log(tabsGaines[id].nodeGain.gain.value);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+chrome.browserAction.onClicked.addListener(function(tab) {
+	mainClicker()
+});
+
+chrome.commands.onCommand.addListener(function (command) {
+    if (command === "toggle-volume") {
+    	mainClicker()
     }
-}
-
-
-
-
-chrome.commands.onCommand.addListener(function(command) {
-    // chrome.windows.update(null, { state: "fullscreen" });
-    if (!hotkeysType[parseInt(command[command.length - 1]) - 1])
-        return;
-    if (command.indexOf("toggle-up") != -1)
-        mainClicker(1)
-    if (command.indexOf("toggle-down") != -1)
-        mainClicker(-1)
-});
-
-
-chrome.extension.onConnect.addListener(function(port) {
-    // tabsGaines[tabArray[0].id].nodeGain.gain.value = parseFloat(gainLevels[tabsLevels[tabArray[0].id]]);
-    
-    port.onMessage.addListener(function(e) {
-        a.getTab(e.id) ? a.volume(e.id, e.val) : a.init(e.id, e.val);
-    });
-    // if (true) {}
-    chrome.tabs.query({ currentWindow: true, active: true }, function(tabArray) {
-        if (tabArray[0].audible && !a.getTab(tabArray[0].id)){
-            a.isMuted(function(isMuted){
-                a.init(tabArray[0].id, isMuted?0:100, function(){
-                    port.postMessage({ tabsLevels: tabsLevels, curTab: tabArray[0] });
-                })
-            })
-        }else{
-            port.postMessage({ tabsLevels: tabsLevels, curTab: tabArray[0] });
-        }
-    })
-})
-
-
-chrome.runtime.onMessageExternal.addListener(function(request, sender, sendResponse) {
-    if(request.how == 'get')
-        chrome.storage.sync.get(request.what, function(items) {
-            sendResponse(items)
-        });
-    if(request.how == 'set')
-        chrome.storage.sync.set(request.what, function(){
-            hotkeysType = request.what.hotkeysType;
-            fscreen = request.what.fscreen;
-            muteAll = request.what.muteAll;
-            a.toMute(muteAll);
-            sendResponse(true);
-        });
-    return true;
 });

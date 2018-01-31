@@ -1,8 +1,10 @@
 {
 	"application_title": {
-		"message": "捲管理器"
+		"message": "簡單的音量控制器",
+		"description": "簡單的音量控制器."
 	},
 	"application_description": {
-		"message": "控制任何標籤的音量和增加音量"
+		"message": "簡單的音量控制器",
+		"description": "使用簡單的點擊+音量增強功能即時更改音量"
 	}
 }

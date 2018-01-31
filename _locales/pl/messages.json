@@ -1,8 +1,10 @@
 {
 	"application_title": {
-		"message": "Menedżer woluminów"
+		"message": "Prosty kontroler głośności",
+		"description": "Prosty kontroler głośności."
 	},
 	"application_description": {
-		"message": "Kontroluj głośność i głośność wzmocnienia dowolnej karty"
+		"message": "Prosty kontroler głośności",
+		"description": "Zmień głośność dźwięku w locie za pomocą prostego przycisku + wzmacniacz głośności"
 	}
 }

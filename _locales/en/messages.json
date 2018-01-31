@@ -1,8 +1,10 @@
 {
 	"application_title": {
-		"message": "Volume Manager"
+		"message": "Simple sound volume controller",
+		"description": "Simple sound volume controller."
 	},
 	"application_description": {
-		"message": "Control volume and boost volume of any Tab"
+		"message": "Simple sound volume controller",
+		"description": "Change sound volume on a fly with a simple click + volume booster"
 	}
 }

@@ -1,8 +1,10 @@
 {
 	"application_title": {
-		"message": "Volumenmanager"
+		"message": "Einfacher Lautstärkeregler",
+		"description": "Einfacher Lautstärkeregler."
 	},
 	"application_description": {
-		"message": "Lautstärke und Lautstärke eines beliebigen Tabs steuern"
+		"message": "Einfacher Lautstärkeregler",
+		"description": "Ändern Sie die Lautstärke auf einer Fliege mit einem einfachen Klick + Lautstärkeregler"
 	}
 }
