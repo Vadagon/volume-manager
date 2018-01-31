@@ -3,20 +3,24 @@ angular.module('main', ['ngMaterial'])
 .controller('AppCtrl', function($scope, $mdToast) {
 	$scope.keys = [true, true];
 	$scope.fscreen = true;
+	$scope.muteAll = false;
 	
 
-  chrome.storage.sync.get(["hotkeysType", "fscreen"], function(items) {
+  chrome.storage.sync.get(["hotkeysType", "fscreen", "muteAll"], function(items) {
 		console.log(items);
-		if (!chrome.runtime.error)
+		if (!chrome.runtime.error){
 			if(items.hasOwnProperty("hotkeysType"))
 				$scope.keys = items.hotkeysType;
 			if(items.hasOwnProperty("fscreen"))
 				$scope.fscreen = items.fscreen;
-		
+			if(items.hasOwnProperty("muteAll"))
+				$scope.muteAll = items.muteAll;
 			$scope.$apply();
-		$scope.$watch('[keys,fscreen]', function () {
-			chrome.storage.sync.set({ "hotkeysType" : $scope.keys, "fscreen": $scope.fscreen }, function(){
-				chrome.runtime.sendMessage({ "hotkeysType" : $scope.keys, "fscreen": true }, function(response) {
+		}
+		
+		$scope.$watch('[keys,fscreen, muteAll]', function () {
+			chrome.storage.sync.set({ "hotkeysType" : $scope.keys, "fscreen": $scope.fscreen, "muteAll": $scope.muteAll }, function(){
+				chrome.runtime.sendMessage({ "hotkeysType" : $scope.keys, "fscreen": $scope.fscreen, "muteAll": $scope.muteAll }, function(response) {
 				  $mdToast.show($mdToast.simple().textContent('Updated!'));
 				});
 			});

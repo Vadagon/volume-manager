@@ -63,6 +63,8 @@ angular.module('main', ['ngMaterial'])
 					tabs[i].volumeLevel = tabsLevels[tabs[i].id]*100;
 					$scope.controlledTabs.push(tabs[i]);
 					// console.log($scope.controlledTabs);
+					if (tabs[i].id === msg.curTab.id)
+						$scope.currentLevel = tabs[i].volumeLevel;
 				}else{
 					tabs[i].volumeLevel = 100;
 					$scope.noizeTabs.push(tabs[i]);

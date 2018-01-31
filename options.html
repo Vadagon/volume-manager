@@ -47,6 +47,24 @@
                 </md-card>
             </div>
             <div flex="50" layout="column">
+                <h1>Mute tabs
+                    <md-button ng-href="https://goo.gl/c4TMmx" target="_blank" class="md-fab md-mini md-raised" aria-label="Eat cake" style="float: right; margin: -5px 3%;">
+                        <md-icon class="image"></md-icon>
+                    </md-button>
+                </h1>
+                <md-card ng-click="muteAll=!muteAll" md-ink-ripple="#a0a0a0" md-theme="{{ muteAll ? 'dark-grey' : 'default' }}" md-theme-watch>
+                    <md-card-title>
+                        <md-card-title-text>
+                            <span class="md-subhead">
+                                <md-checkbox  md-theme="{{ muteAll ? 'dark-grey' : 'default' }}" md-theme-watch ng-click="muteAll=!muteAll" ng-model="muteAll" aria-label="Checkbox 1">
+                                    {{muteAll?'Enabled':'Disabled'}}
+                                  </md-checkbox>
+                            </span>
+                            <span class="md-headline">Automatically mute all tabs</span>
+                            <span class="">Every tab volume will go to 0%</span>
+                        </md-card-title-text>
+                    </md-card-title>
+                </md-card>
                 <h1>Full Screen
                     <md-button ng-href="https://goo.gl/c4TMmx" target="_blank" class="md-fab md-mini md-raised" aria-label="Eat cake" style="float: right; margin: -5px 3%;">
                         <md-icon class="image"></md-icon>
