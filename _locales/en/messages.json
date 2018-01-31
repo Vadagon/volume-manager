@@ -1,10 +1,8 @@
 {
 	"application_title": {
-		"message": "Simple sound volume controller",
-		"description": "Simple sound volume controller."
+		"message": "Simple Sound Volume Controller"
 	},
 	"application_description": {
-		"message": "Simple sound volume controller",
-		"description": "Change sound volume on a fly with a simple click + volume booster"
+		"message": "Adjust volume of any tab on a fly with a simple clicks + volume booster control"
 	}
 }

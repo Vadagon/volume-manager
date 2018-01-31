@@ -1,10 +1,8 @@
 {
 	"application_title": {
-		"message": "Einfacher Lautstärkeregler",
-		"description": "Einfacher Lautstärkeregler."
+		"message": "Einfacher Lautstärkeregler"
 	},
 	"application_description": {
-		"message": "Einfacher Lautstärkeregler",
-		"description": "Ändern Sie die Lautstärke auf einer Fliege mit einem einfachen Klick + Lautstärkeregler"
+		"message": "Passen Sie die Lautstärke eines Tabs mit einfachen Klicks an + Lautstärke-Boost-Regler"
 	}
 }

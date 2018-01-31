@@ -1,10 +1,8 @@
 {
 	"application_title": {
-		"message": "Regolatore di volume del suono semplice",
-		"description": "Regolatore di volume del suono semplice."
+		"message": "Semplice regolatore del volume del suono"
 	},
 	"application_description": {
-		"message": "Regolatore di volume del suono semplice",
-		"description": "Cambiare il volume del suono su un volo con un semplice click + volume booster"
+		"message": "Regolare il volume di qualsiasi scheda su una mosca con un semplice click + controllo del volume di volume"
 	}
 }

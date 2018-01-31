@@ -1,10 +1,8 @@
 {
 	"application_title": {
-		"message": "Prosty kontroler głośności",
-		"description": "Prosty kontroler głośności."
+		"message": "Prosty kontroler głośności"
 	},
 	"application_description": {
-		"message": "Prosty kontroler głośności",
-		"description": "Zmień głośność dźwięku w locie za pomocą prostego przycisku + wzmacniacz głośności"
+		"message": "Dostosuj głośność każdej karty w locie za pomocą prostych przycisków + kontrolę wzmocnienia głośności"
 	}
 }

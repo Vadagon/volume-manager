@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Volume Controller</title>
+	<link rel="stylesheet" href="materialize/css/materialize.min.css">
+	<link href="materialize/iconfont/material-icons.css" rel="stylesheet">
+	<script src="materialize/js/jquery.min.js"></script>
+	<script src="materialize/js/materialize.min.js"></script>
+
+
+	<script src="custom/js/popup.js"></script>
+	<link rel="stylesheet" href="custom/css/popup.css">
+</head>
+<body>
+
+<div class="container">
+	<h5>
+		<img src="images/logo.png" style="float: left; height: 50px; margin-right: 17.5px;">
+		Simple Sound Volume Controller
+	</h6>
+	<h6>You can controll volume of the current tab with the slider below.</h6>
+	<!-- <h6>Please spend few seconds to <a href="#">Rate <i class="material-icons">star_rate</i>my work</a></h6> -->
+	<div id="curContoller">
+		<div>
+			<p class="range-field">
+			<input type="range" id="currVolume" min="0" max="100" value="100" />
+			</p>
+			<span class="volumeSpans">0%</span>
+			<span class="volumeSpans">VOLUME</span>
+			<span class="volumeSpans">100%</span>
+		</div>
+		<div>
+			<input type="checkbox" id="curBoost" />
+			<label for="curBoost">Boost</label>
+		</div>
+	</div>
+
+
+
+
+
+</div>
+	<table class="striped actived">
+	<thead>
+	<tr>
+		<th colspan="3">Tabs playing audio right now</th>
+	</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td colspan="3" style="text-align: center;""><b>No tabs playing now</b></td>
+		</tr>
+	<!-- <tr>
+		<td class="switchTab"></td>
+		<td>
+			<p class="range-field">
+			<span class="tabName switchTab">CHILL MUSIC 24/7 by PULSE8 [QHD] ❤ Chillstep / Chillout / Ambient / Melodic / Euphoric / Relaxing</span>	
+			<input type="range" min="0" max="100" />
+			</p>
+		</td>
+		<td>
+			<input type="checkbox" id="boost0" />
+			<label for="boost0"></label>
+		</td>
+	</tr>
+	<tr>
+		<td class="switchTab"></td>
+		<td colspan="2">
+			<p class="range-field switchTab">
+			<span class="tabName">CHILL MUSIC 24/7 by PULSE8 [QHD] ❤ Chillstep / Chillout / Ambient / Melodic / Euphoric / Relaxing</span>	
+			<b>Click to switch the tab</b>
+			</p>
+		</td>
+	</tr> -->
+
+	</tbody>
+	</table>
+
+</body>
+</html>

@@ -1,11 +1,12 @@
 {
-  "name": "Simple sound volume controller",
-  "version": "2.0",
+  "name": "Simple Sound Volume Controller",
+  "version": "3.0",
   "author": "Vadagon",
   "manifest_version": 2,
   "default_locale": "en",
-  "homepage_url": "https://www.vadagon.com",
-  "description": "Change sound volume on a fly with a simple click + volume booster",
+  "homepage_url": "https://goo.gl/vqsVS1",
+  "short_name": "Adjuster",
+  "description": "Adjust volume of any tab on a fly with a simple clicks + volume booster control",
   "permissions": [
     "tabCapture",
     "activeTab",
@@ -14,8 +15,15 @@
     "<all_urls>"
   ],
   "browser_action": {
-    "default_title": "Click to change the volume",
-    "default_icon": "images/lvl1.png"
+    "default_title": "Click to control tabs' volume",
+    "default_popup": "popup.html",  
+    "default_icon": "images/icon512.png"
+  },
+  "icons": { 
+    "16": "images/icon16.png",
+    "16": "images/icon32.png",
+    "48": "images/icon48.png",
+    "128": "images/icon128.png" 
   },
   "background": {
     "scripts": ["background.js"]
@@ -29,6 +37,7 @@
   ],
   "options_page": "options.html",
   "content_security_policy": "script-src 'self' https://ssl.google-analytics.com; object-src 'self'",
+  "offline_enabled": true,
   "commands": {
     "toggle-up-1": {
       "suggested_key": {

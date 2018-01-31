@@ -1,10 +1,8 @@
 {
 	"application_title": {
-		"message": "Controlador de volumen de sonido simple",
-		"description": "Controlador de volumen de sonido simple."
+		"message": "Controlador de volumen de sonido simple"
 	},
 	"application_description": {
-		"message": "Controlador de volumen de sonido simple",
-		"description": "Cambiar el volumen de sonido en una mosca con un simple clic + volumen de refuerzo"
+		"message": "Ajuste el volumen de cualquier pestaña en una mosca con un simple clic + control de refuerzo de volumen"
 	}
 }

@@ -1,10 +1,8 @@
 {
 	"application_title": {
-		"message": "簡單的音量控制器",
-		"description": "簡單的音量控制器."
+		"message": "简单音量控制器"
 	},
 	"application_description": {
-		"message": "簡單的音量控制器",
-		"description": "使用簡單的點擊+音量增強功能即時更改音量"
+		"message": "通过简单的点击+音量增量控制，即时调整任何标签的音量"
 	}
 }

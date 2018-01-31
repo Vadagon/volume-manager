@@ -1,0 +1,91 @@
+html, body{
+	min-height: 100px;
+	min-width: 350px;
+	width: 350px;
+}
+*{
+	margin: 0;
+	padding: 0;
+	vertical-align: middle;
+}
+.tabName{
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	max-width: 100%;
+	width: 100%;
+	display: inline-block;
+}
+.hidecontrols td:nth-child(2){
+	column-span: 2;
+}
+tr > td:nth-child(2){
+	width: 300px;
+	max-width: 300px;
+	min-width: 300px;
+}
+table{
+	margin-top: 30px;
+}
+[type="checkbox"]+label{
+	left: 7px;
+}
+#curContoller{
+	display: table;
+	margin: 25px 0;
+}
+#curContoller > div{
+	position: relative;
+	width: 100%;
+	display: table-cell;
+	vertical-align: middle;
+}
+#curContoller span.volumeSpans{
+    color: #9e9e9e;
+    font-size: 1rem;
+	position: absolute;
+	bottom: -15px;
+	left: 0;
+}
+#curContoller span.volumeSpans:nth-child(3){
+	left: calc( 50% - 25px);
+}
+#curContoller span.volumeSpans:nth-child(4){
+	right: 0;
+	left: auto;
+}
+#curBoost + label{
+	padding-left: 10px;
+	top: 22px;
+}
+#curBoost{
+	width: 100%;
+	height: 100%;
+}
+#curBoost + label:before{
+	top: -20px;
+    right: 17px;
+    left: auto;
+}
+.hidecontrols{
+
+}
+.switchTab{
+	cursor: pointer;
+}
+.footer{
+	/*margin-top: 25px;*/
+	text-align: center;
+    padding: 15px 0;
+}
+a i{
+	color: #00ff80;
+	width: 25px;
+}
+a{
+	position: relative;
+	top: -2px;
+}
+.showControllers{
+    max-width: 228px !important;
+}
