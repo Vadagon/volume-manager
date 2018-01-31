@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en-US" prefix="og: http://ogp.me/ns#">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Options. Volume Manager</title>
+    <link rel='stylesheet' id='vadagon-css' href='../css/normalize.css?ver=4.9.1' type='text/css' media='all' />
+    <link rel='stylesheet' id='fontShareTech-css' href='https://fonts.googleapis.com/css?family=Share+Tech+Mono&#038;ver=1.1' type='text/css' media='all' />
+    <link rel='stylesheet' id='skeleton-css' href='../css/skeleton.css?ver=1.1' type='text/css' media='all' />
+    <link rel='stylesheet' id='font-awesome-css' href='../css/font-awesome.min.css?ver=1.1' type='text/css' media='all' />
+    <link rel='stylesheet' id='style-name-css' href='../css/custom.css?ver=4.9.1' type='text/css' media='all' />
+    <style type="text/css">
+    .recentcomments a {
+        display: inline !important;
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+
+    #myImg {
+        border-radius: 5px;
+        cursor: pointer;
+        transition: 0.3s;
+        display: block;
+        margin-left: auto;
+        margin-right: auto
+    }
+
+    #myImg:hover {
+        opacity: 0.7;
+    }
+    /* The Modal (background) */
+
+    .modal {
+        display: none;
+        /* Hidden by default */
+        position: fixed;
+        /* Stay in place */
+        z-index: 1;
+        /* Sit on top */
+        padding-top: 100px;
+        /* Location of the box */
+        left: 0;
+        top: 0;
+        width: 100%;
+        /* Full width */
+        height: 100%;
+        /* Full height */
+        overflow: auto;
+        /* Enable scroll if needed */
+        background-color: rgb(0, 0, 0);
+        /* Fallback color */
+        background-color: rgba(0, 0, 0, 0.9);
+        /* Black w/ opacity */
+    }
+    /* Modal Content (image) */
+
+    .modal-content {
+        margin: auto;
+        display: block;
+        width: 75%; //max-width: 75%;
+    }
+    /* Caption of Modal Image */
+
+    #caption {
+        margin: auto;
+        display: block;
+        width: 80%;
+        max-width: 700px;
+        text-align: center;
+        color: #ccc;
+        padding: 10px 0;
+        height: 150px;
+    }
+    /* Add Animation */
+
+    .modal-content,
+    #caption {
+        -webkit-animation-name: zoom;
+        -webkit-animation-duration: 0.6s;
+        animation-name: zoom;
+        animation-duration: 0.6s;
+    }
+
+    .out {
+        animation-name: zoom-out;
+        animation-duration: 0.6s;
+    }
+
+    @-webkit-keyframes zoom {
+        from {
+            -webkit-transform: scale(1)
+        }
+        to {
+            -webkit-transform: scale(2)
+        }
+    }
+
+    @keyframes zoom {
+        from {
+            transform: scale(0.4)
+        }
+        to {
+            transform: scale(1)
+        }
+    }
+
+    @keyframes zoom-out {
+        from {
+            transform: scale(1)
+        }
+        to {
+            transform: scale(0)
+        }
+    }
+    /* The Close Button */
+
+    .close {
+        position: absolute;
+        top: 15px;
+        right: 35px;
+        color: #f1f1f1;
+        font-size: 40px;
+        font-weight: bold;
+        transition: 0.3s;
+    }
+
+    .close:hover,
+    .close:focus {
+        color: #bbb;
+        text-decoration: none;
+        cursor: pointer;
+    }
+    /* 100% Image Width on Smaller Screens */
+
+    @media only screen and (max-width: 700px) {
+        .modal-content {
+            width: 100%;
+        }
+    }
+
+    #volumeLink {
+        text-decoration: none;
+        color: #fbfbfb;
+    }
+    code{
+        background-color: rgba(0,0,0,0.3);
+    }
+    h1 {
+        width: 100%;
+    }
+    </style>
+</head>
+
+<body class="page-template page-template-blank page-template-blank-php page page-id-80 page-child parent-pageid-34" ng-app="main">
+    <div id="myModal" class="modal">
+        <img class="modal-content" id="img01">
+    </div>
+    <header>
+        <nav>
+            <div class="container row">
+                <div class="one-half column"><a class="button active" href="/">Volume Manager</a></div>
+                <div class="one-half column nav-links">
+                    <a class="button" href="/faq/">FAQ</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main ng-controller="AppCtrl" class="container">
+        <section class="first-section">
+            <div ng-cloak>
+                <md-content class="" layout-xs="column" md-theme="dark-grey" layout="row" style="background-color: rgba(0,0,0,0);">
+                    <div flex="50" layout="column">
+                        <h1>ShortCuts 
+                    <md-button ng-href="https://goo.gl/c4TMmx" target="_blank" class="md-fab md-mini md-primary md-raised" aria-label="Eat cake" title="Rate it" style="float: right; margin: 10px 3%;" >
+                        <md-icon class="image"></md-icon>
+                    </md-button>
+                </h1>
+                        <md-card ng-click="keys[0]=!keys[0]" md-ink-ripple="#a0a0a0" md-theme="{{ keys[0] ? 'dark-grey' : 'default' }}" md-theme-watch>
+                            <md-card-title>
+                                <md-card-title-text>
+                                    <span class="md-subhead">
+                                <md-checkbox  md-theme="{{ keys[0] ? 'dark-grey' : 'default' }}" md-theme-watch ng-click="keys[0]=!keys[0]" ng-model="keys[0]" aria-label="Checkbox 1">
+                                    {{keys[0]?'Enabled':'Disabled'}}
+                                  </md-checkbox>
+                            </span>
+                                    <span class="md-headline">Change up: <code>Ctrl + Q</code></span>
+                                    <span class="md-headline">Change down: <code>Alt + Q</code></span>
+                                </md-card-title-text>
+                            </md-card-title>
+                        </md-card>
+                        <md-card ng-click="keys[1]=!keys[1]" md-ink-ripple="#a0a0a0" md-theme="{{ keys[1] ? 'dark-grey' : 'default' }}" md-theme-watch>
+                            <md-card-title>
+                                <md-card-title-text>
+                                    <span class="md-subhead">
+                                <md-checkbox  md-theme="{{ keys[1] ? 'dark-grey' : 'default' }}" md-theme-watch ng-click="keys[1]=!keys[1]" ng-model="keys[1]" aria-label="Checkbox 1">
+                                    {{keys[1]?'Enabled':'Disabled'}}
+                                  </md-checkbox>
+                            </span>
+                                    <span class="md-headline">Change up: <code>Ctrl + &uarr;</code></span>
+                                    <span class="md-headline">Change down: <code>Ctrl + &darr;</code></span>
+                                </md-card-title-text>
+                            </md-card-title>
+                        </md-card>
+                    </div>
+                    <div flex="50" layout="column">
+                        <h1>Mute tabs
+                    <md-button ng-href="https://goo.gl/c4TMmx" target="_blank" class="md-fab md-mini md-primary md-raised" aria-label="Eat cake" title="Rate it" style="float: right; margin: 10px 3%;" >
+                        <md-icon class="image"></md-icon>
+                    </md-button>
+                </h1>
+                        <md-card ng-click="muteAll=!muteAll" md-ink-ripple="#a0a0a0" md-theme="{{ muteAll ? 'dark-grey' : 'default' }}" md-theme-watch>
+                            <md-card-title>
+                                <md-card-title-text>
+                                    <span class="md-subhead">
+                                <md-checkbox  md-theme="{{ muteAll ? 'dark-grey' : 'default' }}" md-theme-watch ng-click="muteAll=!muteAll" ng-model="muteAll" aria-label="Checkbox 1">
+                                    {{muteAll?'Enabled':'Disabled'}}
+                                  </md-checkbox>
+                            </span>
+                                    <span class="md-headline">Automatically mute all tabs</span>
+                                    <span class="">Every tab volume will go to 0%</span>
+                                </md-card-title-text>
+                            </md-card-title>
+                        </md-card>
+                        <h1>Full Screen
+                    <md-button ng-href="https://goo.gl/c4TMmx" target="_blank" class="md-fab md-mini md-primary md-raised" aria-label="Eat cake" title="Rate it" style="float: right; margin: 10px 3%;" >
+                        <md-icon class="image"></md-icon>
+                    </md-button>
+                </h1>
+                        <md-card ng-click="fscreen=!fscreen" md-ink-ripple="#a0a0a0" md-theme="{{ fscreen ? 'dark-grey' : 'default' }}" md-theme-watch>
+                            <md-card-title>
+                                <md-card-title-text>
+                                    <span class="md-subhead">
+                                <md-checkbox  md-theme="{{ fscreen ? 'dark-grey' : 'default' }}" md-theme-watch ng-click="fscreen=!fscreen" ng-model="fscreen" aria-label="Checkbox 1">
+                                    {{fscreen?'Enabled':'Disabled'}}
+                                  </md-checkbox>
+                            </span>
+                                    <span class="md-headline">Full screen mode for videos</span>
+                                    <span class=""><a href="https://goo.gl/c4TMmx" style="color: inherit;">Tell me</a> if there are any problems with full screen mode</span>
+                                </md-card-title-text>
+                            </md-card-title>
+                        </md-card>
+                    </div>
+                </md-content>
+            </div>
+            <style type="text/css">
+            md-content md-card {
+                cursor: pointer;
+                overflow: hidden;
+                position: relative;
+            }
+
+            .md-subhead {
+                margin: -10px 0;
+            }
+
+            .md-headline code {
+                float: right;
+            }
+
+            md-icon.image {
+                background-size: 30px;
+                background-position: center;
+                height: 30px;
+                width: 30px;
+                background-image: url(data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTkuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgdmlld0JveD0iMCAwIDUxMS45OTkgNTExLjk5OSIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgNTExLjk5OSA1MTEuOTk5OyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSIgd2lkdGg9IjUxMnB4IiBoZWlnaHQ9IjUxMnB4Ij4KPHBhdGggc3R5bGU9ImZpbGw6I0ZGREM2NDsiIGQ9Ik00NTIuNzEsMTU3LjkzN2wtMTMzLjc0MS0xMi40MDRMMjY1Ljg0MywyMi4xN2MtMy43Mi04LjYzOC0xNS45NjctOC42MzgtMTkuNjg2LDBsLTUzLjEyNiwxMjMuMzYyICBMNTkuMjksMTU3LjkzN2MtOS4zNjUsMC44NjgtMTMuMTQ5LDEyLjUxNi02LjA4NCwxOC43MjNsMTAwLjkwOCw4OC42NDZsLTI5LjUzMSwxMzEuMDI5Yy0yLjA2OCw5LjE3NSw3Ljg0MSwxNi4zNzMsMTUuOTI3LDExLjU3MiAgTDI1NiwzMzkuMzMxbDExNS40OSw2OC41NzZjOC4wODcsNC44MDIsMTcuOTk0LTIuMzk3LDE1LjkyNy0xMS41NzJsLTI5LjUzMi0xMzEuMDI5bDEwMC45MDktODguNjQ2ICBDNDY1Ljg1OSwxNzAuNDUzLDQ2Mi4wNzQsMTU4LjgwNSw0NTIuNzEsMTU3LjkzN3oiLz4KPGc+Cgk8cGF0aCBzdHlsZT0iZmlsbDojRkZGMDgyOyIgZD0iTTExOS4yNzgsMTcuOTIzYzYuODE4LDkuNDcsMjYuMDYyLDUwLjE0LDM3LjA2NCw3My44NDJjMS43MywzLjcyNi0yLjk0NSw3LjA5Mi01LjkzLDQuMjY5ICAgQzEzMS40MjUsNzguMDgyLDk4Ljk2LDQ2LjkzLDkyLjE0MiwzNy40NTljLTUuMzk1LTcuNDkzLTMuNjk0LTE3Ljk0MSwzLjgtMjMuMzM2QzEwMy40MzUsOC43MjgsMTEzLjg4MywxMC40MywxMTkuMjc4LDE3LjkyM3oiLz4KCTxwYXRoIHN0eWxlPSJmaWxsOiNGRkYwODI7IiBkPSJNMzkyLjcyMiwxNy45MjNjLTYuODE4LDkuNDctMjYuMDYyLDUwLjE0LTM3LjA2NCw3My44NDJjLTEuNzMsMy43MjYsMi45NDUsNy4wOTIsNS45Myw0LjI2OSAgIGMxOC45ODctMTcuOTUyLDUxLjQ1MS00OS4xMDUsNTguMjctNTguNTc1YzUuMzk1LTcuNDkzLDMuNjk0LTE3Ljk0MS0zLjgtMjMuMzM2QzQwOC41NjUsOC43MjgsMzk4LjExNywxMC40MywzOTIuNzIyLDE3LjkyM3oiLz4KCTxwYXRoIHN0eWxlPSJmaWxsOiNGRkYwODI7IiBkPSJNNTAwLjQ2MSwyOTUuNjI5Yy0xMS4wOTQtMy42MTgtNTUuNjg5LTkuNTk1LTgxLjYxMi0xMi44NzVjLTQuMDc1LTAuNTE2LTUuODYxLDQuOTYxLTIuMjY2LDYuOTQ3ICAgYzIyLjg3MywxMi42MzUsNjIuNDE2LDM0LjA5OSw3My41MSwzNy43MTdjOC43NzgsMi44NjMsMTguMjE1LTEuOTMyLDIxLjA3OC0xMC43MTEgICBDNTE0LjAzNCwzMDcuOTI4LDUwOS4yMzksMjk4LjQ5Miw1MDAuNDYxLDI5NS42Mjl6Ii8+Cgk8cGF0aCBzdHlsZT0iZmlsbDojRkZGMDgyOyIgZD0iTTExLjUzOSwyOTUuNjI5YzExLjA5NC0zLjYxOCw1NS42ODktOS41OTUsODEuNjEyLTEyLjg3NWM0LjA3NS0wLjUxNiw1Ljg2MSw0Ljk2MSwyLjI2Niw2Ljk0NyAgIGMtMjIuODczLDEyLjYzNS02Mi40MTYsMzQuMDk5LTczLjUxLDM3LjcxN2MtOC43NzgsMi44NjMtMTguMjE1LTEuOTMyLTIxLjA3OC0xMC43MTFTMi43NjEsMjk4LjQ5MiwxMS41MzksMjk1LjYyOXoiLz4KCTxwYXRoIHN0eWxlPSJmaWxsOiNGRkYwODI7IiBkPSJNMjM5Ljc5NCw0ODQuMzFjMC0xMS42NjksOC4xNDUtNTUuOTE5LDEzLjA2NS04MS41ODJjMC43NzMtNC4wMzQsNi41MzQtNC4wMzQsNy4zMDcsMCAgIGM0LjkyLDI1LjY2MywxMy4wNjUsNjkuOTEzLDEzLjA2NSw4MS41ODJjMCw5LjIzMy03LjQ4NSwxNi43MTgtMTYuNzE4LDE2LjcxOEMyNDcuMjc5LDUwMS4wMjksMjM5Ljc5NCw0OTMuNTQzLDIzOS43OTQsNDg0LjMxeiIvPgo8L2c+CjxwYXRoIHN0eWxlPSJmaWxsOiNGRkM4NTA7IiBkPSJNMjg1LjE2MSw2Ny4wM2wtMTkuMzE5LTQ0Ljg2Yy0zLjcyLTguNjM4LTE1Ljk2Ny04LjYzOC0xOS42ODYsMEwxOTMuMDMsMTQ1LjUzMkw1OS4yOSwxNTcuOTM3ICBjLTkuMzY1LDAuODY4LTEzLjE0OSwxMi41MTYtNi4wODQsMTguNzIzbDEwMC45MDgsODguNjQ2bC0yOS41MzEsMTMxLjAyOWMtMi4wNjgsOS4xNzUsNy44NDEsMTYuMzczLDE1LjkyNywxMS41NzJsMTUuMzcxLTkuMTI3ICBDMTgxLjA4LDIzNS42NiwyNTEuOTIyLDExNS45MTgsMjg1LjE2MSw2Ny4wM3oiLz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPC9zdmc+Cg==)
+            }
+            </style>
+        </section>
+    </main>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css">
+    <!-- Angular Material requires Angular.js Libraries -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
+    <!-- Angular Material Library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
+    <script type="text/javascript">
+    angular.module('main', ['ngMaterial'])
+
+        .controller('AppCtrl', function($scope, $mdToast) {
+            $scope.keys = [true, true];
+            $scope.fscreen = true;
+            $scope.muteAll = false;
+
+
+            var editorExtensionId = 'kakeffogmhndegdafnbobknemagiikak';
+            var request = function(e, te, callback) {
+                chrome.runtime.sendMessage(editorExtensionId, { how: e, what: te }, function(response) {
+                    callback(response);
+                });
+            }
+            request('get', ["hotkeysType", "fscreen", "muteAll"], function(items) {
+                console.log(items);
+                if (items.hasOwnProperty("hotkeysType"))
+                    $scope.keys = items.hotkeysType;
+                if (items.hasOwnProperty("fscreen"))
+                    $scope.fscreen = items.fscreen;
+                if (items.hasOwnProperty("muteAll"))
+                    $scope.muteAll = items.muteAll;
+                $scope.$apply();
+
+                $scope.$watch('[keys,fscreen, muteAll]', function() {
+                    console.log(123);
+                    request('set', { "hotkeysType": $scope.keys, "fscreen": $scope.fscreen, "muteAll": $scope.muteAll }, function() {
+                        $mdToast.show($mdToast.simple().textContent('Updated!'));
+                    });
+                }, true);
+
+            });
+
+
+        })
+        .config(function($mdThemingProvider) {
+            $mdThemingProvider.theme('dark-grey').backgroundPalette('grey').dark();
+            $mdThemingProvider.theme('dark-orange').backgroundPalette('orange').dark();
+            $mdThemingProvider.theme('dark-purple').backgroundPalette('deep-purple').dark();
+            $mdThemingProvider.theme('dark-blue').backgroundPalette('blue').dark();
+        });
+
+    // window.location.href = 'https://goo.gl/kaP9UZ';
+    </script>
+    <!-- <script type='text/javascript' src='https://vadagon.com/wp-includes/js/wp-embed.min.js?ver=4.9.1'></script> -->
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <footer class="dark padding section" style="z-index: 0; background-color: rgba(0,0,0,0);">
+        <div class="container center">
+            Copyright © 2017 All rights reserved.
+        </div>
+    </footer>
+    <script type='text/javascript' src='//platform-api.sharethis.com/js/sharethis.js#property=59050b02852aff00121eb964&#038;product=inline-share-buttons' async='async'></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-76335181-10"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-76335181-10');
+    </script>
+</body>
+
+</html>
