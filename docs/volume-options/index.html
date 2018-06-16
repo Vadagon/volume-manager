@@ -249,7 +249,11 @@
                 overflow: hidden;
                 position: relative;
             }
-
+body {
+     height: auto !important; 
+    position: relative;
+    min-height: 100% !important
+}
             .md-subhead {
                 margin: -10px 0;
             }
@@ -266,6 +270,18 @@
                 background-image: url(data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTkuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgdmlld0JveD0iMCAwIDUxMS45OTkgNTExLjk5OSIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgNTExLjk5OSA1MTEuOTk5OyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSIgd2lkdGg9IjUxMnB4IiBoZWlnaHQ9IjUxMnB4Ij4KPHBhdGggc3R5bGU9ImZpbGw6I0ZGREM2NDsiIGQ9Ik00NTIuNzEsMTU3LjkzN2wtMTMzLjc0MS0xMi40MDRMMjY1Ljg0MywyMi4xN2MtMy43Mi04LjYzOC0xNS45NjctOC42MzgtMTkuNjg2LDBsLTUzLjEyNiwxMjMuMzYyICBMNTkuMjksMTU3LjkzN2MtOS4zNjUsMC44NjgtMTMuMTQ5LDEyLjUxNi02LjA4NCwxOC43MjNsMTAwLjkwOCw4OC42NDZsLTI5LjUzMSwxMzEuMDI5Yy0yLjA2OCw5LjE3NSw3Ljg0MSwxNi4zNzMsMTUuOTI3LDExLjU3MiAgTDI1NiwzMzkuMzMxbDExNS40OSw2OC41NzZjOC4wODcsNC44MDIsMTcuOTk0LTIuMzk3LDE1LjkyNy0xMS41NzJsLTI5LjUzMi0xMzEuMDI5bDEwMC45MDktODguNjQ2ICBDNDY1Ljg1OSwxNzAuNDUzLDQ2Mi4wNzQsMTU4LjgwNSw0NTIuNzEsMTU3LjkzN3oiLz4KPGc+Cgk8cGF0aCBzdHlsZT0iZmlsbDojRkZGMDgyOyIgZD0iTTExOS4yNzgsMTcuOTIzYzYuODE4LDkuNDcsMjYuMDYyLDUwLjE0LDM3LjA2NCw3My44NDJjMS43MywzLjcyNi0yLjk0NSw3LjA5Mi01LjkzLDQuMjY5ICAgQzEzMS40MjUsNzguMDgyLDk4Ljk2LDQ2LjkzLDkyLjE0MiwzNy40NTljLTUuMzk1LTcuNDkzLTMuNjk0LTE3Ljk0MSwzLjgtMjMuMzM2QzEwMy40MzUsOC43MjgsMTEzLjg4MywxMC40MywxMTkuMjc4LDE3LjkyM3oiLz4KCTxwYXRoIHN0eWxlPSJmaWxsOiNGRkYwODI7IiBkPSJNMzkyLjcyMiwxNy45MjNjLTYuODE4LDkuNDctMjYuMDYyLDUwLjE0LTM3LjA2NCw3My44NDJjLTEuNzMsMy43MjYsMi45NDUsNy4wOTIsNS45Myw0LjI2OSAgIGMxOC45ODctMTcuOTUyLDUxLjQ1MS00OS4xMDUsNTguMjctNTguNTc1YzUuMzk1LTcuNDkzLDMuNjk0LTE3Ljk0MS0zLjgtMjMuMzM2QzQwOC41NjUsOC43MjgsMzk4LjExNywxMC40MywzOTIuNzIyLDE3LjkyM3oiLz4KCTxwYXRoIHN0eWxlPSJmaWxsOiNGRkYwODI7IiBkPSJNNTAwLjQ2MSwyOTUuNjI5Yy0xMS4wOTQtMy42MTgtNTUuNjg5LTkuNTk1LTgxLjYxMi0xMi44NzVjLTQuMDc1LTAuNTE2LTUuODYxLDQuOTYxLTIuMjY2LDYuOTQ3ICAgYzIyLjg3MywxMi42MzUsNjIuNDE2LDM0LjA5OSw3My41MSwzNy43MTdjOC43NzgsMi44NjMsMTguMjE1LTEuOTMyLDIxLjA3OC0xMC43MTEgICBDNTE0LjAzNCwzMDcuOTI4LDUwOS4yMzksMjk4LjQ5Miw1MDAuNDYxLDI5NS42Mjl6Ii8+Cgk8cGF0aCBzdHlsZT0iZmlsbDojRkZGMDgyOyIgZD0iTTExLjUzOSwyOTUuNjI5YzExLjA5NC0zLjYxOCw1NS42ODktOS41OTUsODEuNjEyLTEyLjg3NWM0LjA3NS0wLjUxNiw1Ljg2MSw0Ljk2MSwyLjI2Niw2Ljk0NyAgIGMtMjIuODczLDEyLjYzNS02Mi40MTYsMzQuMDk5LTczLjUxLDM3LjcxN2MtOC43NzgsMi44NjMtMTguMjE1LTEuOTMyLTIxLjA3OC0xMC43MTFTMi43NjEsMjk4LjQ5MiwxMS41MzksMjk1LjYyOXoiLz4KCTxwYXRoIHN0eWxlPSJmaWxsOiNGRkYwODI7IiBkPSJNMjM5Ljc5NCw0ODQuMzFjMC0xMS42NjksOC4xNDUtNTUuOTE5LDEzLjA2NS04MS41ODJjMC43NzMtNC4wMzQsNi41MzQtNC4wMzQsNy4zMDcsMCAgIGM0LjkyLDI1LjY2MywxMy4wNjUsNjkuOTEzLDEzLjA2NSw4MS41ODJjMCw5LjIzMy03LjQ4NSwxNi43MTgtMTYuNzE4LDE2LjcxOEMyNDcuMjc5LDUwMS4wMjksMjM5Ljc5NCw0OTMuNTQzLDIzOS43OTQsNDg0LjMxeiIvPgo8L2c+CjxwYXRoIHN0eWxlPSJmaWxsOiNGRkM4NTA7IiBkPSJNMjg1LjE2MSw2Ny4wM2wtMTkuMzE5LTQ0Ljg2Yy0zLjcyLTguNjM4LTE1Ljk2Ny04LjYzOC0xOS42ODYsMEwxOTMuMDMsMTQ1LjUzMkw1OS4yOSwxNTcuOTM3ICBjLTkuMzY1LDAuODY4LTEzLjE0OSwxMi41MTYtNi4wODQsMTguNzIzbDEwMC45MDgsODguNjQ2bC0yOS41MzEsMTMxLjAyOWMtMi4wNjgsOS4xNzUsNy44NDEsMTYuMzczLDE1LjkyNywxMS41NzJsMTUuMzcxLTkuMTI3ICBDMTgxLjA4LDIzNS42NiwyNTEuOTIyLDExNS45MTgsMjg1LjE2MSw2Ny4wM3oiLz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPC9zdmc+Cg==)
             }
             </style>
+        </section>
+        <section style="padding-top: 30px;">
+            <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- Volume Manager Options -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-4274682430083943"
+     data-ad-slot="6474603155"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
         </section>
     </main>
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css">

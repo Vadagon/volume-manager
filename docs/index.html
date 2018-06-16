@@ -1,15 +1,64 @@
 <!DOCTYPE html>
-<html lang="en-US" prefix="og: http://ogp.me/ns#">
+<html lang='en-US' itemscope itemtype='http://schema.org/WebApplication'>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Options. Volume Manager</title>
-    <link rel='stylesheet' id='vadagon-css' href='../css/normalize.css?ver=4.9.1' type='text/css' media='all' />
+<head prefix='og: http://ogp.me/ns#'>
+    <meta charset='utf-8'>
+    <title>Install Volume Controller + Volume Booster</title>
+    <!-- Maximum length 155 characters -->
+    <meta name='description' content='Features of the Extension: Volume Controller - Control volume of any tab in your browser from one place. Volume Booster - Boost volume of any tab up to 800%. Shortcuts - Control volume via Shortcuts or &hellip;.' />
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel="chrome-webstore-item" href="https://chrome.google.com/webstore/detail/kakeffogmhndegdafnbobknemagiikak">
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="57x57" href="/images/favicons/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/images/favicons/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/images/favicons/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/images/favicons/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/images/favicons/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/images/favicons/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/images/favicons/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/images/favicons/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/favicons/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/images/favicons/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/images/favicons/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/favicons/favicon-16x16.png">
+    <link rel="manifest" href="/images/favicons/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/images/favicons/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+    <!-- Schema.org markup for Google+ -->
+    <meta itemprop='name' content='Volume Controller + Volume Booster'>
+    <meta itemprop='description' content='Features of the Extension: Volume Controller - Control volume of any tab in your browser from one place. Volume Booster - Boost volume of any tab up to 800%. Shortcuts - Control volume via Shortcuts or &hellip;'>
+    <meta itemprop='image' content='https://volume-manager.org/images/popup.png'>
+    <!-- Twitter Card data -->
+    <meta name='twitter:card' content='summary_large_image'>
+    <meta name='twitter:site' content='@vvadagon'>
+    <meta name='twitter:title' content='Volume Manager'>
+    <meta name='twitter:description' content='Features of the Extension: Volume Controller - Control volume of any tab in your browser from one place. Volume Booster - Boost volume of any tab up to 800%. Shortcuts - Control volume via Shortcuts or &hellip;'>
+    <meta name='twitter:creator' content='@vvadagon'>
+    <!-- Twitter summary card with large image must be at least 280x150px -->
+    <meta name='twitter:image:src' content='https://volume-manager.org/images/popup.png'>
+    <!-- Open Graph data -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Volume Controller + Volume Booster" />
+    <meta property="og:description" content="Features of the Extension: Volume Controller - Control volume of any tab in your browser from one place. Volume Booster - Boost volume of any tab up to 800%. Shortcuts - Control volume via Shortcuts or &hellip;" />
+    <meta property="og:url" content="https://volume-manager.org/" />
+    <meta property="og:site_name" content="Volume Manager" />
+    <meta property="og:image" content="https://vadagon.com/images/popup.png" />
+    <meta property="og:image:secure_url" content="https://vadagon.com/images/popup.png" />
+    <meta property="og:image" content="https://vadagon.com/images/placeholder.png" />
+    <meta property="og:image:secure_url" content="https://vadagon.com/images/placeholder.png" />
+    <script type='application/ld+json'>
+    { "@context": "http:\/\/schema.org", "@type": "WebSite", "@id": "#website", "url": "https:\/\/volume-manager.org\/", "name": "Volume Controller + Volume Booster", "alternateName": "Volume Manager" }
+    </script>
+    <script type='application/ld+json'>
+    { "@context": "http:\/\/schema.org", "@type": "Person", "url": "https:\/\/vadagon.com\/", "sameAs": [], "@id": "#person", "name": "Vladislav Verbitsky" }
+    </script>
+    <link rel='stylesheet' id='vadagon-css' href='/css/normalize.css?ver=4.9.1' type='text/css' media='all' />
     <link rel='stylesheet' id='fontShareTech-css' href='https://fonts.googleapis.com/css?family=Share+Tech+Mono&#038;ver=1.1' type='text/css' media='all' />
-    <link rel='stylesheet' id='skeleton-css' href='../css/skeleton.css?ver=1.1' type='text/css' media='all' />
-    <link rel='stylesheet' id='font-awesome-css' href='../css/font-awesome.min.css?ver=1.1' type='text/css' media='all' />
-    <link rel='stylesheet' id='style-name-css' href='../css/custom.css?ver=4.9.1' type='text/css' media='all' />
+    <link rel='stylesheet' id='skeleton-css' href='/css/skeleton.css?ver=1.1' type='text/css' media='all' />
+    <link rel='stylesheet' id='font-awesome-css' href='/css/font-awesome.min.css?ver=1.1' type='text/css' media='all' />
+    <link rel='stylesheet' id='style-name-css' href='/css/custom.css?ver=4.9.1' type='text/css' media='all' />
     <style type="text/css">
     .recentcomments a {
         display: inline !important;
@@ -138,21 +187,14 @@
             width: 100%;
         }
     }
-
-    #volumeLink {
+    #volumeLink{
         text-decoration: none;
         color: #fbfbfb;
-    }
-    code{
-        background-color: rgba(0,0,0,0.3);
-    }
-    h1 {
-        width: 100%;
     }
     </style>
 </head>
 
-<body class="page-template page-template-blank page-template-blank-php page page-id-80 page-child parent-pageid-34" ng-app="main">
+<body>
     <div id="myModal" class="modal">
         <img class="modal-content" id="img01">
     </div>
@@ -166,178 +208,160 @@
             </div>
         </nav>
     </header>
-    <main ng-controller="AppCtrl" class="container">
-        <section class="first-section">
-            <div ng-cloak>
-                <md-content class="" layout-xs="column" md-theme="dark-grey" layout="row" style="background-color: rgba(0,0,0,0);">
-                    <div flex="50" layout="column">
-                        <h1>ShortCuts 
-                    <md-button ng-href="https://goo.gl/c4TMmx" target="_blank" class="md-fab md-mini md-primary md-raised" aria-label="Eat cake" title="Rate it" style="float: right; margin: 10px 3%;" >
-                        <md-icon class="image"></md-icon>
-                    </md-button>
-                </h1>
-                        <md-card ng-click="keys[0]=!keys[0]" md-ink-ripple="#a0a0a0" md-theme="{{ keys[0] ? 'dark-grey' : 'default' }}" md-theme-watch>
-                            <md-card-title>
-                                <md-card-title-text>
-                                    <span class="md-subhead">
-                                <md-checkbox  md-theme="{{ keys[0] ? 'dark-grey' : 'default' }}" md-theme-watch ng-click="keys[0]=!keys[0]" ng-model="keys[0]" aria-label="Checkbox 1">
-                                    {{keys[0]?'Enabled':'Disabled'}}
-                                  </md-checkbox>
-                            </span>
-                                    <span class="md-headline">Change up: <code>Ctrl + Q</code></span>
-                                    <span class="md-headline">Change down: <code>Alt + Q</code></span>
-                                </md-card-title-text>
-                            </md-card-title>
-                        </md-card>
-                        <md-card ng-click="keys[1]=!keys[1]" md-ink-ripple="#a0a0a0" md-theme="{{ keys[1] ? 'dark-grey' : 'default' }}" md-theme-watch>
-                            <md-card-title>
-                                <md-card-title-text>
-                                    <span class="md-subhead">
-                                <md-checkbox  md-theme="{{ keys[1] ? 'dark-grey' : 'default' }}" md-theme-watch ng-click="keys[1]=!keys[1]" ng-model="keys[1]" aria-label="Checkbox 1">
-                                    {{keys[1]?'Enabled':'Disabled'}}
-                                  </md-checkbox>
-                            </span>
-                                    <span class="md-headline">Change up: <code>Ctrl + &uarr;</code></span>
-                                    <span class="md-headline">Change down: <code>Ctrl + &darr;</code></span>
-                                </md-card-title-text>
-                            </md-card-title>
-                        </md-card>
+    <main>
+        <section class="itemsector hero" style="z-index: 2;">
+            <div class="container">
+                <div class="row">
+                    <div class="one-half column">
+                        <h1 class="sansfont h4">Take total control on sound in your browser &#8211; Install <a id="volumeLink" target="_blank" href="https://chrome.google.com/webstore/detail/volume-manager/kakeffogmhndegdafnbobknemagiikak">Volume Manager</a> in seconds!.</h1>
+                        <a class="button button-primary chromeBasedStuff" target="_blank" href="https://chrome.google.com/webstore/detail/kakeffogmhndegdafnbobknemagiikak" onclick="install(event)" id="install-button">Click to install</a> <a class="button chromeBasedStuff" href="#" style="display: none;">Available for desktop chrome only</a>
                     </div>
-                    <div flex="50" layout="column">
-                        <h1>Mute tabs
-                    <md-button ng-href="https://goo.gl/c4TMmx" target="_blank" class="md-fab md-mini md-primary md-raised" aria-label="Eat cake" title="Rate it" style="float: right; margin: 10px 3%;" >
-                        <md-icon class="image"></md-icon>
-                    </md-button>
-                </h1>
-                        <md-card ng-click="muteAll=!muteAll" md-ink-ripple="#a0a0a0" md-theme="{{ muteAll ? 'dark-grey' : 'default' }}" md-theme-watch>
-                            <md-card-title>
-                                <md-card-title-text>
-                                    <span class="md-subhead">
-                                <md-checkbox  md-theme="{{ muteAll ? 'dark-grey' : 'default' }}" md-theme-watch ng-click="muteAll=!muteAll" ng-model="muteAll" aria-label="Checkbox 1">
-                                    {{muteAll?'Enabled':'Disabled'}}
-                                  </md-checkbox>
-                            </span>
-                                    <span class="md-headline">Automatically mute all tabs</span>
-                                    <span class="">Every tab volume will go to 0%</span>
-                                </md-card-title-text>
-                            </md-card-title>
-                        </md-card>
-                        <h1>Full Screen
-                    <md-button ng-href="https://goo.gl/c4TMmx" target="_blank" class="md-fab md-mini md-primary md-raised" aria-label="Eat cake" title="Rate it" style="float: right; margin: 10px 3%;" >
-                        <md-icon class="image"></md-icon>
-                    </md-button>
-                </h1>
-                        <md-card ng-click="fscreen=!fscreen" md-ink-ripple="#a0a0a0" md-theme="{{ fscreen ? 'dark-grey' : 'default' }}" md-theme-watch>
-                            <md-card-title>
-                                <md-card-title-text>
-                                    <span class="md-subhead">
-                                <md-checkbox  md-theme="{{ fscreen ? 'dark-grey' : 'default' }}" md-theme-watch ng-click="fscreen=!fscreen" ng-model="fscreen" aria-label="Checkbox 1">
-                                    {{fscreen?'Enabled':'Disabled'}}
-                                  </md-checkbox>
-                            </span>
-                                    <span class="md-headline">Full screen mode for videos</span>
-                                    <span class=""><a href="https://goo.gl/c4TMmx" style="color: inherit;">Tell me</a> if there are any problems with full screen mode</span>
-                                </md-card-title-text>
-                            </md-card-title>
-                        </md-card>
+                    <div class="one-half column phones">
+                        <img class="phone" src="/images/popup.png" />
                     </div>
-                </md-content>
+                </div>
+        </section>
+        <section class="itemsector values" style="background-image: url('/images/values-bg.jpg');">
+            <div class="container">
+                <h2 class="center">Features of the Extension</h2>
+                <div class="row">
+                    <div class="three columns value"><span class="h1 value-multiplier"><i class="fa fa-volume-down" aria-hidden="true"></i></span>
+                        <h3 class="normal_attr value-heading width100 center sansfont h5">Volume Controller</h3>
+                        <p class="value-description">Control volume of any tab in your browser from one place.</p>
+                    </div>
+                    <div class="three columns value"><span class="h1 value-multiplier"><i class="fa fa-bullhorn" aria-hidden="true"></i></span>
+                        <h3 class="normal_attr value-heading width100 center sansfont h5">Volume Booster</h3>
+                        <p class="value-description">Boost volume of any tab up to 800%.</p>
+                    </div>
+                    <div class="three columns value"><span class="h1 value-multiplier"><i class="fa fa-bolt" aria-hidden="true"></i></span>
+                        <h3 class="normal_attr value-heading width100 center sansfont h5">Shortcuts</h3>
+                        <p class="value-description">Control volume via Shortcuts or Mouse</p>
+                    </div>
+                    <div class="three columns value"><span class="h1 value-multiplier"><i class="fa fa-volume-off" aria-hidden="true"></i></span>
+                        <h3 class="normal_attr value-heading width100 center sansfont h5">Mute all Tabs</h3>
+                        <p class="value-description">Take ABSOLUTE control on what you should to hear!</p>
+                    </div>
+                </div>
             </div>
-            <style type="text/css">
-            md-content md-card {
-                cursor: pointer;
-                overflow: hidden;
-                position: relative;
-            }
-
-            .md-subhead {
-                margin: -10px 0;
-            }
-
-            .md-headline code {
-                float: right;
-            }
-
-            md-icon.image {
-                background-size: 30px;
-                background-position: center;
-                height: 30px;
-                width: 30px;
-                background-image: url(data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTkuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgdmlld0JveD0iMCAwIDUxMS45OTkgNTExLjk5OSIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgNTExLjk5OSA1MTEuOTk5OyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSIgd2lkdGg9IjUxMnB4IiBoZWlnaHQ9IjUxMnB4Ij4KPHBhdGggc3R5bGU9ImZpbGw6I0ZGREM2NDsiIGQ9Ik00NTIuNzEsMTU3LjkzN2wtMTMzLjc0MS0xMi40MDRMMjY1Ljg0MywyMi4xN2MtMy43Mi04LjYzOC0xNS45NjctOC42MzgtMTkuNjg2LDBsLTUzLjEyNiwxMjMuMzYyICBMNTkuMjksMTU3LjkzN2MtOS4zNjUsMC44NjgtMTMuMTQ5LDEyLjUxNi02LjA4NCwxOC43MjNsMTAwLjkwOCw4OC42NDZsLTI5LjUzMSwxMzEuMDI5Yy0yLjA2OCw5LjE3NSw3Ljg0MSwxNi4zNzMsMTUuOTI3LDExLjU3MiAgTDI1NiwzMzkuMzMxbDExNS40OSw2OC41NzZjOC4wODcsNC44MDIsMTcuOTk0LTIuMzk3LDE1LjkyNy0xMS41NzJsLTI5LjUzMi0xMzEuMDI5bDEwMC45MDktODguNjQ2ICBDNDY1Ljg1OSwxNzAuNDUzLDQ2Mi4wNzQsMTU4LjgwNSw0NTIuNzEsMTU3LjkzN3oiLz4KPGc+Cgk8cGF0aCBzdHlsZT0iZmlsbDojRkZGMDgyOyIgZD0iTTExOS4yNzgsMTcuOTIzYzYuODE4LDkuNDcsMjYuMDYyLDUwLjE0LDM3LjA2NCw3My44NDJjMS43MywzLjcyNi0yLjk0NSw3LjA5Mi01LjkzLDQuMjY5ICAgQzEzMS40MjUsNzguMDgyLDk4Ljk2LDQ2LjkzLDkyLjE0MiwzNy40NTljLTUuMzk1LTcuNDkzLTMuNjk0LTE3Ljk0MSwzLjgtMjMuMzM2QzEwMy40MzUsOC43MjgsMTEzLjg4MywxMC40MywxMTkuMjc4LDE3LjkyM3oiLz4KCTxwYXRoIHN0eWxlPSJmaWxsOiNGRkYwODI7IiBkPSJNMzkyLjcyMiwxNy45MjNjLTYuODE4LDkuNDctMjYuMDYyLDUwLjE0LTM3LjA2NCw3My44NDJjLTEuNzMsMy43MjYsMi45NDUsNy4wOTIsNS45Myw0LjI2OSAgIGMxOC45ODctMTcuOTUyLDUxLjQ1MS00OS4xMDUsNTguMjctNTguNTc1YzUuMzk1LTcuNDkzLDMuNjk0LTE3Ljk0MS0zLjgtMjMuMzM2QzQwOC41NjUsOC43MjgsMzk4LjExNywxMC40MywzOTIuNzIyLDE3LjkyM3oiLz4KCTxwYXRoIHN0eWxlPSJmaWxsOiNGRkYwODI7IiBkPSJNNTAwLjQ2MSwyOTUuNjI5Yy0xMS4wOTQtMy42MTgtNTUuNjg5LTkuNTk1LTgxLjYxMi0xMi44NzVjLTQuMDc1LTAuNTE2LTUuODYxLDQuOTYxLTIuMjY2LDYuOTQ3ICAgYzIyLjg3MywxMi42MzUsNjIuNDE2LDM0LjA5OSw3My41MSwzNy43MTdjOC43NzgsMi44NjMsMTguMjE1LTEuOTMyLDIxLjA3OC0xMC43MTEgICBDNTE0LjAzNCwzMDcuOTI4LDUwOS4yMzksMjk4LjQ5Miw1MDAuNDYxLDI5NS42Mjl6Ii8+Cgk8cGF0aCBzdHlsZT0iZmlsbDojRkZGMDgyOyIgZD0iTTExLjUzOSwyOTUuNjI5YzExLjA5NC0zLjYxOCw1NS42ODktOS41OTUsODEuNjEyLTEyLjg3NWM0LjA3NS0wLjUxNiw1Ljg2MSw0Ljk2MSwyLjI2Niw2Ljk0NyAgIGMtMjIuODczLDEyLjYzNS02Mi40MTYsMzQuMDk5LTczLjUxLDM3LjcxN2MtOC43NzgsMi44NjMtMTguMjE1LTEuOTMyLTIxLjA3OC0xMC43MTFTMi43NjEsMjk4LjQ5MiwxMS41MzksMjk1LjYyOXoiLz4KCTxwYXRoIHN0eWxlPSJmaWxsOiNGRkYwODI7IiBkPSJNMjM5Ljc5NCw0ODQuMzFjMC0xMS42NjksOC4xNDUtNTUuOTE5LDEzLjA2NS04MS41ODJjMC43NzMtNC4wMzQsNi41MzQtNC4wMzQsNy4zMDcsMCAgIGM0LjkyLDI1LjY2MywxMy4wNjUsNjkuOTEzLDEzLjA2NSw4MS41ODJjMCw5LjIzMy03LjQ4NSwxNi43MTgtMTYuNzE4LDE2LjcxOEMyNDcuMjc5LDUwMS4wMjksMjM5Ljc5NCw0OTMuNTQzLDIzOS43OTQsNDg0LjMxeiIvPgo8L2c+CjxwYXRoIHN0eWxlPSJmaWxsOiNGRkM4NTA7IiBkPSJNMjg1LjE2MSw2Ny4wM2wtMTkuMzE5LTQ0Ljg2Yy0zLjcyLTguNjM4LTE1Ljk2Ny04LjYzOC0xOS42ODYsMEwxOTMuMDMsMTQ1LjUzMkw1OS4yOSwxNTcuOTM3ICBjLTkuMzY1LDAuODY4LTEzLjE0OSwxMi41MTYtNi4wODQsMTguNzIzbDEwMC45MDgsODguNjQ2bC0yOS41MzEsMTMxLjAyOWMtMi4wNjgsOS4xNzUsNy44NDEsMTYuMzczLDE1LjkyNywxMS41NzJsMTUuMzcxLTkuMTI3ICBDMTgxLjA4LDIzNS42NiwyNTEuOTIyLDExNS45MTgsMjg1LjE2MSw2Ny4wM3oiLz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPC9zdmc+Cg==)
-            }
-            </style>
+        </section>
+        <section class="itemsector get-help">
+            <div class="container">
+                <h2 class="itemsector-heading text-light">Need help?</h2>
+                <p class="itemsector-description">There is our FAQ, to help you start control tabs in your browser!</p>
+                <a class="button button-primary" href="/faq/">Go to FAQ</a>
+            </div>
+        </section>
+        <section class="itemsector categories" style="background-image: url('/images/values-bg.jpg');">
+            <div class="container">
+                <h2 class="itemsector-heading">Still in doubt?</h2>
+                <p class="itemsector-description">Take a look at the screenshots (+video) of using the Volume Manager.</p>
+                <div class="row">
+                    <div class="four columns category"><img class="u-max-full-width" alt="Volume Manager" src="/images/screen0.png" /></div>
+                    <div class="four columns category"><img class="u-max-full-width" alt="Volume Manager" src="/images/screen1.png" /></div>
+                    <div class="four columns category"><img class="u-max-full-width" alt="Volume Manager" src="/images/screen3.png" /></div>
+                </div>
+                &nbsp;
+                <div class="row">
+                    <div class="one-half column category" style="position: relative;">
+                        <iframe width="100%" height="100%" style="position: absolute; top: 0; left: 0;" src="https://www.youtube.com/embed/4k0wbm4wzv4" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe>
+                        <img class="u-max-full-width" alt="" src="/images/screenlast.png" />
+                    </div>
+                    <div class="one-half column category"><img class="u-max-full-width" alt="Volume Manager" src="/images/screenlast.png" /></div>
+                </div>
+            </div>
         </section>
     </main>
-    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css">
-    <!-- Angular Material requires Angular.js Libraries -->
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
-    <!-- Angular Material Library -->
-    <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
-    <script type="text/javascript">
-    angular.module('main', ['ngMaterial'])
+    <script>
+    // Opera 8.0+
+    var isOpera = (!!window.opr && !!opr.addons) || !!window.opera || navigator.userAgent.indexOf(' OPR/') >= 0;
 
-        .controller('AppCtrl', function($scope, $mdToast) {
-            $scope.keys = [true, true];
-            $scope.fscreen = true;
-            $scope.muteAll = false;
+    // Firefox 1.0+
+    var isFirefox = typeof InstallTrigger !== 'undefined';
 
+    // Safari 3.0+ "[object HTMLElementConstructor]" 
+    var isSafari = /constructor/i.test(window.HTMLElement) || (function(p) { return p.toString() === "[object SafariRemoteNotification]"; })(!window['safari'] || safari.pushNotification);
 
-            var editorExtensionId = 'kakeffogmhndegdafnbobknemagiikak';
-            var request = function(e, te, callback) {
-                chrome.runtime.sendMessage(editorExtensionId, { how: e, what: te }, function(response) {
-                    callback(response);
-                });
-            }
-            request('get', ["hotkeysType", "fscreen", "muteAll"], function(items) {
-                console.log(items);
-                if (items.hasOwnProperty("hotkeysType"))
-                    $scope.keys = items.hotkeysType;
-                if (items.hasOwnProperty("fscreen"))
-                    $scope.fscreen = items.fscreen;
-                if (items.hasOwnProperty("muteAll"))
-                    $scope.muteAll = items.muteAll;
-                $scope.$apply();
+    // Internet Explorer 6-11
+    var isIE = /*@cc_on!@*/ false || !!document.documentMode;
 
-                $scope.$watch('[keys,fscreen, muteAll]', function() {
-                    console.log(123);
-                    request('set', { "hotkeysType": $scope.keys, "fscreen": $scope.fscreen, "muteAll": $scope.muteAll }, function() {
-                        $mdToast.show($mdToast.simple().textContent('Updated!'));
-                    });
-                }, true);
+    // Edge 20+
+    var isEdge = !isIE && !!window.StyleMedia;
 
-            });
+    // Chrome 1+
+    var isChrome = !!window.chrome && !!window.chrome.webstore;
 
+    // Blink engine detection
+    var isBlink = (isChrome || isOpera) && !!window.CSS;
 
-        })
-        .config(function($mdThemingProvider) {
-            $mdThemingProvider.theme('dark-grey').backgroundPalette('grey').dark();
-            $mdThemingProvider.theme('dark-orange').backgroundPalette('orange').dark();
-            $mdThemingProvider.theme('dark-purple').backgroundPalette('deep-purple').dark();
-            $mdThemingProvider.theme('dark-blue').backgroundPalette('blue').dark();
-        });
+    function detectmob() {
+        if (navigator.userAgent.match(/Android/i) ||
+            navigator.userAgent.match(/webOS/i) ||
+            navigator.userAgent.match(/iPhone/i) ||
+            navigator.userAgent.match(/iPad/i) ||
+            navigator.userAgent.match(/iPod/i) ||
+            navigator.userAgent.match(/BlackBerry/i) ||
+            navigator.userAgent.match(/Windows Phone/i)
+        ) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 
-    // window.location.href = 'https://goo.gl/kaP9UZ';
+    if ((!isBlink && !isChrome) || detectmob()) {
+        document.querySelectorAll('.chromeBasedStuff')[0].remove();
+        document.querySelectorAll('.chromeBasedStuff')[0].style.display = 'inline-block';
+    }
     </script>
-    <!-- <script type='text/javascript' src='https://vadagon.com/wp-includes/js/wp-embed.min.js?ver=4.9.1'></script> -->
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <footer class="dark padding section" style="z-index: 0; background-color: rgba(0,0,0,0);">
+    <script type="text/javascript">
+    // Get the modal
+    var modal = document.getElementById('myModal');
+
+    // Get the image and insert it inside the modal - use its "alt" text as a caption
+    var img = document.querySelectorAll('.itemsector.categories img');
+    var modalImg = document.getElementById("img01");
+    img.forEach(function(item) {
+        item.onclick = function() {
+            console.log(123);
+            modal.style.display = "block";
+            modalImg.src = this.src;
+            modalImg.alt = this.alt;
+        }
+    });
+
+
+    // When the user clicks on <span> (x), close the modal
+    modal.onclick = function() {
+        img01.className += " out";
+        setTimeout(function() {
+            modal.style.display = "none";
+            img01.className = "modal-content";
+        }, 400);
+
+    }
+    </script>
+    <script type="text/javascript">
+        function install(e){
+            e.preventDefault();
+            chrome.webstore.install();
+        }
+    </script>
+    <script type='text/javascript' src='//platform-api.sharethis.com/js/sharethis.js#property=59050b02852aff00121eb964&#038;product=inline-share-buttons' async='async'></script>
+    <footer class="dark padding section">
         <div class="container center">
             Copyright © 2017 All rights reserved.
         </div>
     </footer>
-    <script type='text/javascript' src='//platform-api.sharethis.com/js/sharethis.js#property=59050b02852aff00121eb964&#038;product=inline-share-buttons' async='async'></script>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-76335181-10"></script>
-    <script>
-    window.dataLayer = window.dataLayer || [];
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-76335181-10"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
 
-    function gtag() { dataLayer.push(arguments); }
-    gtag('js', new Date());
+  gtag('config', 'UA-76335181-10');
+</script>
 
-    gtag('config', 'UA-76335181-10');
-    </script>
 </body>
 
 </html>
