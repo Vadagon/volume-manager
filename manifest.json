@@ -1,10 +1,9 @@
 {
   "name": "Volume Manager",
-  "version": "10.1",
+  "version": "10.2",
   "author": "Vadagon",
   "manifest_version": 2,
   "default_locale": "en",
-  "homepage_url": "https://volume-manager.org",
   "description": "Control volume and boost volume of any Tab",
   "permissions": [
     "tabCapture",
@@ -64,6 +63,6 @@
     }
   },
   "externally_connectable": {
-    "matches": ["*://*.volume-manager.org/*"]
+    "matches": ["*://*.vadagon.github.io/*"]
   }
 }
