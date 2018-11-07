@@ -1,0 +1,60 @@
+#VadagonVolumeStatus{
+	-webkit-transition: all 1s ease-in-out;
+	-moz-transition: all 1s ease-in-out;
+	-o-transition: all 1s ease-in-out;
+	transition: all 1s ease-in-out;
+	position: fixed;
+	z-index: 999999999999;
+	background-color: rgba(0,0,0,.5);
+	width: 300px;
+	height: 300px;
+	border-radius: 10px;
+	box-sizing: border-box;
+	padding: 25px;
+	top:50%;  
+	left:50%;  
+	margin:-125px 0 0 -150px; 
+	opacity: 0;
+	pointer-events: none; 
+	box-shadow: 0 0 39px -8px black;
+}
+#VadagonVolumeStatus img{
+	height: 170px;
+    margin: 30px 40px;
+}
+#VadagonVolumeStatus .VadagonVolumeStatusElems{
+	width: 100%;
+    position: relative;
+    top: -10px;
+    padding-bottom: 13.3px;
+}
+#VadagonVolumeStatus .VadagonVolumeStatusElems span{
+	width: 8%;
+	height: 15px;
+	box-sizing: border-box;
+	display: inline-block;
+	margin: 0 1%;
+	background-color: #1c1c1c;
+	opacity: .7;
+}
+#VadagonVolumeStatus .VadagonVolumeStatusElems span:nth-last-child(1){
+	position: absolute;
+	right: 0;
+}
+#VadagonVolumeStatus .VadagonVolumeStatusElems div:nth-child(2){
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+}
+#VadagonVolumeStatus .VadagonVolumeStatusElems div:nth-child(2) span:nth-last-child(1){
+	bottom: 3px;
+}
+#VadagonVolumeStatus .VadagonVolumeStatusElems div{
+	position: relative;
+}
+#VadagonVolumeStatus .VadagonVolumeStatusElems div:nth-child(2) span{
+	width: 12.2874%;
+	margin: 0 1%;
+	height: 9px;
+}
