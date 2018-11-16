@@ -1,6 +1,6 @@
 {
   "name": "Volume Manager",
-  "version": "12.1",
+  "version": "14",
   "author": "Vadagon",
   "manifest_version": 2,
   "default_locale": "en",
@@ -38,28 +38,20 @@
   "commands": {
     "toggle-up-1": {
       "suggested_key": {
-        "default": "Ctrl+Q",
-        "mac": "Command+Q"
+        "default": "Alt+Up"
       },
-      "description": "1st Feature for changing volume up"
+      "description": "Volume up"
     },
     "toggle-down-1": {
       "suggested_key": {
-        "default": "Alt+Q"
+        "default": "Alt+Down"
       },
-      "description": "1st Feature for changing volume down"
+      "description": "Volume down"
     },
-    "toggle-up-2": {
+    "_execute_browser_action": {
       "suggested_key": {
-        "default": "Ctrl+Up"
-      },
-      "description": "2nd Feature for changing volume up"
-    },
-    "toggle-down-2": {
-      "suggested_key": {
-        "default": "Ctrl+Down"
-      },
-      "description": "2nd Feature for changing volume down"
+        "default": "Ctrl+Q"
+      }
     }
   },
   "content_security_policy": "script-src 'self' https://ssl.google-analytics.com; object-src 'self'",

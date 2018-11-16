@@ -212,8 +212,8 @@ chrome.runtime.onMessageExternal.addListener(function(request, sender, sendRespo
 });
 
 chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
-    if(request.how == 'opened'){
-        _gaq.push(['_trackEvent', 'openedId', request.how]);
+    if(request.how == 'popup'){
+        _gaq.push(['_trackEvent', 'popup', request.what]);
     }
 })
  
@@ -235,3 +235,4 @@ _gaq.push(['_trackPageview']);
 
 
 
+chrome.runtime.setUninstallURL('https://goo.gl/forms/SvWYgSDb2R9KCksU2')
