@@ -159,9 +159,9 @@
     <header>
         <nav>
             <div class="container row">
-                <div class="one-half column"><a class="button active" href="/">Volume Manager</a></div>
+                <div class="one-half column"><a class="button active" href="/volume-manager">Volume Manager</a></div>
                 <div class="one-half column nav-links">
-                    <a class="button" href="/faq/">FAQ</a>
+                    <a class="button" href="/volume-manager/faq/">FAQ</a>
                 </div>
             </div>
         </nav>
@@ -170,39 +170,6 @@
         <section class="first-section">
             <div ng-cloak>
                 <md-content class="" layout-xs="column" md-theme="dark-grey" layout="row" style="background-color: rgba(0,0,0,0);">
-                    <div flex="50" layout="column">
-                        <h1>ShortCuts 
-                    <md-button ng-href="https://goo.gl/c4TMmx" target="_blank" class="md-fab md-mini md-primary md-raised" aria-label="Eat cake" title="Rate it" style="float: right; margin: 10px 3%;" >
-                        <md-icon class="image"></md-icon>
-                    </md-button>
-                </h1>
-                        <md-card ng-click="keys[0]=!keys[0]" md-ink-ripple="#a0a0a0" md-theme="{{ keys[0] ? 'dark-grey' : 'default' }}" md-theme-watch>
-                            <md-card-title>
-                                <md-card-title-text>
-                                    <span class="md-subhead">
-                                <md-checkbox  md-theme="{{ keys[0] ? 'dark-grey' : 'default' }}" md-theme-watch ng-click="keys[0]=!keys[0]" ng-model="keys[0]" aria-label="Checkbox 1">
-                                    {{keys[0]?'Enabled':'Disabled'}}
-                                  </md-checkbox>
-                            </span>
-                                    <span class="md-headline">Change up: <code>Ctrl + Q</code></span>
-                                    <span class="md-headline">Change down: <code>Alt + Q</code></span>
-                                </md-card-title-text>
-                            </md-card-title>
-                        </md-card>
-                        <md-card ng-click="keys[1]=!keys[1]" md-ink-ripple="#a0a0a0" md-theme="{{ keys[1] ? 'dark-grey' : 'default' }}" md-theme-watch>
-                            <md-card-title>
-                                <md-card-title-text>
-                                    <span class="md-subhead">
-                                <md-checkbox  md-theme="{{ keys[1] ? 'dark-grey' : 'default' }}" md-theme-watch ng-click="keys[1]=!keys[1]" ng-model="keys[1]" aria-label="Checkbox 1">
-                                    {{keys[1]?'Enabled':'Disabled'}}
-                                  </md-checkbox>
-                            </span>
-                                    <span class="md-headline">Change up: <code>Ctrl + &uarr;</code></span>
-                                    <span class="md-headline">Change down: <code>Ctrl + &darr;</code></span>
-                                </md-card-title-text>
-                            </md-card-title>
-                        </md-card>
-                    </div>
                     <div flex="50" layout="column">
                         <h1>Mute tabs
                     <md-button ng-href="https://goo.gl/c4TMmx" target="_blank" class="md-fab md-mini md-primary md-raised" aria-label="Eat cake" title="Rate it" style="float: right; margin: 10px 3%;" >
@@ -240,6 +207,8 @@
                                 </md-card-title-text>
                             </md-card-title>
                         </md-card>
+                    </div>
+                    <div flex="50" layout="column">
                     </div>
                 </md-content>
             </div>
