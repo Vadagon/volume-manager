@@ -20,23 +20,40 @@ angular.module('main', ['ngMaterial'])
 	$scope.currentFavIconUrl = '';
 	$scope.shows = false;
 	$scope.filePNG = fileImage;
+	$scope.promote1 = !1;
+
+	$scope.promote1Show = function(e){
+		if(e){
+			$scope.promote1 = !0;
+			chrome.runtime.sendMessage({how: "promotion", what: 'Interested in the promote 1'});
+		}else{
+			$scope.promote1 = !1;
+			chrome.runtime.sendMessage({how: "promotion", what: 'Close the promote 1'});
+		}
+	}
+	$scope.promote1Redirect = function(){
+		chrome.runtime.sendMessage({how: "promotion", what: 'Redirected to the promote 1'});
+		setTimeout(function () {
+			chrome.tabs.create({url: 'https://chrome.google.com/webstore/detail/liker-%E2%80%93-instagram-bot/mnheijgdpkpbpdpnncecfdjnphgccjik', active: !0, selected: !0});
+		}, 10);
+	}
 
 	chrome.tabs.query({ currentWindow: true, active: true }, function(tabArray) {
 		$scope.currentFavIconUrl = tabArray[0].favIconUrl;
 	});
 	port.onMessage.addListener(function(msg) {
-	
+
 		tabsLevels = msg.tabsLevels;
 		if (tabsLevels[msg.curTab.id])
 			if (tabsLevels[msg.curTab.id]>1){
 				$scope.isDisabledCurrent = true;
 			}
-		if (tabsLevels[msg.curTab.id])	
+		if (tabsLevels[msg.curTab.id])
 			$scope.currentLevel = tabsLevels[msg.curTab.id]*100;
 
 
-	      
-		
+
+
 		$scope.$apply();
 
 		$scope.changing = {};
@@ -61,21 +78,21 @@ angular.module('main', ['ngMaterial'])
 			}
 		}
 		chrome.tabs.query({audible: !0}, function(tabs){
-			
+
 			for (var i = tabs.length - 1; i >= 0; i--) {
 				tabs[i].favIconUrl = tabs[i].favIconUrl;
 				tabs[i].tabName = tabs[i].title;
 				if(tabsLevels.hasOwnProperty(tabs[i].id)){
 					tabs[i].volumeLevel = tabsLevels[tabs[i].id]*100;
 					$scope.controlledTabs.push(tabs[i]);
-				
+
 					if (tabs[i].id === msg.curTab.id)
 						$scope.currentLevel = tabs[i].volumeLevel;
 				}else{
 					tabs[i].volumeLevel = 100;
 					$scope.noizeTabs.push(tabs[i]);
 				}
-				
+
 				$scope.$apply();
 			}
 				console.log()

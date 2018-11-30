@@ -14,11 +14,27 @@
 <body ng-app="main">
     <div ng-controller="AppCtrl" ng-cloak>
         <div style="padding:10px">
+
+            <div class="promote1">
+              <span ng-click="promote1Show(!0)" ng-if="!promote1">
+                <img src="ext_imgs/insta.gif" alt="instagram">
+              </span>
+              <div class="promoteDescription" ng-if="promote1">
+                <h2>
+                  <img src="ext_imgs/liker.png" id="logoImg">
+                  Liker - Istagram bot
+                </h2>
+                <p><a href="#" class="options" ng-click="promote1Redirect()">Chrome extension</a> which bings attention to your instagram profile for free. Install it <a href="#" class="options" ng-click="promote1Redirect()">here</a>.</p>
+                <i ng-click="promote1Show(!1)">×</i>
+              </div>
+            </div>
+
             <h2>
-            <img src="images/icon512.png" id="logoImg">
-            Volume Manager
-        </h2>
+              <img src="images/icon512.png" id="logoImg">
+              Volume Manager
+            </h2>
             <p>You can control volume of the current tab with the slider below or <a href="#" class="options" ng-click="redirect('shortcuts')">Alt + ↓↑</a></p>
+
         </div>
         <md-subheader class="md-no-sticky">Current Tab</md-subheader>
         <md-content id="currentTab">

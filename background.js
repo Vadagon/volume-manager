@@ -18,7 +18,7 @@ chrome.storage.sync.get(["hotkeysType", "fscreen", "muteAll", "lastDay"], functi
             var fullDaysSinceEpoch = Math.floor(now/8.64e7);
             chrome.storage.sync.set({ "lastDay": fullDaysSinceEpoch });
         }
-        
+
     }
 });
 
@@ -123,7 +123,7 @@ var a = {
                     "muted": e
                 });
             }
-        });    
+        });
     },
     volume: function(id, val) {
         tabsLevels[id] = parseFloat(val) / 100;
@@ -148,7 +148,7 @@ chrome.commands.onCommand.addListener(function(command) {
 
 var stated;
 chrome.tabCapture.onStatusChanged.addListener(function(info) {
-    
+
     if (info.fullscreen) {
         if (!prevFullScreen) {
             chrome.windows.getCurrent(function(win) {
@@ -176,7 +176,7 @@ chrome.tabs.onCreated.addListener(function(e){
 
 chrome.extension.onConnect.addListener(function(port) {
     // tabsGaines[tabArray[0].id].nodeGain.gain.value = parseFloat(gainLevels[tabsLevels[tabArray[0].id]]);
-    
+
     port.onMessage.addListener(function(e) {
         a.getTab(e.id) ? a.volume(e.id, e.val) : a.init(e.id, e.val);
     });
@@ -215,8 +215,11 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
     if(request.how == 'popup'){
         _gaq.push(['_trackEvent', 'popup', request.what]);
     }
+    if(request.how == 'promotion'){
+        _gaq.push(['_trackEvent', 'promotion', request.what]);
+    }
 })
- 
+
 
 
 
@@ -232,7 +235,3 @@ _gaq.push(['_trackPageview']);
   ga.src = 'https://ssl.google-analytics.com/ga.js';
   var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
 })();
-
-
-
-chrome.runtime.setUninstallURL('https://goo.gl/forms/SvWYgSDb2R9KCksU2')

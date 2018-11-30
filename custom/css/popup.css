@@ -102,3 +102,43 @@ md-list-item:not(._md-button-wrap) h4{
 .md-subheader .md-subheader-inner {
     padding-top: 6px;
 }
+
+
+.promote1{
+	position: absolute;
+	right: 0;
+	top: 0;
+	left: 0;
+	height: 150px;
+	width: 100%;
+	z-index: 1000;
+}
+.promote1 > span{
+	position: absolute;
+	right: 7px;
+  top: 6px;
+	width: 20px;
+	z-index: -1;
+	cursor: pointer;
+	outline: 0 !important;
+}
+.promote1 > span > img{
+	width: 100%;
+}
+.promoteDescription{
+	background-color: white;
+	padding: 10px;
+}
+.promoteDescription > i{
+	position: absolute;
+	right: 4px;
+	top: 17px;
+	font-size: 22px;
+	width: 20px;
+	cursor: pointer;
+	outline: 0 !important;
+}
+.promoteDescription h2{
+	font-size: 32px;
+	line-height: 37px;
+}

@@ -1,6 +1,6 @@
 {
   "name": "Volume Manager",
-  "version": "14",
+  "version": "16",
   "author": "Vadagon",
   "manifest_version": 2,
   "default_locale": "en",
@@ -14,14 +14,14 @@
   ],
   "browser_action": {
     "default_title": "Click to open Volume Manager",
-    "default_popup": "popup.html",  
+    "default_popup": "popup.html",
     "default_icon": "images/icon512.png"
   },
-  "icons": { 
+  "icons": {
     "16": "images/icon16.png",
     "16": "images/icon32.png",
     "48": "images/icon48.png",
-    "128": "images/icon128.png" 
+    "128": "images/icon128.png"
   },
   "background": {
     "scripts": ["background.js"]
