@@ -109,7 +109,7 @@ md-list-item:not(._md-button-wrap) h4{
 	right: 0;
 	top: 0;
 	left: 0;
-	height: 150px;
+	height: 100px;
 	width: 100%;
 	z-index: 1000;
 }
