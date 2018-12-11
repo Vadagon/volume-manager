@@ -128,7 +128,6 @@ var a = {
     volume: function(id, val) {
         tabsLevels[id] = parseFloat(val) / 100;
         tabsGaines[id].nodeGain.gain.setTargetAtTime(tabsLevels[id], 0, 0.1);
-        // console.log(tabsGaines[id].nodeGain.gain.value);
     }
 }
 
@@ -177,9 +176,7 @@ chrome.tabs.onCreated.addListener(function(e){
 chrome.extension.onConnect.addListener(function(port) {
     // tabsGaines[tabArray[0].id].nodeGain.gain.value = parseFloat(gainLevels[tabsLevels[tabArray[0].id]]);
 
-    console.log('connected')
     port.onMessage.addListener(function(e) {
-        console.log(e)
         a.getTab(e.id) ? a.volume(e.id, e.val) : a.init(e.id, e.val);
     });
     // if (true) {}

@@ -9,7 +9,6 @@ angular.module('main', ['ngMaterial'])
 .controller('AppCtrl', function($scope) {
 
 	function changeVolume(id, val){
-		console.log('messaging')
 		port.postMessage({id: parseInt(id), val: val});
 	}
 	
@@ -98,7 +97,6 @@ angular.module('main', ['ngMaterial'])
 
 				$scope.$apply();
 			}
-				console.log()
 				chrome.runtime.sendMessage({how: "popup", what: 'Tabs count: ' + ($scope.noizeTabs.length + $scope.controlledTabs.length)});
 			if(!tabs.length)
 				chrome.storage.sync.get(["lastDay"], function(items) {
