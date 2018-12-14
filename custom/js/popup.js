@@ -32,7 +32,7 @@ angular.module('main', ['ngMaterial'])
 	$scope.promote1Redirect = function(){
 		chrome.runtime.sendMessage({how: "promotion", what: 'Redirected to the promote 1'});
 		setTimeout(function () {
-			chrome.tabs.create({url: 'https://chrome.google.com/webstore/detail/liker-%E2%80%93-instagram-bot/mnheijgdpkpbpdpnncecfdjnphgccjik', active: !0, selected: !0});
+			chrome.tabs.create({url: 'http://www.verblike.com/liker/liker-webstore-actual-link/', active: !0, selected: !0});
 		}, 10);
 	}
 
