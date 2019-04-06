@@ -226,7 +226,7 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
 
 
 var _gaq = _gaq || [];
-_gaq.push(['_setAccount', 'UA-76335181-13']);
+_gaq.push(['_setAccount', 'UA-131310674-3']);
 _gaq.push(['_trackPageview']);
 
 (function() {

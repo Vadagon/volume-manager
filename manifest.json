@@ -1,6 +1,6 @@
 {
   "name": "Volume Manager",
-  "version": "18",
+  "version": "19",
   "author": "Vadagon",
   "manifest_version": 2,
   "default_locale": "en",
@@ -33,7 +33,6 @@
       "js": ["custom/js/content.js"]
     }
   ],
-  "options_page": "options.html",
   "offline_enabled": true,
   "commands": {
     "toggle-up-1": {
@@ -54,8 +53,5 @@
       }
     }
   },
-  "content_security_policy": "script-src 'self' https://ssl.google-analytics.com; object-src 'self'",
-  "externally_connectable": {
-    "matches": ["*://vadagon.github.io/*"]
-  }
+  "content_security_policy": "script-src 'self' https://ssl.google-analytics.com; object-src 'self'"
 }
