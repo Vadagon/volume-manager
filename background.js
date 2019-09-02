@@ -147,14 +147,21 @@ chrome.commands.onCommand.addListener(function(command) {
 
 var stated;
 chrome.tabCapture.onStatusChanged.addListener(function(info) {
-
+    console.log(info);
     if (info.fullscreen) {
         if (!prevFullScreen) {
-            chrome.windows.getCurrent(function(win) {
-                stated = win.state;
-                if (fscreen)
-                    chrome.windows.update(win.id, { state: "fullscreen" });
-            })
+            // chrome.windows.getCurrent(function(win) {
+                // stated = win.state;
+                // if (fscreen)
+                    chrome.windows.create({
+                        type: "popup",
+                        state: "maximized",
+                        tabId: info.tabId
+                    }, function(e){
+                        console.log(e)
+                        chrome.windows.update(e.id, { state: "fullscreen" });
+                    });
+            // })
         }
     }else{
         chrome.windows.getCurrent(function(win) {
