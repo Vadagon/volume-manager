@@ -144,31 +144,51 @@ chrome.commands.onCommand.addListener(function(command) {
         mainClicker(-1)
 });
 
+var sysOS;
+chrome.runtime.getPlatformInfo(function(info){
+    sysOS = info.os;
+})
 
-var stated;
+var prevWindow;
 chrome.tabCapture.onStatusChanged.addListener(function(info) {
-    console.log(info);
-    if (info.fullscreen) {
+    console.log(info)
+
+    if(sysOS == 'mac' && info.fullscreen){
+        chrome.windows.getCurrent(function(win){
+            prevWindow = win;
+            console.log(win)
+            chrome.tabs.query({active: true}, function(tab){
+                prevWindow.tabIndex = tab[0].index;
+                chrome.windows.create({
+                    type: "popup",
+                    state: "maximized",
+                    tabId: info.tabId
+                }, function(e){
+                    console.log(e)
+                    chrome.windows.update(e.id, { state: "fullscreen" });
+                });
+            })
+
+        })
+    }else if (info.fullscreen && sysOS != 'mac') {
         if (!prevFullScreen) {
-            // chrome.windows.getCurrent(function(win) {
-                // stated = win.state;
-                // if (fscreen)
-                    chrome.windows.create({
-                        type: "popup",
-                        state: "maximized",
-                        tabId: info.tabId
-                    }, function(e){
-                        console.log(e)
-                        chrome.windows.update(e.id, { state: "fullscreen" });
-                    });
-            // })
+            chrome.windows.getCurrent(function(win) {
+                prevWindow = win;
+                if (fscreen)
+                    chrome.windows.update(win.id, { state: "fullscreen" });
+            })
         }
-    }else{
+    }else if(sysOS != 'mac'){
         chrome.windows.getCurrent(function(win) {
             if (fscreen)
-                chrome.windows.update(win.id, { state: stated });
+                chrome.windows.update(win.id, { state: prevWindow.state });
         })
+    }else if(sysOS == 'mac'){
+        chrome.tabs.move(info.tabId, {windowId: prevWindow.id, index: prevWindow.tabIndex}, ()=>{
+            chrome.tabs.update(info.tabId, {active: true, highlighted: true})
+        });
     }
+
     prevFullScreen = info.fullscreen;
 
 });
