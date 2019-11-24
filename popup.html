@@ -20,11 +20,11 @@
           </span>
             <div class="promote1"  ng-if="promote1">
               <div class="promoteDescription">
-                <h2>
-                  <img src="ext_imgs/liker.png" id="logoImg">
-                  InstaFly - Istagram bot
+                <h2 ng-click="promote1Redirect()">
+                  <img src="ext_imgs/xxxhdpi.png" id="logoImg">
+                  Instagram Assistant
                 </h2>
-                <p><a href="#" class="options" ng-click="promote1Redirect()">Chrome extension</a> which bings attention to your instagram profile for free. Install it <a href="#" class="options" ng-click="promote1Redirect()">here</a>.</p>
+                <p><a href="#" class="options" ng-click="promote1Redirect()">Chrome extension</a> bings attention to your Instagram account by liking posts on your behalf.</p>
                 <i ng-click="promote1Show(!1)">×</i>
               </div>
             </div>
@@ -54,8 +54,7 @@
                 </div>
             </md-list-item>
         </md-content>
-        <md-subheader class="md-no-sticky" ng-if="!controlledTabs.length && !noizeTabs.length && shows">Can you spen few seconds to <a href="https://goo.gl/c4TMmx" style="top: 0;">rate my work</a>?</md-subheader>
-        <md-subheader class="md-no-sticky" ng-if="!controlledTabs.length && !noizeTabs.length && !shows">Go to <a href="#" style="top: 0;" ng-click="redirect('options')">options</a> to setting up the extension!</md-subheader>
+        <!-- <md-subheader class="md-no-sticky" ng-if="!controlledTabs.length && !noizeTabs.length && !shows">Go to <a href="#" style="top: 0;" ng-click="redirect('options')">options</a> to setting up the extension!</md-subheader> -->
         <md-subheader class="md-no-sticky" ng-if="controlledTabs.length || noizeTabs.length">Tabs playing audio right now</md-subheader>
         <md-content style="overflow-y: hidden;">
             <md-list-item class="md-2-line" ng-repeat="x in controlledTabs">
@@ -81,6 +80,8 @@
                 </div>
             </md-list-item>
         </md-content>
+        {{test}}
+        <md-subheader class="md-no-sticky" ng-if="controlledTabs.length && shows">Can you spen few seconds to <a href="https://goo.gl/c4TMmx" style="top: 0;">rate my work</a>?</md-subheader>
     </div>
 </body>
 

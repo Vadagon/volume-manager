@@ -126,7 +126,7 @@ md-list-item:not(._md-button-wrap) h4{
 	width: 100%;
 }
 .promoteDescription{
-	background-color: white;
+	background-color: #fafafa;
 	padding: 10px;
 }
 .promoteDescription > i{

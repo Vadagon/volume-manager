@@ -1,10 +1,10 @@
 {
   "name": "Volume Manager",
-  "version": "20",
+  "version": "21",
   "author": "Vadagon",
   "manifest_version": 2,
   "default_locale": "en",
-  "description": "Control volume and boost volume of any Tab",
+  "description": "Control and boost sound of any Tab",
   "permissions": [
     "tabCapture",
     "activeTab",

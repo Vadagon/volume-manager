@@ -79,8 +79,9 @@ angular.module('main', ['ngMaterial'])
 				chrome.tabs.update(id, {active: true});
 			}
 		}
+		// $scope.test = 1111;
+		// $scope.$apply();		
 		chrome.tabs.query({audible: !0}, function(tabs){
-
 			for (var i = tabs.length - 1; i >= 0; i--) {
 				tabs[i].favIconUrl = tabs[i].favIconUrl;
 				tabs[i].tabName = tabs[i].title;
@@ -94,22 +95,21 @@ angular.module('main', ['ngMaterial'])
 					tabs[i].volumeLevel = 100;
 					$scope.noizeTabs.push(tabs[i]);
 				}
-
 				$scope.$apply();
 			}
-				chrome.runtime.sendMessage({how: "popup", what: 'Tabs count: ' + ($scope.noizeTabs.length + $scope.controlledTabs.length)});
-			if(!tabs.length)
-				chrome.storage.sync.get(["lastDay"], function(items) {
-					var now = new Date();
-					var fullDaysSinceEpoch = Math.floor(now/8.64e7);
-				    if (!chrome.runtime.error) {
-				        if (items.hasOwnProperty("lastDay"))
-				            if (items.lastDay - fullDaysSinceEpoch > 8){
-				            	$scope.shows = true;
-				            	$scope.$apply();
-				            }
-				    }
-				});
+    		
+			chrome.runtime.sendMessage({how: "popup", what: 'Tabs count: ' + ($scope.noizeTabs.length + $scope.controlledTabs.length)});
+			chrome.storage.sync.get(["lastDay"], function(items) {
+				var now = new Date();
+				var fullDaysSinceEpoch = Math.floor(now/8.64e7);
+			    if (!chrome.runtime.error) {
+			        if (items.hasOwnProperty("lastDay"))
+			            if (items.lastDay - fullDaysSinceEpoch > -8){
+			            	$scope.shows = true;
+			            	$scope.$apply();
+			            }
+			    }
+			});
 		});
 
 
