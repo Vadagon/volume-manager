@@ -36,6 +36,7 @@ angular.module('main', ['ngMaterial'])
 		}, 10);
 	}
 
+
 	chrome.tabs.query({ currentWindow: true, active: true }, function(tabArray) {
 		$scope.currentFavIconUrl = tabArray[0].favIconUrl;
 	});
@@ -73,9 +74,12 @@ angular.module('main', ['ngMaterial'])
 			if(id == 'options'){
 				chrome.runtime.openOptionsPage();
 			}else if(id == 'shortcuts'){
+				chrome.runtime.sendMessage({how: "stats", what: 'shortcuts'});
 				chrome.tabs.create({url: 'chrome://extensions/shortcuts', active: !0, selected: !0});
-			}
-			else{
+			}else if(id == 'review'){
+				chrome.runtime.sendMessage({how: "stats", what: 'review'});
+				chrome.tabs.create({url: 'https://chrome.google.com/webstore/detail/volume-manager/abnhonfioiokelhdappjknfaannlncac/reviews', active: !0, selected: !0})
+			}else{
 				chrome.tabs.update(id, {active: true});
 			}
 		}

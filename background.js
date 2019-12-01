@@ -244,6 +244,9 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
     if(request.how == 'promotion'){
         _gaq.push(['_trackEvent', 'promotion', request.what]);
     }
+    if(request.how == 'stats'){
+        _gaq.push(['_trackEvent', 'stats', request.what]);
+    }
 })
 
 

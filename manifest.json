@@ -1,6 +1,6 @@
 {
   "name": "Volume Manager",
-  "version": "21",
+  "version": "22",
   "author": "Vadagon",
   "manifest_version": 2,
   "default_locale": "en",
@@ -46,11 +46,6 @@
         "default": "Alt+Down"
       },
       "description": "Volume down"
-    },
-    "_execute_browser_action": {
-      "suggested_key": {
-        "default": "Ctrl+Q"
-      }
     }
   },
   "content_security_policy": "script-src 'self' https://ssl.google-analytics.com; object-src 'self'"
