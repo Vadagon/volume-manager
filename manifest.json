@@ -1,10 +1,10 @@
 {
   "name": "Volume Manager",
-  "version": "24",
+  "version": "25",
   "author": "Vadagon",
   "manifest_version": 2,
   "default_locale": "en",
-  "description": "Control and boost volume of any Tab",
+  "description": "Volume booster to amplify volume by 700%",
   "permissions": [
     "tabCapture",
     "activeTab",
@@ -13,7 +13,7 @@
     "<all_urls>"
   ],
   "browser_action": {
-    "default_title": "Click to open Volume Manager",
+    "default_title": "Volume Manager",
     "default_popup": "popup.html",
     "default_icon": "images/icon512.png"
   },

@@ -4,6 +4,8 @@ var gainNode, audioCtx, streamer,
     hotkeysType = [true, true],
     fscreen = true,
     muteAll = false;
+
+// ON-INIT DATABASE handler
 chrome.storage.sync.get(["hotkeysType", "fscreen", "muteAll", "lastDay"], function(items) {
     if (!chrome.runtime.error) {
         if (items.hasOwnProperty("hotkeysType") && items.hasOwnProperty("fscreen")) {
@@ -22,8 +24,7 @@ chrome.storage.sync.get(["hotkeysType", "fscreen", "muteAll", "lastDay"], functi
     }
 });
 
-// function for icons when user switch tabs
-
+// IN-TAB VOLUME INDICATOR handler
 function showVolumeInTabFunc(level) {
 
     var showVolumeInTab = "var x = document.querySelectorAll('#VadagonVolumeStatus .VadagonVolumeStatusElems span'); for (var i = " + 17 + " - 1; i >= 0; i--) {x[i].style.backgroundColor = '#1c1c1c';}";
@@ -38,6 +39,8 @@ function showVolumeInTabFunc(level) {
 
     chrome.tabs.executeScript(null, { code: showVolumeInTab })
 }
+
+// TABS REMOVER listener - to purge memory
 chrome.tabs.onRemoved.addListener(function(a) {
     Object.prototype.hasOwnProperty.call(tabsGaines, a) && tabsGaines[a].audioCtx.close()
         .then(function() {
@@ -46,6 +49,7 @@ chrome.tabs.onRemoved.addListener(function(a) {
         })
 });
 
+// SHORTCUTS HANDLER
 function mainClicker(e) {
     chrome.tabs.query({ currentWindow: true, active: true }, function(tabArray) {
         var id = tabArray[0].id;
@@ -70,6 +74,8 @@ function mainClicker(e) {
 
     });
 }
+
+// AUDIO MAIN CORE FUNCTIONS
 var a = {
     init: function(id, val, callback) {
         tabsLevels[id] = parseFloat(val) / 100;
@@ -133,7 +139,7 @@ var a = {
 
 
 
-
+// CHROME SHORTCUTS
 chrome.commands.onCommand.addListener(function(command) {
     // chrome.windows.update(null, { state: "fullscreen" });
     if (!hotkeysType[parseInt(command[command.length - 1]) - 1])
@@ -150,6 +156,8 @@ chrome.runtime.getPlatformInfo(function(info){
 })
 
 var prevWindow;
+
+// AUDIO CAPTURE CHANGES listener
 chrome.tabCapture.onStatusChanged.addListener(function(info) {
     console.log(info)
 
@@ -193,6 +201,7 @@ chrome.tabCapture.onStatusChanged.addListener(function(info) {
 
 });
 
+// NEW TABS listener - to mute if needed
 chrome.tabs.onCreated.addListener(function(e){
     if (muteAll)
         chrome.tabs.update(e.id, {
@@ -200,6 +209,8 @@ chrome.tabs.onCreated.addListener(function(e){
         });
 });
 
+
+// POPUP PORT CONNECTION listener
 chrome.extension.onConnect.addListener(function(port) {
     // tabsGaines[tabArray[0].id].nodeGain.gain.value = parseFloat(gainLevels[tabsLevels[tabArray[0].id]]);
 
@@ -221,6 +232,7 @@ chrome.extension.onConnect.addListener(function(port) {
 })
 
 
+// EXTERNAL OPTIONS PAGE CONNECTED listener
 chrome.runtime.onMessageExternal.addListener(function(request, sender, sendResponse) {
     if(request.how == 'get')
         chrome.storage.sync.get(request.what, function(items) {
@@ -237,6 +249,7 @@ chrome.runtime.onMessageExternal.addListener(function(request, sender, sendRespo
     return true;
 });
 
+// SIMPLE POPUP MESSAGES listener
 chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
     if(request.how == 'popup'){
         _gaq.push(['_trackEvent', 'popup', request.what]);
@@ -254,7 +267,7 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
 
 
 
-
+// GOOGLE ANALYSTICS
 var _gaq = _gaq || [];
 _gaq.push(['_setAccount', 'UA-131310674-3']);
 _gaq.push(['_trackPageview']);
