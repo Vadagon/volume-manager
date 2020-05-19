@@ -36,6 +36,23 @@
             <p>You can control volume of the current tab with the slider below or <a href="#" class="options" ng-click="redirect('shortcuts')">Alt + ↓↑</a></p>
 
         </div>
+
+
+
+
+
+
+
+        
+                <!-- <canvas id="visualizer" width="290" height="300"></canvas> -->
+       
+
+
+
+
+
+
+
         <md-subheader class="md-no-sticky">Current Tab</md-subheader>
         <md-content id="currentTab">
             <md-list-item class="md-2-line">
@@ -54,6 +71,10 @@
                 </div>
             </md-list-item>
         </md-content>
+        
+        <canvas id="visualizer" width="320" height="100"></canvas>
+        <canvas id="visualizer1" width="350" height="50"></canvas>
+
         <!-- <md-subheader class="md-no-sticky" ng-if="!controlledTabs.length && !noizeTabs.length && !shows">Go to <a href="#" style="top: 0;" ng-click="redirect('options')">options</a> to setting up the extension!</md-subheader> -->
         <md-subheader class="md-no-sticky" ng-if="controlledTabs.length || noizeTabs.length">Tabs playing audio right now</md-subheader>
         <md-content style="overflow-y: hidden;">

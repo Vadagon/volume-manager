@@ -44,7 +44,126 @@ angular.module('main', ['ngMaterial'])
 	var port = chrome.extension.connect({
 		name: "Sample Communication"
 	});
+
+
+	canvas = document.getElementById('visualizer');
+	canvas1 = document.getElementById('visualizer1');
+	canvasCtx = canvas1.getContext("2d");
+
+
+	var WIDTH = canvas1.width;
+	var HEIGHT = canvas1.height;
+	window.color1 = '#ececec';
+	window.color2 = '#969696';
+var animationId,
+            cwidth = canvas.width,
+            cheight = canvas.height - 2,
+            gap = 2, //gap between meters
+            capHeight = 2,
+            capStyle = '#969696',
+            gap = 1.2,
+            meterNum = 21, //count of the meters
+            meterWidth = cwidth/meterNum/gap, //width of the meters in the spectrum
+            capYPositionArray = [], ////store the vertical position of hte caps for the preivous frame
+        	ctx = canvas.getContext('2d');
+        gradient = ctx.createLinearGradient(0, 0, 0, cheight);
+        gradient.addColorStop(1, '#ececec');
+        // gradient.addColorStop(0.5, '#202020');
+        // gradient.addColorStop(0.4, '#3f51b5');
+
+
+        // ctx.beginPath();
+        // ctx.arc(100, 75, 50, 0, 2 * Math.PI);
+        // ctx.stroke();
+
+        // chrome-extension://jcjiagpgoplifgcdkpdefncbbpdjdean/popup.html
 	port.onMessage.addListener(function(msg) {
+		if(msg.type=='visualizer'){
+			// console.log(msg)
+		
+
+			var dataArray = msg.data;
+		    var bufferLength = msg.bufferLength;
+
+		    canvasCtx.fillStyle = 'rgb(250, 250, 250)';
+		    canvasCtx.fillRect(0, 0, WIDTH, HEIGHT);
+		    canvasCtx.lineWidth = 2;
+		    canvasCtx.beginPath();
+
+		    var sliceWidth = WIDTH * 1.0 / bufferLength;
+		    var x = 0;
+
+		    for (var i = 0; i < bufferLength; i++) {
+		        var data = dataArray[i];
+		        var v = data / 512.0;
+		        var y = v * HEIGHT + HEIGHT/4;
+		        var r = data + 120;
+		        var g = 255 - data;
+		        var b = data / 3;
+		        canvasCtx.strokeStyle = 'rgb(' + r + ', ' + g + ', ' + b + ')';
+		        if (i === 0) {
+		            canvasCtx.moveTo(x, y);
+		        } else {
+		            canvasCtx.lineTo(x, y);
+		        }
+		        x += sliceWidth;
+		    }
+		    canvasCtx.lineTo(canvas1.width+20, canvas1.height / 2);
+		    canvasCtx.stroke();
+		 
+        
+
+
+        // console.log(1)
+
+        var drawMeter = function() {
+            // var array = new Uint8Array(analyser.frequencyBinCount);
+            // analyser.getByteFrequencyData(array);
+            // if (that.status === 0) {
+            //     //fix when some sounds end the value still not back to zero
+            //     for (var i = array.length - 1; i >= 0; i--) {
+            //         array[i] = 0;
+            //     };
+            //     allCapsReachBottom = true;
+            //     for (var i = capYPositionArray.length - 1; i >= 0; i--) {
+            //         allCapsReachBottom = allCapsReachBottom && (capYPositionArray[i] === 0);
+            //     };
+            //     if (allCapsReachBottom) {
+            //         cancelAnimationFrame(that.animationId); //since the sound is stoped and animation finished, stop the requestAnimation to prevent potential memory leak,THIS IS VERY IMPORTANT!
+            //         return;
+            //     };
+            // };
+            var step = Math.round(msg.bufferLength / meterNum); //sample limited data from the total array
+            ctx.clearRect(0, 0, cwidth, cheight);
+            for (var i = 0; i < meterNum; i++) {
+                var value = msg.data[i * step]/255*cheight/gap;
+                if (capYPositionArray.length < Math.round(meterNum)) {
+                    capYPositionArray.push(value);
+                };
+                ctx.fillStyle = capStyle;
+                //draw the cap, with transition effect
+                if (value < capYPositionArray[i]) {
+                    ctx.fillRect(i * meterWidth * gap, cheight - (--capYPositionArray[i]), meterWidth, capHeight);
+                } else {
+                    ctx.fillRect(i * meterWidth * gap, cheight - value, meterWidth, capHeight);
+                    capYPositionArray[i] = value;
+                };
+                ctx.fillStyle = gradient; //set the filllStyle to gradient for a better look
+                ctx.fillRect(i * meterWidth * gap/*meterWidth+gap*/ , cheight - value + capHeight, meterWidth, cheight*5); //the meter
+            }
+            // animationId = requestAnimationFrame(drawMeter);
+        }
+        drawMeter()
+        // animationId = requestAnimationFrame(drawMeter);
+
+
+
+
+
+			port.postMessage(msg);
+			return;
+		}
+
 
 		tabsLevels = msg.tabsLevels;
 		if (tabsLevels[msg.curTab.id])

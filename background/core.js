@@ -52,17 +52,30 @@ var a = {
                 video: !1
             }, function(stream) {
                 tabsGaines[id] = {};
-                tabsGaines[id].audioCtx = new window.AudioContext;
-                tabsGaines[id].streamer = stream;
-                tabsGaines[id].source = tabsGaines[id].audioCtx.createMediaStreamSource(stream);
-                tabsGaines[id].nodeGain = tabsGaines[id].audioCtx.createGain();
-                tabsGaines[id].source.connect(tabsGaines[id].nodeGain);
-                tabsGaines[id].nodeGain.connect(tabsGaines[id].audioCtx.destination);
-                tabsGaines[id].nodeGain.gain.setTargetAtTime(tabsLevels[id], 0, 0.1);
-                try{
-                    callback();
-                }catch(e){ }
 
+
+                createAudio(tabsGaines[id], stream);
+                setDefaults(tabsGaines[id]);
+
+             
+
+                // tabsGaines[id].gainNode.gain.value = tabsGaines[id].gainNode.gain.value;
+
+                // a.eqi(id, {})
+
+                connect(tabsGaines[id]);
+
+
+
+                // tabsGaines[id] = {};
+                // tabsGaines[id].audioCtx = new window.AudioContext;
+                // tabsGaines[id].streamer = stream;
+                // tabsGaines[id].source = tabsGaines[id].audioCtx.createMediaStreamSource(stream);
+                // tabsGaines[id].nodeGain = tabsGaines[id].audioCtx.createGain();
+                // tabsGaines[id].source.connect(tabsGaines[id].nodeGain);
+                // tabsGaines[id].nodeGain.connect(tabsGaines[id].audioCtx.destination);
+                // tabsGaines[id].nodeGain.gain.setTargetAtTime(tabsLevels[id], 0, 0.1);
+                callback&&callback()
             });
     },
     deInit: function(id) {
@@ -100,6 +113,49 @@ var a = {
     },
     volume: function(id, val) {
         tabsLevels[id] = parseFloat(val) / 100;
-        tabsGaines[id].nodeGain.gain.setTargetAtTime(tabsLevels[id], 0, 0.1);
+        // tabsGaines[id].nodeGain.gain.setTargetAtTime(tabsLevels[id], 0, 0.1);
+        tabsGaines[id].gainNode.gain.value = tabsLevels[id]
+        // connect(tabsGaines[id]);
+    },
+    eqi: function(id, obj){
+        tabsGaines[id].twenty.gain.value = obj.twenty;
+        tabsGaines[id].fifty.gain.value = obj.fifty;
+        tabsGaines[id].oneHundred.gain.value = obj.oneHundred;
+        tabsGaines[id].twoHundred.gain.value = obj.twoHundred;
+        tabsGaines[id].fiveHundred.gain.value = obj.fiveHundred;
+        tabsGaines[id].oneThousand.gain.value = obj.oneThousand;
+        tabsGaines[id].twoThousand.gain.value = obj.twoThousand;
+        tabsGaines[id].fiveThousand.gain.value = obj.fiveThousand;
+        tabsGaines[id].tenThousand.gain.value = obj.tenThousand;
+        tabsGaines[id].twentyThousand.gain.value = obj.twentyThousand;
+    },
+    visuInit: function(id, port){
+            // setTimeout(function() {
+            //     // var media = tabsGaines[id];
+            //     var media = tabsGaines[3289];
+            //     var win = chrome.extension.getViews({})[1]
+            //     console.log(media, win)
+            //     if(media && win) new Visualizer().ini(media, win);
+            // }, 2000);
+
+            function draw() {
+                // chrome-extension://jcjiagpgoplifgcdkpdefncbbpdjdean/popup.html
+                
+                // console.log(port)
+                // tabsGaines[id].analyser.getByteFrequencyData(tabsGaines[id].dataArray);
+                tabsGaines[id].analyser.getByteTimeDomainData(tabsGaines[id].dataArray);
+                port.postMessage({
+                    type: 'visualizer',
+                    data: tabsGaines[id].dataArray,
+                    bufferLength: tabsGaines[id].bufferLength
+                });
+                // console.log(2)
+            };
+            port.onDisconnect.addListener(()=>{
+                clearInterval(intw);
+            })
+            var intw = setInterval(function() {
+                draw()
+            }, 1000 / 30);
     }
 }

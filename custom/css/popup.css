@@ -2,7 +2,26 @@ html, body{
 	min-height: 100px;
 	min-width: 350px;
 	width: 350px;
-  height: auto;
+	/*width: 800px;*/
+	height: auto;
+}
+body{
+	border: 1px solid black;
+}
+#visualizer{
+	display: block;
+	margin: auto;
+	margin-top: -60px;
+	margin-bottom: 10px;
+}
+#visualizer1{
+	display: block;
+	margin: auto;
+	/*margin-top: -60px;*/
+	margin-bottom: 10px;
+}
+#currentTab{
+	background: unset;
 }
 *{
 	margin: 0;

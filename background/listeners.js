@@ -49,12 +49,12 @@ chrome.tabCapture.onStatusChanged.addListener(function(info) {
                     chrome.windows.update(win.id, { state: "fullscreen" });
             })
         }
-    }else if(sysOS != 'mac'){
+    }else if(sysOS != 'mac' && prevWindow){
         chrome.windows.getCurrent(function(win) {
             if (fscreen)
                 chrome.windows.update(win.id, { state: prevWindow.state });
         })
-    }else if(sysOS == 'mac'){
+    }else if(sysOS == 'mac' && prevWindow){
         chrome.tabs.move(info.tabId, {windowId: prevWindow.id, index: prevWindow.tabIndex}, ()=>{
             chrome.tabs.update(info.tabId, {active: true, highlighted: true})
         });
@@ -79,18 +79,23 @@ chrome.extension.onConnect.addListener(function(port) {
     // tabsGaines[tabArray[0].id].nodeGain.gain.value = parseFloat(gainLevels[tabsLevels[tabArray[0].id]]);
 
     port.onMessage.addListener(function(e) {
+        console.log(e)
+        if(e.type=='visualizer') return;
         a.getTab(e.id) ? a.volume(e.id, e.val) : a.init(e.id, e.val);
     });
     // if (true) {}
-    chrome.tabs.query({ currentWindow: true, active: true }, function(tabArray) {
+    // currentWindow: true
+    chrome.tabs.query({ windowType: 'normal', active: true }, function(tabArray) {
         if (tabArray[0].audible && !a.getTab(tabArray[0].id)){
             a.isMuted(function(isMuted){
                 a.init(tabArray[0].id, isMuted?0:100, function(){
                     port.postMessage({ tabsLevels: tabsLevels, curTab: tabArray[0] });
+                    a.visuInit(tabArray[0].id, port)
                 })
             })
         }else{
             port.postMessage({ tabsLevels: tabsLevels, curTab: tabArray[0] });
+            a.visuInit(tabArray[0].id, port)
         }
     })
 })
