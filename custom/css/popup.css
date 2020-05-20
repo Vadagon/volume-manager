@@ -93,6 +93,7 @@ body{
 #currentTab{
 	background: unset;
 	z-index: 5;
+	overflow: hidden;
 }
 *{
 	margin: 0;

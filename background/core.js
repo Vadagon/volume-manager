@@ -133,12 +133,12 @@ var a = {
                 // chrome-extension://jcjiagpgoplifgcdkpdefncbbpdjdean/popup.html
 
                 // console.log(port)
-                tabsGaines[3289].analyser.getByteFrequencyData(tabsGaines[3289].dataArray);
-                // tabsGaines[3289].analyser.getByteTimeDomainData(tabsGaines[3289].dataArray);
+                tabsGaines[id].analyser.getByteFrequencyData(tabsGaines[id].dataArray);
+                // tabsGaines[id].analyser.getByteTimeDomainData(tabsGaines[id].dataArray);
                 port.postMessage({
                     type: 'visualizer',
-                    data: tabsGaines[3289].dataArray,
-                    bufferLength: tabsGaines[3289].bufferLength
+                    data: tabsGaines[id].dataArray,
+                    bufferLength: tabsGaines[id].bufferLength
                 });
                 // console.log(2)
             };
