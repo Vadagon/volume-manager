@@ -79,9 +79,9 @@ chrome.extension.onConnect.addListener(function(port) {
     // tabsGaines[tabArray[0].id].nodeGain.gain.value = parseFloat(gainLevels[tabsLevels[tabArray[0].id]]);
 
     port.onMessage.addListener(function(e) {
-        console.log(e)
+        if(e.type=='equalizer') a.equalizer(e.id, e.val);
         if(e.type=='visualizer') return;
-        a.getTab(e.id) ? a.volume(e.id, e.val) : a.init(e.id, e.val);
+        else a.getTab(e.id) ? a.volume(e.id, e.val) : a.init(e.id, e.val);
     });
     // if (true) {}
     // currentWindow: true

@@ -118,16 +118,7 @@ var a = {
         // connect(tabsGaines[id]);
     },
     eqi: function(id, obj){
-        tabsGaines[id].twenty.gain.value = obj.twenty;
-        tabsGaines[id].fifty.gain.value = obj.fifty;
-        tabsGaines[id].oneHundred.gain.value = obj.oneHundred;
-        tabsGaines[id].twoHundred.gain.value = obj.twoHundred;
-        tabsGaines[id].fiveHundred.gain.value = obj.fiveHundred;
-        tabsGaines[id].oneThousand.gain.value = obj.oneThousand;
-        tabsGaines[id].twoThousand.gain.value = obj.twoThousand;
-        tabsGaines[id].fiveThousand.gain.value = obj.fiveThousand;
-        tabsGaines[id].tenThousand.gain.value = obj.tenThousand;
-        tabsGaines[id].twentyThousand.gain.value = obj.twentyThousand;
+        
     },
     visuInit: function(id, port){
             // setTimeout(function() {
@@ -140,14 +131,14 @@ var a = {
 
             function draw() {
                 // chrome-extension://jcjiagpgoplifgcdkpdefncbbpdjdean/popup.html
-                
+
                 // console.log(port)
-                // tabsGaines[id].analyser.getByteFrequencyData(tabsGaines[id].dataArray);
-                tabsGaines[id].analyser.getByteTimeDomainData(tabsGaines[id].dataArray);
+                tabsGaines[3289].analyser.getByteFrequencyData(tabsGaines[3289].dataArray);
+                // tabsGaines[3289].analyser.getByteTimeDomainData(tabsGaines[3289].dataArray);
                 port.postMessage({
                     type: 'visualizer',
-                    data: tabsGaines[id].dataArray,
-                    bufferLength: tabsGaines[id].bufferLength
+                    data: tabsGaines[3289].dataArray,
+                    bufferLength: tabsGaines[3289].bufferLength
                 });
                 // console.log(2)
             };
@@ -157,5 +148,29 @@ var a = {
             var intw = setInterval(function() {
                 draw()
             }, 1000 / 30);
+    },
+    equalizer: function(id, val) {
+        // id = 3289;
+        console.log(val)
+        var eqiparams = ['twenty', 'fifty', 'oneHundred', 'twoHundred', 'fiveHundred', 'oneThousand', 'twoThousand', 'fiveThousand', 'tenThousand', 'twentyThousand']
+        // tabsLevels[id] = parseFloat(val) / 100;
+        // tabsGaines[id].nodeGain.gain.setTargetAtTime(tabsLevels[id], 0, 0.1);
+        // tabsGaines[id].gainNode.gain.value = tabsLevels[id]
+        // connect(tabsGaines[id]);
+        val.forEach((e, n)=>{
+            tabsGaines[id][eqiparams[n]].gain.value = e.value
+        })
+        // connect(tabsGaines[id])
+
+        // tabsGaines[id].twenty.gain.value = obj.twenty;
+        // tabsGaines[id].fifty.gain.value = obj.fifty;
+        // tabsGaines[id].oneHundred.gain.value = obj.oneHundred;
+        // tabsGaines[id].twoHundred.gain.value = obj.twoHundred;
+        // tabsGaines[id].fiveHundred.gain.value = obj.fiveHundred;
+        // tabsGaines[id].oneThousand.gain.value = obj.oneThousand;
+        // tabsGaines[id].twoThousand.gain.value = obj.twoThousand;
+        // tabsGaines[id].fiveThousand.gain.value = obj.fiveThousand;
+        // tabsGaines[id].tenThousand.gain.value = obj.tenThousand;
+        // tabsGaines[id].twentyThousand.gain.value = obj.twentyThousand;
     }
 }

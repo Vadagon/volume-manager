@@ -6,12 +6,57 @@ html, body{
 	height: auto;
 }
 body{
-	border: 1px solid black;
+	/*border: 1px solid black;*/
+}
+*:focus, *:focus{
+    outline: none !important;
+}
+* {
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
+}
+
+
+
+
+
+.visualizerPRO{
+	position: relative;
+}
+.visualizerPRO label{
+    position: absolute;
+    top: calc(50px - 16px);
+    left: calc(175px - 58px);
+    border: 2px solid #0000005c;
+    border-radius: 5px;
+    padding: 5px;
+    background: #ffffff47;
+    font-weight: bolder;
+    color: #00000096;
+    cursor: pointer;
+    opacity: 0.1;
+}
+.visualizerPRO label img{
+    height: 20px;
+    margin: -5px 0;
+}
+.visualizerPRO:hover label{
+	opacity: 1;
+}
+.visualizerPRO label:hover{
+	color: #000000fc;
+	border-color: #00000082;
+	background: #ffffff9c;
 }
 #visualizer{
 	display: block;
 	margin: auto;
-	margin-top: -60px;
+	margin-top: -30px;
 	margin-bottom: 10px;
 }
 #visualizer1{
@@ -20,8 +65,34 @@ body{
 	/*margin-top: -60px;*/
 	margin-bottom: 10px;
 }
+.getVisualizerPRO{
+	position: absolute;
+}
+
+#equalizer{
+	margin-top: -10px;
+	margin-bottom: -10px;
+	overflow: visible !important;
+}
+#equalizer input::-webkit-outer-spin-button,
+#equalizer input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+#equalizer input{
+	padding: 0 !important;
+}
+#eqiPresets{
+	position: absolute;
+    top: -50px;
+    right: 15px;
+}
+
+
+
 #currentTab{
 	background: unset;
+	z-index: 5;
 }
 *{
 	margin: 0;
@@ -67,7 +138,7 @@ md-list-item, md-list-item > div{
 	min-height: 62px !important;
 }
 #currentTab .md-list-item-text, #currentTab  md-list-item, #currentTab{
-  height: auto !important;
+  height: 70px !important;
   /*min-height: 62px !important;*/
 }
 #currentTab md-list-item .md-avatar{

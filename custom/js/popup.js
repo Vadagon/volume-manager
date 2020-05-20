@@ -6,12 +6,28 @@ var tabsLevels = {};
 
 
 angular.module('main', ['ngMaterial'])
-.controller('AppCtrl', function($scope) {
+.controller('AppCtrl', function($scope, $mdDialog) {
 
 	function changeVolume(id, val){
 		port.postMessage({id: parseInt(id), val: val});
 	}
-
+	$scope.showAlert = function(ev) {
+	    // Appending dialog to document.body to cover sidenav in docs app
+	    // Modal dialogs should fully cover application
+	    // to prevent interaction outside of dialog
+	    if(!false) 
+	    	$mdDialog.show({
+		        clickOutsideToClose:true,
+		        templateUrl: 'tabDialog.tmpl.html',
+				parent: angular.element(document.body),
+				targetEvent: ev
+		    })
+	    else $scope.showEqualizer = !$scope.showEqualizer;
+	  };
+	  this.openMenu = function($mdMenu, ev) {
+	  	console.log(123)
+	    $mdMenu.open(ev);
+	  };
 	$scope.currentLevel = 100;
 	$scope.noizeTabs = [];
 	$scope.controlledTabs = [];
@@ -19,6 +35,62 @@ angular.module('main', ['ngMaterial'])
 	$scope.shows = false;
 	$scope.filePNG = fileImage;
 	$scope.promote1 = !1;
+	$scope.equalizer = [
+		{name: '32', value: 0},
+		{name: '64', value: 0},
+		{name: '125', value: 0},
+		{name: '250', value: 0},
+		{name: '500', value: 0},
+		{name: '1k', value: 0},
+		{name: '2k', value: 0},
+		{name: '4k', value: 0},
+		{name: '8k', value: 0},
+		{name: '16k', value: 0}
+	]
+	$scope.presetsEqualzers = {
+        "Acoustic": [15, 15, 10, 4, 7, 7, 10, 12, 10, 5],
+        "Bass Booster": [15, 12, 10, 7, 3, 0, 0, 0, 0, 0],
+        "Bass Reducer": [15, 12, 10, 8, -5, -5, 0, 7, 10, 12],
+        "Classical": [15, 12, 10, 8, -5, -5, 0, 7, 10, 12],
+        "Dance": [12, 22, 15, 0, 5, 10, 16, 15, 12, 0],
+        "Deep": [15, 12, 5, 3, 10, 8, 5, -6, -12, -15],
+        "Electronic": [14, 13, 4, 0, -6, 6, 3, 4, 13, 15],
+        "Hiphop": [16, 14, 4, 10, -4, -3, 4, -2, 6, 10],
+        "Jazz": [13, 10, 4, 6, -5, -5, 0, 4, 10, 13],
+        "Latin": [9, 5, 0, 0, -5, -5, -5, 0, 10, 15],
+        "Loudness": [20, 14, 0, 0, -6, 0, -2, -18, 16, 3],
+        "Lounge": [-10, -5, -2, 4, 13, 4, 0, -5, 6, 3],
+        "Piano": [10, 6, 0, 9, 10, 5, 11, 15, 10, 11],
+        "Pop": [-5, -4, 0, 6, 15, 13, 6, 0, -3, -5],
+        "R&B": [9, 23, 19, 4, -8, -5, 8, 9, 10, 12],
+        "Rock": [16, 13, 10, 4, -1, -2, 1, 8, 11, 15],
+        "Small Speakers": [18, 14, 13, 8, 4, 0, -4, -9, -11, -14],
+        "Spoken Word": [-7, -1, 0, 2, 12, 15, 16, 14, 8, 0],
+        "Treble Booster": [0, 0, 0, 0, 0, 3, 8, 12, 14, 17],
+        "Treble Reducer": [0, 0, 0, 0, 0, -3, -8, -12, -14, -17],
+        "Vocal Booster": [-5, -10, -10, 4, 12, 12, 10, 5, 0, -5]
+    }
+	// <option id="acoustic" value="acoustic" data-i18n="preset_acoustic" datatype="i18n">Acoustic</option>
+	// <option id="bassBooster" value="bassBooster" data-i18n="preset_bassBooster" datatype="i18n">Bass Booster</option>
+	// <option id="bassReducer" value="bassReducer" data-i18n="preset_bassReducer" datatype="i18n">Bass Reducer</option>
+	// <option id="classical" value="classical" data-i18n="preset_classical" datatype="i18n">Classical</option>
+	// <option id="dance" value="dance" data-i18n="preset_dance" datatype="i18n">Dance</option>
+	// <option id="deep" value="deep" data-i18n="preset_deep" datatype="i18n">Deep</option>
+	// <option id="electronic" value="electronic" data-i18n="preset_electronic" datatype="i18n">Electronic</option>
+	// <option id="hiphop" value="hiphop" data-i18n="preset_hiphop" datatype="i18n">Hip-Hop</option>
+	// <option id="jazz" value="jazz" data-i18n="preset_jazz" datatype="i18n">Jazz</option>
+	// <option id="latin" value="latin" data-i18n="preset_latin" datatype="i18n">Latin</option>
+	// <option id="loudness" value="loudness" data-i18n="preset_loudness" datatype="i18n">Loudness</option>
+	// <option id="lounge" value="lounge" data-i18n="preset_lounge" datatype="i18n">Lounge</option>
+	// <option id="piano" value="piano" data-i18n="preset_piano" datatype="i18n">Piano</option>
+	// <option id="pop" value="pop" data-i18n="preset_pop" datatype="i18n">Pop</option>
+	// <option id="rnb" value="rnb" data-i18n="preset_rnb" datatype="i18n">R&amp;B</option>
+	// <option id="rock" value="rock" data-i18n="preset_rock" datatype="i18n">Rock</option>
+	// <option id="smallSpeakers" value="smallSpeakers" data-i18n="preset_smallSpeakers" datatype="i18n">Small Speakers</option>
+	// <option id="spokenWord" value="spokenWord" data-i18n="preset_spokenWord" datatype="i18n">Spoken Word</option>
+	// <option id="trebleBooster" value="trebleBooster" data-i18n="preset_trebleBooster" datatype="i18n">Treble Booster</option>
+	// <option id="trebleReducer" value="trebleReducer" data-i18n="preset_trebleReducer" datatype="i18n">Treble Reducer</option>
+	// <option id="vocalBooster" value="vocalBooster" data-i18n="preset_vocalBooster" datatype="i18n">Vocal Booster</option>
 
 	$scope.promote1Show = function(e){
 		if(e){
@@ -46,15 +118,15 @@ angular.module('main', ['ngMaterial'])
 	});
 
 
+	// canvas1 = document.getElementById('visualizer1');
+	// canvasCtx = canvas1.getContext("2d");
+	// var WIDTH = canvas1.width;
+	// var HEIGHT = canvas1.height;
+
+
+
 	canvas = document.getElementById('visualizer');
-	canvas1 = document.getElementById('visualizer1');
-	canvasCtx = canvas1.getContext("2d");
-
-
-	var WIDTH = canvas1.width;
-	var HEIGHT = canvas1.height;
-	window.color1 = '#ececec';
-	window.color2 = '#969696';
+	
 var animationId,
             cwidth = canvas.width,
             cheight = canvas.height - 2,
@@ -81,36 +153,37 @@ var animationId,
 		if(msg.type=='visualizer'){
 			// console.log(msg)
 		
+			var startCurves = function(){
+				var dataArray = msg.data;
+			    var bufferLength = msg.bufferLength;
 
-			var dataArray = msg.data;
-		    var bufferLength = msg.bufferLength;
+			    canvasCtx.fillStyle = 'rgb(250, 250, 250)';
+			    canvasCtx.fillRect(0, 0, WIDTH, HEIGHT);
+			    canvasCtx.lineWidth = 2;
+			    canvasCtx.beginPath();
 
-		    canvasCtx.fillStyle = 'rgb(250, 250, 250)';
-		    canvasCtx.fillRect(0, 0, WIDTH, HEIGHT);
-		    canvasCtx.lineWidth = 2;
-		    canvasCtx.beginPath();
+			    var sliceWidth = WIDTH * 1.0 / bufferLength;
+			    var x = 0;
 
-		    var sliceWidth = WIDTH * 1.0 / bufferLength;
-		    var x = 0;
-
-		    for (var i = 0; i < bufferLength; i++) {
-		        var data = dataArray[i];
-		        var v = data / 512.0;
-		        var y = v * HEIGHT + HEIGHT/4;
-		        var r = data + 120;
-		        var g = 255 - data;
-		        var b = data / 3;
-		        canvasCtx.strokeStyle = 'rgb(' + r + ', ' + g + ', ' + b + ')';
-		        if (i === 0) {
-		            canvasCtx.moveTo(x, y);
-		        } else {
-		            canvasCtx.lineTo(x, y);
-		        }
-		        x += sliceWidth;
-		    }
-		    canvasCtx.lineTo(canvas1.width+20, canvas1.height / 2);
-		    canvasCtx.stroke();
-		 
+			    for (var i = 0; i < bufferLength; i++) {
+			        var data = dataArray[i];
+			        var v = data / 512.0;
+			        var y = v * HEIGHT + HEIGHT/4;
+			        var r = data + 120;
+			        var g = 255 - data;
+			        var b = data / 3;
+			        canvasCtx.strokeStyle = 'rgb(' + r + ', ' + g + ', ' + b + ')';
+			        if (i === 0) {
+			            canvasCtx.moveTo(x, y);
+			        } else {
+			            canvasCtx.lineTo(x, y);
+			        }
+			        x += sliceWidth;
+			    }
+			    canvasCtx.lineTo(canvas1.width+20, canvas1.height / 2);
+			    canvasCtx.stroke();
+			}
+		 	// startCurves()
         
 
 
@@ -188,6 +261,9 @@ var animationId,
 			changeVolume(id, val);
 			if(id == msg.curTab.id)
 				$scope.currentLevel = val;
+		}
+		$scope.changing.equalizer = function (){
+			port.postMessage({id: parseInt(msg.curTab.id), val: angular.copy($scope.equalizer), type: 'equalizer'});
 		}
 		$scope.redirect = function(id){
 			if(id == 'options'){
