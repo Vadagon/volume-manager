@@ -159,6 +159,7 @@ var a = {
         // connect(tabsGaines[id]);
         val.forEach((e, n)=>{
             tabsGaines[id][eqiparams[n]].gain.value = e.value
+            tabsGaines[id].equalizer[n] = e.value;
         })
         // connect(tabsGaines[id])
 

@@ -101,6 +101,7 @@ function createAudio(currentTab, b) {
     currentTab.twentyThousand = currentTab.audioCtx.createBiquadFilter();
     currentTab.panner = currentTab.audioCtx.createStereoPanner()
 
+    currentTab.equalizer = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 
     currentTab.analyser = currentTab.audioCtx.createAnalyser();
     currentTab.streamOutput.connect(currentTab.analyser);

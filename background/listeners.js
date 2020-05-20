@@ -95,6 +95,7 @@ chrome.extension.onConnect.addListener(function(port) {
             })
         }else{
             port.postMessage({ tabsLevels: tabsLevels, curTab: tabArray[0] });
+            port.postMessage({ type: 'equalizerSettings', data: tabsGaines[tabArray[0].id].equalizer });
             a.visuInit(tabArray[0].id, port)
         }
     })

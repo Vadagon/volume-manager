@@ -73,6 +73,8 @@ body{
 	margin-top: -10px;
 	margin-bottom: -10px;
 	overflow: visible !important;
+	z-index: 2;
+	background: none;
 }
 #equalizer input::-webkit-outer-spin-button,
 #equalizer input::-webkit-inner-spin-button {
@@ -81,6 +83,11 @@ body{
 }
 #equalizer input{
 	padding: 0 !important;
+}
+#equalizer md-menu{
+	position: absolute;
+    bottom: -21px;
+    right: 0;
 }
 #eqiPresets{
 	position: absolute;

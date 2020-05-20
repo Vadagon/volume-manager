@@ -14,11 +14,10 @@
 <body ng-app="main">
     <div ng-controller="AppCtrl as ctrl" ng-cloak>
         <div style="padding:10px">
-
-          <!-- <span ng-click="promote1Show(!0)" class="promoteSpan" ng-if="!promote1">
+            <!-- <span ng-click="promote1Show(!0)" class="promoteSpan" ng-if="!promote1">
             <img src="ext_imgs/insta.gif" alt="instagram">
           </span> -->
-          <!--   <div class="promote1"  ng-if="promote1">
+            <!--   <div class="promote1"  ng-if="promote1">
               <div class="promoteDescription">
                 <h2 ng-click="promote1Redirect()">
                   <img src="ext_imgs/xxxhdpi.png" id="logoImg">
@@ -30,29 +29,12 @@
             </div>
  -->
             <h2>
-              <img src="images/icon512.png" id="logoImg">
-              Volume Manager
+                <img src="images/icon512.png" id="logoImg">
+                Volume Manager
             </h2>
             <p>You can control volume of the current tab with the slider below or <a href="#" class="options" ng-click="redirect('shortcuts')">Alt + ↓↑</a></p>
-
         </div>
-
-
-
-
-
-
-
-        
-                <!-- <canvas id="visualizer" width="290" height="300"></canvas> -->
-       
-
-
-
-
-
-
-
+        <!-- <canvas id="visualizer" width="290" height="300"></canvas> -->
         <md-subheader class="md-no-sticky">Current Tab</md-subheader>
         <md-content id="currentTab">
             <md-list-item class="md-2-line">
@@ -71,7 +53,6 @@
                 </div>
             </md-list-item>
         </md-content>
-        
         <!-- <div class="getVisualizerPRO">
             1111
         </div> -->
@@ -85,16 +66,13 @@
         <md-content id="equalizer">
             <div layout="row" layout-padding ng-hide="!!showEqualizer">
                 <md-slider-container flex ng-repeat="x in equalizer">
-                  <!-- <md-input-container>
+                    <!-- <md-input-container>
                     <input flex type="number" ng-model="x.value" aria-label="equalizer stat" aria-controls="equalizer stat">
                   </md-input-container> -->
-                  <md-slider ng-change="changing.equalizer()" ng-model="x.value" min="-40" max="40" step="1" aria-label="equalizer stat"
-                             class="md-primary" md-vertical></md-slider>
-                  <h5>{{x.name}}</h5>
+                    <md-slider ng-change="changing.equalizer()" ng-model="x.value" min="-40" max="40" step="1" aria-label="equalizer stat" class="md-primary" md-vertical></md-slider>
+                    <h5>{{x.name}}</h5>
                 </md-slider-container>
             </div>
-
-
             <!-- <md-input-container id="eqiPresets">
               <label>State</label>
               <md-select ng-model="asd">
@@ -103,39 +81,18 @@
                 </md-option>
               </md-select>
             </md-input-container> -->
-
-
-           <!--  <md-menu>
-              <md-button aria-label="Open phone interactions menu" class="md-icon-button" ng-click="ctrl.openMenu($mdMenu, $event)">
-                <md-icon md-menu-origin md-svg-icon="call:phone"></md-icon>
-              </md-button>
-              <md-menu-content width="4">
-                <md-menu-item>
-                  <md-button ng-click="ctrl.redial($event)">
-                    <md-icon md-svg-icon="call:dialpad" md-menu-align-target></md-icon>
-                    Redial
-                  </md-button>
-                </md-menu-item>
-                <md-menu-item>
-                  <md-button disabled="disabled" ng-click="ctrl.checkVoicemail()">
-                    <md-icon md-svg-icon="call:voicemail"></md-icon>
-                    Check voicemail
-                  </md-button>
-                </md-menu-item>
-                <md-menu-divider></md-menu-divider>
-                <md-menu-item>
-                  <md-button ng-click="ctrl.toggleNotifications()">
-                    <md-icon md-svg-icon="social:notifications-{{ctrl.notificationsEnabled ? 'off' : 'on'}}"></md-icon>
-                    {{ctrl.notificationsEnabled ? 'Disable' : 'Enable' }} notifications
-                  </md-button>
-                </md-menu-item>
-              </md-menu-content>
-            </md-menu> -->
-
-
+            <md-menu md-offset="0 -7">
+                <md-button aria-label="Open presets menu" class="md-icon-button" ng-click="$mdOpenMenu($event)">
+                    <md-icon style="font-size: 26px">⚙</md-icon>
+                </md-button>
+                <md-menu-content width="2">
+                    <md-menu-item ng-repeat="(key, val) in presetsEqualzers">
+                        <md-button ng-click="presetEqualizer(val)"> {{key}} </md-button>
+                    </md-menu-item>
+                </md-menu-content>
+            </md-menu>
         </md-content>
         <!-- <canvas id="visualizer1" width="350" height="50"></canvas> -->
-
         <!-- <md-subheader class="md-no-sticky" ng-if="!controlledTabs.length && !noizeTabs.length && !shows">Go to <a href="#" style="top: 0;" ng-click="redirect('options')">options</a> to setting up the extension!</md-subheader> -->
         <md-subheader class="md-no-sticky" ng-if="controlledTabs.length || noizeTabs.length">Tabs playing audio right now</md-subheader>
         <md-content style="overflow-y: hidden;">
