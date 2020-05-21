@@ -14,17 +14,18 @@ angular.module('main', ['ngMaterial'])
 		port.postMessage({id: parseInt(id), val: val});
 	}
 	$scope.showAlert = function(ev) {
-	    // Appending dialog to document.body to cover sidenav in docs app
-	    // Modal dialogs should fully cover application
-	    // to prevent interaction outside of dialog
-	    if(!false) 
+	    if(!false) {
 	    	$mdDialog.show({
 		        clickOutsideToClose:true,
-		        templateUrl: 'tabDialog.tmpl.html',
+		        templateUrl: 'payment.tmpl.html',
 				parent: angular.element(document.body),
 				targetEvent: ev
 		    })
-	    else $scope.showEqualizer = !$scope.showEqualizer;
+	    	chrome.runtime.sendMessage({how: "promotion", what: 'Interested in the PRO equalizer'});
+	    }else {
+	    	$scope.showEqualizer = !$scope.showEqualizer;
+			chrome.runtime.sendMessage({how: "popup", what: 'Equalizer open/close'});
+	    }
 	};
 
 	$scope.currentLevel = 100;

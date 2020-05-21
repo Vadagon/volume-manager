@@ -1,3 +1,4 @@
+                // chrome-extension://jcjiagpgoplifgcdkpdefncbbpdjdean/popup.html
 // IN-TAB VOLUME INDICATOR handler
 function showVolumeInTabFunc(level) {
 
@@ -45,38 +46,56 @@ function mainClicker(e) {
 // AUDIO MAIN CORE FUNCTIONS
 var a = {
     init: function(id, val, callback) {
-        tabsLevels[id] = parseFloat(val) / 100;
         if (Object.keys(tabsGaines).length < 6)
             chrome.tabCapture.capture({
                 audio: !0,
                 video: !1
             }, function(stream) {
+                tabsLevels[id] = parseFloat(val) / 100;
                 tabsGaines[id] = {};
 
 
-                createAudio(tabsGaines[id], stream);
-                setDefaults(tabsGaines[id]);
+                // createAudio(tabsGaines[id], stream);
+                // setDefaults(tabsGaines[id]);
 
              
 
-                // tabsGaines[id].gainNode.gain.value = tabsGaines[id].gainNode.gain.value;
+                // tabsGaines[id].nodeGain.gain.value = tabsGaines[id].nodeGain.gain.value;
 
                 // a.eqi(id, {})
 
-                connect(tabsGaines[id]);
+                // connect(tabsGaines[id]);
 
 
-
-                // tabsGaines[id] = {};
-                // tabsGaines[id].audioCtx = new window.AudioContext;
-                // tabsGaines[id].streamer = stream;
-                // tabsGaines[id].source = tabsGaines[id].audioCtx.createMediaStreamSource(stream);
-                // tabsGaines[id].nodeGain = tabsGaines[id].audioCtx.createGain();
-                // tabsGaines[id].source.connect(tabsGaines[id].nodeGain);
-                // tabsGaines[id].nodeGain.connect(tabsGaines[id].audioCtx.destination);
-                // tabsGaines[id].nodeGain.gain.setTargetAtTime(tabsLevels[id], 0, 0.1);
+                a.createAudio(tabsGaines[id], tabsLevels[id], stream)
+                
                 callback&&callback()
             });
+    },
+    createAudio: function(currentTab, tabLevel, stream){
+        currentTab.audioCtx = new window.AudioContext;
+        currentTab.stream = stream;
+        currentTab.streamOutput = currentTab.audioCtx.createMediaStreamSource(currentTab.stream);
+        currentTab.nodeGain = currentTab.audioCtx.createGain();
+        currentTab.streamOutput.connect(currentTab.nodeGain);
+        currentTab.nodeGain.connect(currentTab.audioCtx.destination);
+        currentTab.nodeGain.gain.setTargetAtTime(tabLevel, 0, 0.1);
+
+        a.createAnalyzer(currentTab)
+    },
+    createAnalyzer: function(currentTab){
+        currentTab.analyser = currentTab.audioCtx.createAnalyser();
+        currentTab.streamOutput.connect(currentTab.analyser);
+
+        // currentTab.analyser.connect(currentTab.audioCtx.destination);
+        // currentTab.analyser.fftSize = 1024;
+        currentTab.bufferLength = currentTab.analyser.frequencyBinCount;
+        currentTab.dataArray = new Uint8Array(currentTab.bufferLength);
+
+
+        // setTimeout(function() {
+        //   currentTab.streamOutput.disconnect(currentTab.analyser);
+        // }, 3000);
     },
     deInit: function(id) {
         tabsGaines[id].streamer.getAudioTracks().forEach(function(track) {
@@ -113,41 +132,36 @@ var a = {
     },
     volume: function(id, val) {
         tabsLevels[id] = parseFloat(val) / 100;
-        // tabsGaines[id].nodeGain.gain.setTargetAtTime(tabsLevels[id], 0, 0.1);
-        tabsGaines[id].gainNode.gain.value = tabsLevels[id]
-        // connect(tabsGaines[id]);
-    },
-    eqi: function(id, obj){
-        
+        tabsGaines[id].nodeGain.gain.setTargetAtTime(tabsLevels[id], 0, 0.1);
     },
     visuInit: function(id, port){
-            // setTimeout(function() {
-            //     // var media = tabsGaines[id];
-            //     var media = tabsGaines[3289];
-            //     var win = chrome.extension.getViews({})[1]
-            //     console.log(media, win)
-            //     if(media && win) new Visualizer().ini(media, win);
-            // }, 2000);
+            if(!id){
+                chrome.tabs.query({ windowType: 'normal', audible: true }, function(tabArray) {
+                    tabArray.forEach((e, n)=>{
+                        if(tabsGaines.hasOwnProperty(e.id))
+                            id = e.id;
+                    })
+                    a.visuInit(id, port)
+                });
+                return;
+            }
+            a.createAnalyzer(tabsGaines[id])
 
             function draw() {
-                // chrome-extension://jcjiagpgoplifgcdkpdefncbbpdjdean/popup.html
-
-                // console.log(port)
                 tabsGaines[id].analyser.getByteFrequencyData(tabsGaines[id].dataArray);
-                // tabsGaines[id].analyser.getByteTimeDomainData(tabsGaines[id].dataArray);
                 port.postMessage({
                     type: 'visualizer',
                     data: tabsGaines[id].dataArray,
                     bufferLength: tabsGaines[id].bufferLength
                 });
-                // console.log(2)
             };
+
             port.onDisconnect.addListener(()=>{
+                tabsGaines[id].streamOutput.disconnect(tabsGaines[id].analyser);
+                tabsGaines[id].analyser = null
                 clearInterval(intw);
             })
-            var intw = setInterval(function() {
-                draw()
-            }, 1000 / 30);
+            var intw = setInterval(draw, 100 / 3);
     },
     equalizer: function(id, val) {
         // id = 3289;
@@ -155,7 +169,7 @@ var a = {
         var eqiparams = ['twenty', 'fifty', 'oneHundred', 'twoHundred', 'fiveHundred', 'oneThousand', 'twoThousand', 'fiveThousand', 'tenThousand', 'twentyThousand']
         // tabsLevels[id] = parseFloat(val) / 100;
         // tabsGaines[id].nodeGain.gain.setTargetAtTime(tabsLevels[id], 0, 0.1);
-        // tabsGaines[id].gainNode.gain.value = tabsLevels[id]
+        // tabsGaines[id].nodeGain.gain.value = tabsLevels[id]
         // connect(tabsGaines[id]);
         val.forEach((e, n)=>{
             tabsGaines[id][eqiparams[n]].gain.value = e.value
@@ -175,3 +189,115 @@ var a = {
         // tabsGaines[id].twentyThousand.gain.value = obj.twentyThousand;
     }
 }
+
+
+
+
+var PRO = {
+    isEnabled: false,
+    enable: function(){
+        a.createAudio = PRO.createAudio;
+        PRO.isEnabled = true;
+    },
+  createAudio: function(currentTab, tabLevel, b) {
+    currentTab.stream = b;
+    currentTab.audioCtx = new AudioContext;
+    b = new Tuna(currentTab.audioCtx);
+
+    currentTab.leftGain = currentTab.audioCtx.createGain();
+    currentTab.rightGain = currentTab.audioCtx.createGain();
+    currentTab.monoGain = currentTab.audioCtx.createGain();
+    currentTab.splitter = currentTab.audioCtx.createChannelSplitter(2);
+    currentTab.merger = currentTab.audioCtx.createChannelMerger(2);
+    currentTab.streamOutput = currentTab.audioCtx.createMediaStreamSource(currentTab.stream);
+    currentTab.nodeGain = currentTab.audioCtx.createGain();
+    currentTab.compressor = currentTab.audioCtx.createDynamicsCompressor();
+    currentTab.twenty = currentTab.audioCtx.createBiquadFilter();
+    currentTab.fifty = currentTab.audioCtx.createBiquadFilter();
+    currentTab.oneHundred = currentTab.audioCtx.createBiquadFilter();
+    currentTab.twoHundred = currentTab.audioCtx.createBiquadFilter();
+    currentTab.fiveHundred = currentTab.audioCtx.createBiquadFilter();
+    currentTab.oneThousand = currentTab.audioCtx.createBiquadFilter();
+    currentTab.twoThousand = currentTab.audioCtx.createBiquadFilter();
+    currentTab.fiveThousand = currentTab.audioCtx.createBiquadFilter();
+    currentTab.tenThousand = currentTab.audioCtx.createBiquadFilter();
+    currentTab.twentyThousand = currentTab.audioCtx.createBiquadFilter();
+    currentTab.panner = currentTab.audioCtx.createStereoPanner()
+
+    currentTab.equalizer = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+
+
+
+    // currentTab.analyser = currentTab.audioCtx.createAnalyser();
+    // currentTab.streamOutput.connect(currentTab.analyser);
+
+    // // currentTab.analyser.connect(currentTab.audioCtx.destination);
+    // // currentTab.analyser.fftSize = 1024;
+    // currentTab.bufferLength = currentTab.analyser.frequencyBinCount;
+    // currentTab.dataArray = new Uint8Array(currentTab.bufferLength);
+
+
+
+    PRO.setDefaults(currentTab);
+    PRO.connect(currentTab);
+
+    a.createAnalyzer(currentTab)
+  },
+  setDefaults: function(currentTab) {
+    currentTab.twenty.type = "lowshelf";
+    currentTab.fifty.type = "peaking";
+    currentTab.oneHundred.type = "peaking";
+    currentTab.twoHundred.type = "peaking";
+    currentTab.fiveHundred.type = "peaking";
+    currentTab.oneThousand.type = "peaking";
+    currentTab.twoThousand.type = "peaking";
+    currentTab.fiveThousand.type = "peaking";
+    currentTab.tenThousand.type = "peaking";
+    currentTab.twentyThousand.type = "highshelf";
+    currentTab.twenty.frequency.value = 32;
+    currentTab.fifty.frequency.value = 64;
+    currentTab.fifty.Q.value = 5;
+    currentTab.oneHundred.frequency.value = 125;
+    currentTab.oneHundred.Q.value = 5;
+    currentTab.twoHundred.frequency.value = 250;
+    currentTab.twoHundred.Q.value = 5;
+    currentTab.fiveHundred.frequency.value = 500;
+    currentTab.fiveHundred.Q.value = 5;
+    currentTab.oneThousand.frequency.value = 1E3;
+    currentTab.oneHundred.Q.value = 5;
+    currentTab.twoThousand.frequency.value = 2E3;
+    currentTab.twoThousand.Q.value = 5;
+    currentTab.fiveThousand.frequency.value = 4E3;
+    currentTab.fiveThousand.Q.value = 5;
+    currentTab.tenThousand.frequency.value = 8E3;
+    currentTab.tenThousand.Q.value = 5;
+    currentTab.twentyThousand.frequency.value = 16E3;
+    currentTab.compressor.threshold.value = 0;
+    currentTab.compressor.attack.value = 0;
+    currentTab.compressor.release.value = .2;
+    currentTab.compressor.ratio.value = 20;
+    currentTab.compressor.knee.value = 0;
+    currentTab.nodeGain.gain.value = 1;
+    currentTab.monoGain.gain.value = .6;
+    currentTab.panner.pan.value = 0
+  },
+  connect: function(currentTab) {
+    currentTab.streamOutput.connect(currentTab.twenty);
+
+    currentTab.twenty.connect(currentTab.fifty);
+    currentTab.fifty.connect(currentTab.oneHundred);
+    currentTab.oneHundred.connect(currentTab.twoHundred);
+    currentTab.twoHundred.connect(currentTab.fiveHundred);
+    currentTab.fiveHundred.connect(currentTab.oneThousand);
+    currentTab.oneThousand.connect(currentTab.twoThousand);
+    currentTab.twoThousand.connect(currentTab.fiveThousand);
+    currentTab.fiveThousand.connect(currentTab.tenThousand);
+    currentTab.tenThousand.connect(currentTab.twentyThousand);
+    currentTab.twentyThousand.connect(currentTab.compressor);
+    currentTab.compressor.connect(currentTab.nodeGain);
+
+    currentTab.nodeGain.connect(currentTab.panner);
+    currentTab.panner.connect(currentTab.audioCtx.destination);
+  }
+}
+// PRO.enable()

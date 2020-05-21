@@ -80,23 +80,23 @@ chrome.extension.onConnect.addListener(function(port) {
 
     port.onMessage.addListener(function(e) {
         if(e.type=='equalizer') a.equalizer(e.id, e.val);
-        if(e.type=='visualizer') return;
+        else if(e.type=='visualizer') return;
         else a.getTab(e.id) ? a.volume(e.id, e.val) : a.init(e.id, e.val);
     });
     // if (true) {}
     // currentWindow: true
     chrome.tabs.query({ windowType: 'normal', active: true }, function(tabArray) {
         if (tabArray[0].audible && !a.getTab(tabArray[0].id)){
-            a.isMuted(function(isMuted){
-                a.init(tabArray[0].id, isMuted?0:100, function(){
-                    port.postMessage({ tabsLevels: tabsLevels, curTab: tabArray[0] });
-                    a.visuInit(tabArray[0].id, port)
-                })
+            // a.isMuted(function(isMuted){
+            a.init(tabArray[0].id, 100, function(){
+                port.postMessage({ tabsLevels: tabsLevels, curTab: tabArray[0] });
+                a.visuInit(tabArray[0].audible?tabArray[0].id:false, port)
             })
+            // })
         }else{
             port.postMessage({ tabsLevels: tabsLevels, curTab: tabArray[0] });
-            port.postMessage({ type: 'equalizerSettings', data: tabsGaines[tabArray[0].id].equalizer });
-            a.visuInit(tabArray[0].id, port)
+            a.visuInit(tabArray[0].audible?tabArray[0].id:false, port); 
+            if(a.getTab(tabArray[0].id)) port.postMessage({ type: 'equalizerSettings', data: tabsGaines[tabArray[0].id].equalizer });
         }
     })
 })

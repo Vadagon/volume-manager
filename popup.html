@@ -63,8 +63,8 @@
               Alert Dialog
             </md-button> -->
         </div>
-        <md-content id="equalizer">
-            <div layout="row" layout-padding ng-hide="!!showEqualizer">
+        <md-content id="equalizer" ng-hide="!showEqualizer">
+            <div layout="row" layout-padding>
                 <md-slider-container flex ng-repeat="x in equalizer">
                     <!-- <md-input-container>
                     <input flex type="number" ng-model="x.value" aria-label="equalizer stat" aria-controls="equalizer stat">
