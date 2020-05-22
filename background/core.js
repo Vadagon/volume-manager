@@ -148,6 +148,7 @@ var a = {
             a.createAnalyzer(tabsGaines[id])
 
             function draw() {
+                if(!tabsGaines[id] || !tabsGaines[id].analyser) clearInterval(intw);
                 tabsGaines[id].analyser.getByteFrequencyData(tabsGaines[id].dataArray);
                 port.postMessage({
                     type: 'visualizer',
@@ -156,12 +157,13 @@ var a = {
                 });
             };
 
+            var intw = setInterval(draw, 100 / 3);
             port.onDisconnect.addListener(()=>{
+                console.log('disconnected')
                 tabsGaines[id].streamOutput.disconnect(tabsGaines[id].analyser);
                 tabsGaines[id].analyser = null
                 clearInterval(intw);
             })
-            var intw = setInterval(draw, 100 / 3);
     },
     equalizer: function(id, val) {
         // id = 3289;
@@ -198,6 +200,7 @@ var PRO = {
     enable: function(){
         a.createAudio = PRO.createAudio;
         PRO.isEnabled = true;
+        chrome.storage.sync.set({isPRO: PRO.isEnabled})
     },
   createAudio: function(currentTab, tabLevel, b) {
     currentTab.stream = b;

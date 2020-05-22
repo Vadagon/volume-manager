@@ -3,7 +3,7 @@
   "version": "25",
   "author": "Vadagon",
   "manifest_version": 2,
-  "description": "Volume booster to amplify volume by 700%",
+  "description": "Volume booster to amplify volume up to 700%",
   "permissions": [
     "tabCapture",
     "activeTab",

@@ -8,14 +8,17 @@ var tabsLevels = {};
 
 
 angular.module('main', ['ngMaterial'])
-.controller('AppCtrl', function($scope, $mdDialog) {
+.controller('AppCtrl', function($scope, $mdDialog, $rootScope) {
 
+	$scope.isPRO = false;
+	$rootScope.email;
 	function changeVolume(id, val){
 		port.postMessage({id: parseInt(id), val: val});
 	}
 	$scope.showAlert = function(ev) {
-	    if(!false) {
+	    if(!$scope.isPRO) {
 	    	$mdDialog.show({
+	    		controller: PaymentController,
 		        clickOutsideToClose:true,
 		        templateUrl: 'payment.tmpl.html',
 				parent: angular.element(document.body),
@@ -27,6 +30,9 @@ angular.module('main', ['ngMaterial'])
 			chrome.runtime.sendMessage({how: "popup", what: 'Equalizer open/close'});
 	    }
 	};
+	function PaymentController($scope, $mdDialog) {
+		$scope.email = $rootScope.email
+	}
 
 	$scope.currentLevel = 100;
 	$scope.noizeTabs = [];
@@ -179,6 +185,13 @@ angular.module('main', ['ngMaterial'])
 			$scope.presetEqualizer(msg.data)
 			return;
 		}
+		if(msg.email){
+			$rootScope.email = msg.email
+			$scope.isPRO = msg.isPRO
+			isPRO(msg.email, e=>{
+				chrome.runtime.sendMessage({how: "PRO", data: e});
+			})
+		}
 
 		tabsLevels = msg.tabsLevels;
 		if (tabsLevels[msg.curTab.id])
@@ -256,3 +269,21 @@ angular.module('main', ['ngMaterial'])
 
 	});
 });
+
+
+
+
+
+
+
+
+
+
+function isPRO(email, cb){
+	var xhr = new XMLHttpRequest();
+	xhr.open('GET', 'https://node.verblike.com/volume-manager/isVolumePROuser/'+email);
+	xhr.onload = function() {
+		cb(xhr.status==200)
+	};
+	xhr.send();
+}

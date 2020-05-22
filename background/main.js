@@ -8,7 +8,7 @@ var gainNode, audioCtx, streamer,
   muteAll = false;
 
 // ON-INIT DATABASE handler
-chrome.storage.sync.get(["hotkeysType", "fscreen", "muteAll", "lastDay"], function(items) {
+chrome.storage.sync.get(["hotkeysType", "fscreen", "muteAll", "lastDay", "userid", "isPRO"], function(items) {
   if (!chrome.runtime.error) {
     if (items.hasOwnProperty("hotkeysType") && items.hasOwnProperty("fscreen")) {
       hotkeysType = items.hotkeysType;
@@ -23,6 +23,22 @@ chrome.storage.sync.get(["hotkeysType", "fscreen", "muteAll", "lastDay"], functi
       chrome.storage.sync.set({ "lastDay": fullDaysSinceEpoch });
     }
 
+    if(items.isPRO) PRO.enable()
+
+    var userid = items.userid;
+    if (userid) {
+        useToken(userid);
+    } else {
+        userid = getRandomToken();
+        chrome.storage.sync.set({userid: userid}, function() {
+            useToken(userid);
+        });
+    }
+    function useToken(userid) {
+        PRO.userid = userid;
+    }
+
+
   }
 });
 
@@ -33,6 +49,21 @@ chrome.runtime.getPlatformInfo(function(info) {
 })
 
 var prevWindow;
+
+
+
+
+function getRandomToken() {
+    // E.g. 8 * 32 = 256 bits token
+    var randomPool = new Uint8Array(32);
+    crypto.getRandomValues(randomPool);
+    var hex = '';
+    for (var i = 0; i < randomPool.length; ++i) {
+        hex += randomPool[i].toString(16);
+    }
+    // E.g. db18458e2782b2b77e36769c569e263a53885a9944dd0a861e5064eac16f1a
+    return hex;
+}
 
 
 
