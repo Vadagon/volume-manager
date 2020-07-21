@@ -1,9 +1,9 @@
 {
-  "name": "Volume Manager",
-  "version": "26",
+  "name": "Volume Manager - Booster & Controller",
+  "version": "27",
   "author": "Vadagon",
   "manifest_version": 2,
-  "description": "Volume booster to amplify volume up to 700%",
+  "description": "Control and boost video sound up to 700%",
   "permissions": [
     "tabCapture",
     "activeTab",

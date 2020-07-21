@@ -33,7 +33,6 @@ angular.module('main', ['ngMaterial'])
 	function PaymentController($scope, $mdDialog) {
 		$scope.email = $rootScope.email
 	}
-
 	$scope.currentLevel = 100;
 	$scope.noizeTabs = [];
 	$scope.controlledTabs = [];
@@ -266,6 +265,7 @@ angular.module('main', ['ngMaterial'])
 			});
 		});
 
+		// $scope.showAlert();
 
 	});
 });
