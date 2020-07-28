@@ -1,5 +1,5 @@
 {
-  "name": "Volume Manager - Booster & Controller",
+  "name": "Volume Manager",
   "version": "27",
   "author": "Vadagon",
   "manifest_version": 2,
@@ -24,8 +24,6 @@
   },
   "background": {
     "scripts": [
-      "plugins/js/tuna.min.js",
-      
       "background/core.js",
       "background/main.js",
       "background/listeners.js",
