@@ -229,7 +229,7 @@ md-list-item:not(._md-button-wrap) h4{
 	position: absolute;
 	right: 7px;
   top: 6px;
-	width: 20px;
+	width: 35px;
 	z-index: 0;
 	cursor: pointer;
 	outline: 0 !important;
@@ -251,6 +251,6 @@ md-list-item:not(._md-button-wrap) h4{
 	outline: 0 !important;
 }
 .promoteDescription h2{
-	font-size: 32px;
+	font-size: 30px;
 	line-height: 37px;
 }

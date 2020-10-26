@@ -1,9 +1,10 @@
 {
-  "name": "Volume Manager",
-  "version": "29",
+  "name": "__MSG_app_name__",
+  "description": "__MSG_app_description__",
+  "default_locale": "en",
+  "version": "30",
   "author": "Vadagon",
   "manifest_version": 2,
-  "description": "Control and boost video sound up to 700%",
   "permissions": [
     "tabCapture",
     "activeTab",
@@ -12,14 +13,11 @@
     "<all_urls>"
   ],
   "browser_action": {
-    "default_title": "Volume Manager",
+    "default_title": "__MSG_app_name__",
     "default_popup": "popup.html",
-    "default_icon": "images/icon512.png"
+    "default_icon": "images/icon128.png"
   },
   "icons": {
-    "16": "images/icon16.png",
-    "16": "images/icon32.png",
-    "48": "images/icon48.png",
     "128": "images/icon128.png"
   },
   "background": {

@@ -118,7 +118,7 @@ angular.module('main', ['ngMaterial'])
 	$scope.promote1Redirect = function(){
 		chrome.runtime.sendMessage({how: "promotion", what: 'Redirected to the promote 1'});
 		setTimeout(function () {
-			chrome.tabs.create({url: 'https://www.verblike.com/instafly/chrome-web-store-link/', active: !0, selected: !0});
+			chrome.tabs.create({url: 'https://bit.ly/3dDVTVN', active: !0, selected: !0});
 		}, 10);
 	}
 
