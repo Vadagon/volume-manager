@@ -66,9 +66,6 @@ function getRandomToken() {
 }
 
 
-
-
-
 // GOOGLE ANALYSTICS
 var _gaq = _gaq || [];
 _gaq.push(['_setAccount', 'UA-131310674-3']);
