@@ -22,7 +22,20 @@ body{
 }
 
 
-
+#buyerID{
+    display: block;
+    line-height: 0;
+    opacity: 1;
+    font-family: fantasy;
+    color: #202020;
+    text-align: center;
+    margin-top: 0px;
+    user-select: all;
+    font-size: 9px;
+    margin: 0 -20px;
+    margin-bottom: -4px;
+    overflow: hidden;
+}
 .payment-padding{
 	min-height: 0 !important;
 	height: auto !important;

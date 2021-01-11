@@ -2,7 +2,7 @@
   "name": "__MSG_app_name__",
   "description": "__MSG_app_description__",
   "default_locale": "en",
-  "version": "30",
+  "version": "31",
   "author": "Vadagon",
   "manifest_version": 2,
   "permissions": [
