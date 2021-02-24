@@ -47,7 +47,7 @@
                     <div layout="column">
                         <div flex="80">
                             <md-slider flex ng-change="changing.currentLevel()" ng-model="currentLevel" step="1" min="0" max="100" aria-label="currentLevel" class="md-primary"></md-slider>
-                            <span class="volumeSpans" style="padding-left: 4px;">VOLUME: {{currentLevel>100?100:currentLevel}}%</span>
+                            <span class="volumeSpans" style="padding-left: 4px;">VOLUME: {{Math.round(currentLevel)}}%</span>
                         </div>
                         <div flex flex-offset="66">
                             <span class="volumeSpans">BOOST: {{currentLevel>100?currentLevel/100-1:0}}x</span>

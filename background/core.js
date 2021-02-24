@@ -51,6 +51,7 @@ var a = {
                 audio: !0,
                 video: !1
             }, function(stream) {
+                chrome.browserAction.setBadgeText({tabId: id, text: val.toString()})
                 tabsLevels[id] = parseFloat(val) / 100;
                 tabsGaines[id] = {};
 
@@ -131,6 +132,7 @@ var a = {
         });
     },
     volume: function(id, val) {
+        chrome.browserAction.setBadgeText({tabId: id, text: val.toString()})
         tabsLevels[id] = parseFloat(val) / 100;
         tabsGaines[id].nodeGain.gain.setTargetAtTime(tabsLevels[id], 0, 0.1);
     },

@@ -9,6 +9,7 @@ var tabsLevels = {};
 
 angular.module('main', ['ngMaterial'])
 .controller('AppCtrl', function($scope, $mdDialog, $rootScope) {
+	$scope.Math = Math;
 	$scope.addNumberEnable = 1;
 	if(Math.random() > 0.5) $scope.addNumberEnable = 2;
 	
