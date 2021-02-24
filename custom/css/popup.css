@@ -8,6 +8,11 @@ html, body{
 body{
 	/*border: 1px solid black;*/
 }
+.darkMode, .darkMode md-content, .darkMode .md-subheader{
+	background: #222222;
+	color: #fff; 
+}
+
 *:focus, *:focus{
     outline: none !important;
 }
@@ -81,6 +86,16 @@ body{
 	border-color: #00000082;
 	background: #ffffff9c;
 }
+.darkMode .visualizerPRO label{
+    border-color: #ffffff5c;
+    background: #0000002e;
+    color: #ffffff96;
+}
+.darkMode .visualizerPRO label:hover{
+    border-color: #ffffff94;
+    background: #000000;
+    color: #ffffff;
+}
 #visualizer{
 	display: block;
 	margin: auto;
@@ -143,7 +158,7 @@ md-slider {
 #logoImg{
 	float: left;
   height: 40px;
-  margin-top: 2px;
+  /*margin-top: 2px;*/
   margin-right: 10px;
   margin-left: -3px;
 }

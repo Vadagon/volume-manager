@@ -9,7 +9,10 @@ var tabsLevels = {};
 
 angular.module('main', ['ngMaterial'])
 .controller('AppCtrl', function($scope, $mdDialog, $rootScope) {
-
+	$scope.darkMode = false;
+	if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+		$scope.darkMode = true;
+	}
 	$scope.isPRO = false;
 	$rootScope.email;
 	function changeVolume(id, val){
@@ -77,6 +80,8 @@ angular.module('main', ['ngMaterial'])
         "None": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     }
     $scope.presetEqualizer = function(data){
+    	if(!data) return;
+    	
     	$scope.equalizer.forEach((e, n)=>{
     		e.value = data[n]
     	})
@@ -127,7 +132,7 @@ angular.module('main', ['ngMaterial'])
 		$scope.currentFavIconUrl = tabArray[0].favIconUrl;
 	});
 
-	var port = chrome.extension.connect({
+	var port = chrome.runtime.connect({
 		name: "Sample Communication"
 	});
 
@@ -146,14 +151,15 @@ angular.module('main', ['ngMaterial'])
             cheight = canvas.height - 2,
             gap = 2, //gap between meters
             capHeight = 2,
-            capStyle = '#969696',
+            capStyle = $scope.darkMode?'#515151':'#969696',
             gap = 1.2,
             meterNum = 21, //count of the meters
             meterWidth = cwidth/meterNum/gap, //width of the meters in the spectrum
             capYPositionArray = [], ////store the vertical position of hte caps for the preivous frame
         	ctx = canvas.getContext('2d');
         gradient = ctx.createLinearGradient(0, 0, 0, cheight);
-        gradient.addColorStop(1, '#ececec');
+        gradient.addColorStop(1, $scope.darkMode?'#333':'#ececec');
+
 
         // chrome-extension://jcjiagpgoplifgcdkpdefncbbpdjdean/popup.html
 	port.onMessage.addListener(function(msg) {
@@ -193,11 +199,11 @@ angular.module('main', ['ngMaterial'])
 		}
 
 		tabsLevels = msg.tabsLevels;
-		if (tabsLevels[msg.curTab.id])
+		if (msg.curTab && tabsLevels[msg.curTab.id])
 			if (tabsLevels[msg.curTab.id]>1){
 				$scope.isDisabledCurrent = true;
 			}
-		if (tabsLevels[msg.curTab.id])
+		if (msg.curTab && tabsLevels[msg.curTab.id])
 			$scope.currentLevel = tabsLevels[msg.curTab.id]*100;
 
 
@@ -233,37 +239,38 @@ angular.module('main', ['ngMaterial'])
 			}
 		}
 		// $scope.test = 1111;
-		// $scope.$apply();		
-		chrome.tabs.query({audible: !0}, function(tabs){
-			for (var i = tabs.length - 1; i >= 0; i--) {
-				tabs[i].favIconUrl = tabs[i].favIconUrl;
-				tabs[i].tabName = tabs[i].title;
-				if(tabsLevels.hasOwnProperty(tabs[i].id)){
-					tabs[i].volumeLevel = tabsLevels[tabs[i].id]*100;
-					$scope.controlledTabs.push(tabs[i]);
+		// $scope.$apply();	
+		if(msg.tabsLevels)
+			chrome.tabs.query({audible: !0}, function(tabs){
+				for (var i = tabs.length - 1; i >= 0; i--) {
+					tabs[i].favIconUrl = tabs[i].favIconUrl;
+					tabs[i].tabName = tabs[i].title;
+					if(tabsLevels.hasOwnProperty(tabs[i].id)){
+						tabs[i].volumeLevel = tabsLevels[tabs[i].id]*100;
+						$scope.controlledTabs.push(tabs[i]);
 
-					if (tabs[i].id === msg.curTab.id)
-						$scope.currentLevel = tabs[i].volumeLevel;
-				}else{
-					tabs[i].volumeLevel = 100;
-					$scope.noizeTabs.push(tabs[i]);
+						if (tabs[i].id === msg.curTab.id)
+							$scope.currentLevel = tabs[i].volumeLevel;
+					}else{
+						tabs[i].volumeLevel = 100;
+						$scope.noizeTabs.push(tabs[i]);
+					}
+					$scope.$apply();
 				}
-				$scope.$apply();
-			}
-    		
-			chrome.runtime.sendMessage({how: "popup", what: 'Tabs count: ' + ($scope.noizeTabs.length + $scope.controlledTabs.length)});
-			chrome.storage.sync.get(["lastDay"], function(items) {
-				var now = new Date();
-				var fullDaysSinceEpoch = Math.floor(now/8.64e7);
-			    if (!chrome.runtime.error) {
-			        if (items.hasOwnProperty("lastDay"))
-			            if (items.lastDay - fullDaysSinceEpoch > -8){
-			            	$scope.shows = true;
-			            	$scope.$apply();
-			            }
-			    }
+	    		
+				chrome.runtime.sendMessage({how: "popup", what: 'Tabs count: ' + ($scope.noizeTabs.length + $scope.controlledTabs.length)});
+				chrome.storage.sync.get(["lastDay"], function(items) {
+					var now = new Date();
+					var fullDaysSinceEpoch = Math.floor(now/8.64e7);
+				    if (!chrome.runtime.error) {
+				        if (items.hasOwnProperty("lastDay"))
+				            if (items.lastDay - fullDaysSinceEpoch > -8){
+				            	$scope.shows = true;
+				            	$scope.$apply();
+				            }
+				    }
+				});
 			});
-		});
 
 		// $scope.showAlert();
 

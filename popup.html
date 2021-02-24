@@ -12,7 +12,7 @@
 </head>
 
 <body ng-app="main">
-    <div ng-controller="AppCtrl as ctrl" ng-cloak>
+    <div ng-controller="AppCtrl as ctrl" ng-class="{darkMode: darkMode}" ng-cloak>
         <div style="padding:10px">
 
 
@@ -33,7 +33,7 @@
 
 
             <h2>
-                <img src="images/icon512.png" id="logoImg">
+                <img src="images/icon128.png" id="logoImg">
                 Volume Manager
             </h2>
             <p>You can control volume of the current tab with the slider below or <a href="#" class="options" ng-click="redirect('shortcuts')">Alt + ↓↑</a></p>
@@ -47,7 +47,7 @@
                     <div layout="column">
                         <div flex="80">
                             <md-slider flex ng-change="changing.currentLevel()" ng-model="currentLevel" step="1" min="0" max="100" aria-label="currentLevel" class="md-primary"></md-slider>
-                            <span class="volumeSpans">VOLUME: {{currentLevel>100?100:currentLevel}}%</span>
+                            <span class="volumeSpans" style="padding-left: 4px;">VOLUME: {{currentLevel>100?100:currentLevel}}%</span>
                         </div>
                         <div flex flex-offset="66">
                             <span class="volumeSpans">BOOST: {{currentLevel>100?currentLevel/100-1:0}}x</span>
@@ -124,7 +124,7 @@
             </md-list-item>
         </md-content>
         {{test}}
-        <md-subheader class="md-no-sticky" style="margin-top: 10px">Can you spen few seconds to <a ng-click="redirect('review')" style="top: 0; cursor: pointer;">rate my work</a>?</md-subheader>
+        <md-subheader class="md-no-sticky" style="margin-top: 10px">Can you spend few seconds to <a ng-click="redirect('review')" style="top: 0; cursor: pointer;">rate my work</a> ?</md-subheader>
     </div>
 </body>
 

@@ -75,7 +75,7 @@ chrome.tabs.onCreated.addListener(function(e){
 
 
 // POPUP PORT CONNECTION listener
-chrome.extension.onConnect.addListener(function(port) {
+chrome.runtime.onConnect.addListener(function(port) {
     // tabsGaines[tabArray[0].id].nodeGain.gain.value = parseFloat(gainLevels[tabsLevels[tabArray[0].id]]);
 
     port.onMessage.addListener(function(e) {
@@ -104,21 +104,21 @@ chrome.extension.onConnect.addListener(function(port) {
 
 
 // EXTERNAL OPTIONS PAGE CONNECTED listener
-chrome.runtime.onMessageExternal.addListener(function(request, sender, sendResponse) {
-    if(request.how == 'get')
-        chrome.storage.sync.get(request.what, function(items) {
-            sendResponse(items)
-        });
-    if(request.how == 'set')
-        chrome.storage.sync.set(request.what, function(){
-            hotkeysType = request.what.hotkeysType;
-            fscreen = request.what.fscreen;
-            muteAll = request.what.muteAll;
-            a.toMute(muteAll);
-            sendResponse(true);
-        });
-    return true;
-});
+// chrome.runtime.onMessageExternal.addListener(function(request, sender, sendResponse) {
+//     if(request.how == 'get')
+//         chrome.storage.sync.get(request.what, function(items) {
+//             sendResponse(items)
+//         });
+//     if(request.how == 'set')
+//         chrome.storage.sync.set(request.what, function(){
+//             hotkeysType = request.what.hotkeysType;
+//             fscreen = request.what.fscreen;
+//             muteAll = request.what.muteAll;
+//             a.toMute(muteAll);
+//             sendResponse(true);
+//         });
+//     return true;
+// });
 
 
 // SIMPLE POPUP MESSAGES listener
