@@ -12,6 +12,9 @@ body{
 	background: #222222;
 	color: #fff; 
 }
+.darkMode .md-subheader{
+	color: #ffffff78;
+}
 
 *:focus, *:focus{
     outline: none !important;
@@ -160,21 +163,28 @@ md-slider {
   height: 40px;
   /*margin-top: 2px;*/
   margin-right: 10px;
-  margin-left: -3px;
+  /*margin-left: -3px;*/
 }
 h2{
     font-size: 36px;
-    line-height: 1;
+    line-height: 1.1;
     font-weight: lighter;
+    font-family: "Gill Sans", sans-serif;
 }
 h2 + p{
     margin: 10px 0;
     margin-bottom: 0;
 }
+.darkMode h2 + p{
+	color: #ffffffa6;
+}
 a{
 	position: relative;
-  text-decoration: none;
-  color: #5454ff;
+	text-decoration: none;
+	color: #5454ff;
+}
+.darkMode a{
+	color: #8383ff;
 }
 .volumeSpans{
 	white-space: nowrap;
