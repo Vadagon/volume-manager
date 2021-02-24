@@ -186,6 +186,9 @@ a{
 .darkMode a{
 	color: #8383ff;
 }
+.alternativeAdvertise a{
+	color: #ff7700;
+}
 .volumeSpans{
 	white-space: nowrap;
 	position: relative;

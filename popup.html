@@ -124,7 +124,8 @@
             </md-list-item>
         </md-content>
         {{test}}
-        <md-subheader class="md-no-sticky" style="margin-top: 10px">Can you spend few seconds to <a ng-click="redirect('review')" style="top: 0; cursor: pointer;">rate my work</a> ?</md-subheader>
+        <md-subheader ng-if="addNumberEnable == 1" class="md-no-sticky" style="margin-top: 16px">Can you spend few seconds to <a ng-click="redirect('review')" style="top: 0; cursor: pointer;">rate my work</a> ?</md-subheader>
+        <md-subheader ng-if="addNumberEnable == 2" class="md-no-sticky alternativeAdvertise" style="margin-top: 16px">Mass delete Inactive FB friends in <a ng-click="redirect('add1')" target="_blank" style="top: 0; cursor: pointer;">one click</a></md-subheader>
     </div>
 </body>
 

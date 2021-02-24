@@ -9,6 +9,9 @@ var tabsLevels = {};
 
 angular.module('main', ['ngMaterial'])
 .controller('AppCtrl', function($scope, $mdDialog, $rootScope) {
+	$scope.addNumberEnable = 1;
+	if(Math.random() > 0.5) $scope.addNumberEnable = 2;
+	
 	$scope.darkMode = false;
 	if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
 		$scope.darkMode = true;
@@ -81,7 +84,7 @@ angular.module('main', ['ngMaterial'])
     }
     $scope.presetEqualizer = function(data){
     	if(!data) return;
-    	
+
     	$scope.equalizer.forEach((e, n)=>{
     		e.value = data[n]
     	})
@@ -234,6 +237,9 @@ angular.module('main', ['ngMaterial'])
 			}else if(id == 'review'){
 				chrome.runtime.sendMessage({how: "stats", what: 'review'});
 				chrome.tabs.create({url: 'https://chrome.google.com/webstore/detail/volume-manager/abnhonfioiokelhdappjknfaannlncac/reviews', active: !0, selected: !0})
+			}else if(id == 'add1'){
+				chrome.runtime.sendMessage({how: "promotion", what: 'Redirected to Smart Unfriender'});
+				chrome.tabs.create({url: 'https://bit.ly/3ceYEy4', active: !0, selected: !0})
 			}else{
 				chrome.tabs.update(id, {active: true});
 			}
