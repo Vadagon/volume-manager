@@ -169,7 +169,7 @@ h2{
     font-size: 36px;
     line-height: 1.1;
     font-weight: lighter;
-    font-family: "Gill Sans", sans-serif;
+    font-family: "Gill Sans", "Segoe UI", sans-serif;
 }
 h2 + p{
     margin: 10px 0;

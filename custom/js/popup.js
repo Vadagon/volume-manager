@@ -172,7 +172,7 @@ angular.module('main', ['ngMaterial'])
 
         // chrome-extension://jcjiagpgoplifgcdkpdefncbbpdjdean/popup.html
 	port.onMessage.addListener(function(msg) {
-		console.log(msg)
+		// console.log(msg)
 		if(msg.type=='visualizer'){
 	        var step = Math.round(msg.bufferLength / meterNum);
 	        ctx.clearRect(0, 0, cwidth, cheight);
@@ -196,7 +196,7 @@ angular.module('main', ['ngMaterial'])
 			return;
 		}
 		if(msg.type=='equalizerSettings'){
-			console.log(msg)
+			// console.log(msg)
 			$scope.presetEqualizer(msg.data)
 			return;
 		}
@@ -204,6 +204,7 @@ angular.module('main', ['ngMaterial'])
 			$rootScope.email = msg.email
 			$scope.isPRO = msg.isPRO
 			$scope.darkMode = !!msg.darkMode;
+			$scope.recolorVisualizer()
 			isPRO(msg.email, e=>{
 				chrome.runtime.sendMessage({how: "PRO", data: e});
 			})
