@@ -296,3 +296,152 @@ md-list-item:not(._md-button-wrap) h4{
 	font-size: 30px;
 	line-height: 37px;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+label#darkModeToggle{
+	position: absolute;
+	right: 2px;
+	top: 0px;
+	--c: translate(-50%,-50%);
+	/*transform:var(--c);*/
+	transform: scale(0.5);
+}
+
+.switch{
+  position:relative;
+  left:0;top:0;
+  width:40px;
+  height:40px;
+}
+
+label#darkModeToggle > input{
+  position:absolute;
+  left:0;
+  top:0;
+  z-index:5;
+  opacity:0;
+  width:100%;
+  height:100%;
+}
+
+.switch span{
+  display:block;
+  position:absolute;
+  left:50%;
+  top:50%;
+  transform:var(--c);
+  border-radius:50%;
+  width:70%;
+  height:70%;
+  background:#FFAC33;
+  border:5px solid white;
+  transition:all ease 0.15s;
+}
+
+.switch div{
+  position:absolute;
+  left:0;top:0;
+  width:100%;
+  height:100%;
+}
+
+.switch div::before, .switch div::after{
+  content:" ";
+  display:block;
+  position:absolute;
+  left:50%;
+  top:50%;
+  transform:var(--c);
+  background:#FFAC33;
+  width:12%;
+  height:130%;
+  border-radius:10px;
+  transition:all ease 0.15s;
+}
+
+.switch div:nth-child(1)::before{
+  transform:var(--c) rotate(0deg);
+}
+
+.switch div:nth-child(1)::after{
+  transform:var(--c) rotate(45deg); /*45deg increment each time*/
+}
+
+.switch div:nth-child(2)::before{
+  transform:var(--c) rotate(90deg);
+}
+
+.switch div:nth-child(2)::after{
+  transform:var(--c) rotate(135deg);
+}
+
+.switch::before, .switch::after{
+  content:" ";
+  position:absolute;
+  left:50%;
+  top:50%;
+  transform:var(--c);
+  border-radius:50%;
+  background:white;
+  transition:all ease 0.15s;
+}
+
+.switch::before{
+  width:0%;
+  height:0%;
+  z-index:10;
+}
+
+.switch::after{
+  width:50%;
+  height:50%;
+}
+
+input:checked ~ .switch span{
+    width:100%; /*width change*/
+    height:100%; /*height change*/
+    background:#66757F; /*color change*/
+    /*we get a full moon*/
+}
+
+input:checked ~ .switch div::before,
+input:checked ~ .switch div::after{
+    height:50%; /*we hide the sun-rays*/
+}
+
+input:checked ~ .switch::before{ /*we draw a white circle a left-top corner to show a half moon*/
+    left:38%;
+    top:38%;
+    width:90%;
+    height:90%;
+}
+
+input:checked ~ .switch::after{ /*we hide the sun outline*/
+    width:0%;
+    height:0%;
+}
+
+input:not(:checked) ~ .switch{
+    transform:rotate(180deg);
+    transition:all ease 2.15s 0.1s;
+}
+

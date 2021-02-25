@@ -37,6 +37,14 @@
                 Volume Manager
             </h2>
             <p>You can control volume of the current tab with the slider below or <a href="#" class="options" ng-click="redirect('shortcuts')">Alt + ↓↑</a></p>
+            <label id="darkModeToggle">
+              <input id="color_scheme_switch" type="checkbox" ng-model="darkMode" ng-change="recolorVisualizer()" aria-label="Turn off the lights!" title="Switch to Dark Mode"/>
+              <div class="switch">
+               <div></div>
+               <div></div>
+               <span></span>
+              </div>
+             </label>
         </div>
         <!-- <canvas id="visualizer" width="290" height="300"></canvas> -->
         <md-subheader class="md-no-sticky">Current Tab</md-subheader>

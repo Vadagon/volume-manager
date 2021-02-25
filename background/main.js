@@ -5,10 +5,15 @@ var gainNode, audioCtx, streamer,
   tabsGaines = {},
   hotkeysType = [true, true],
   fscreen = true,
-  muteAll = false;
+  muteAll = false,
+  darkMode = false;
+  if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    console.log('activated default darkMode')
+    darkMode = true;
+  }
 
 // ON-INIT DATABASE handler
-chrome.storage.sync.get(["hotkeysType", "fscreen", "muteAll", "lastDay", "userid", "isPRO"], function(items) {
+chrome.storage.sync.get(["hotkeysType", "fscreen", "muteAll", "lastDay", "userid", "isPRO", "darkMode"], function(items) {
   if (!chrome.runtime.error) {
     if (items.hasOwnProperty("hotkeysType") && items.hasOwnProperty("fscreen")) {
       hotkeysType = items.hotkeysType;
@@ -16,6 +21,9 @@ chrome.storage.sync.get(["hotkeysType", "fscreen", "muteAll", "lastDay", "userid
       muteAll = items.muteAll;
     } else {
       chrome.storage.sync.set({ "hotkeysType": hotkeysType, "fscreen": fscreen, "muteAll": muteAll });
+    }
+    if (items.hasOwnProperty("darkMode")) {
+      darkMode = items.darkMode;
     }
     if (!items.hasOwnProperty("lastDay")) {
       var now = new Date();

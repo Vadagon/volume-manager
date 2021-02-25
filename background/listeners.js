@@ -99,7 +99,7 @@ chrome.runtime.onConnect.addListener(function(port) {
             if(a.getTab(tabArray[0].id)) port.postMessage({ type: 'equalizerSettings', data: tabsGaines[tabArray[0].id].equalizer });
         }
     })
-    port.postMessage({ email: PRO.userid, isPRO: PRO.isEnabled });
+    port.postMessage({ email: PRO.userid, isPRO: PRO.isEnabled, darkMode: darkMode });
 })
 
 
@@ -135,5 +135,9 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
     if(request.how == 'PRO' && request.data){
         console.log(request)
         PRO.enable()
+    }
+    if(request.how == 'darkMode'){
+        darkMode = request.data;
+        chrome.storage.sync.set({darkMode: darkMode})
     }
 })

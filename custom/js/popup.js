@@ -14,9 +14,6 @@ angular.module('main', ['ngMaterial'])
 	if(Math.random() > 0.5) $scope.addNumberEnable = 2;
 	
 	$scope.darkMode = false;
-	if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-		$scope.darkMode = true;
-	}
 	$scope.isPRO = false;
 	$rootScope.email;
 	function changeVolume(id, val){
@@ -164,9 +161,18 @@ angular.module('main', ['ngMaterial'])
         gradient = ctx.createLinearGradient(0, 0, 0, cheight);
         gradient.addColorStop(1, $scope.darkMode?'#333':'#ececec');
 
+        $scope.recolorVisualizer = function(){
+        	chrome.runtime.sendMessage({how: "darkMode", data: $scope.darkMode});
+        	capStyle = $scope.darkMode?'#515151':'#969696';
+	        gradient = ctx.createLinearGradient(0, 0, 0, cheight);
+	        gradient.addColorStop(1, $scope.darkMode?'#333':'#ececec');
+        }
+
+
 
         // chrome-extension://jcjiagpgoplifgcdkpdefncbbpdjdean/popup.html
 	port.onMessage.addListener(function(msg) {
+		console.log(msg)
 		if(msg.type=='visualizer'){
 	        var step = Math.round(msg.bufferLength / meterNum);
 	        ctx.clearRect(0, 0, cwidth, cheight);
@@ -197,6 +203,7 @@ angular.module('main', ['ngMaterial'])
 		if(msg.email){
 			$rootScope.email = msg.email
 			$scope.isPRO = msg.isPRO
+			$scope.darkMode = !!msg.darkMode;
 			isPRO(msg.email, e=>{
 				chrome.runtime.sendMessage({how: "PRO", data: e});
 			})
