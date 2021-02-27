@@ -146,10 +146,11 @@ var a = {
                     a.visuInit(id, port)
                 });
                 return;
-            }else if(a.visualizerInitiated){
+            }else if(a.visualizerInitiates){
                 // return;
+                a.visualizerInitiates++;
             }else{
-                a.visualizerInitiated = true;
+                a.visualizerInitiates=0;
                 a.createAnalyzer(tabsGaines[id])
             }
 
@@ -166,9 +167,11 @@ var a = {
             var intw = setInterval(draw, 100 / 3);
             port.onDisconnect.addListener(()=>{
                 console.log('disconnected')
-                tabsGaines[id].streamOutput.disconnect(tabsGaines[id].analyser);
-                tabsGaines[id].analyser = null
-                a.visualizerInitiated = false;
+                a.visualizerInitiates--;
+                if(!a.visualizerInitiates){
+                    tabsGaines[id].streamOutput.disconnect(tabsGaines[id].analyser);
+                    tabsGaines[id].analyser = null
+                }
                 clearInterval(intw);
             })
     },
