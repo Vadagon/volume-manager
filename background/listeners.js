@@ -28,7 +28,7 @@ chrome.tabCapture.onStatusChanged.addListener(function(info) {
         chrome.windows.getCurrent(function(win){
             prevWindow = win;
             console.log(win)
-            chrome.tabs.query({active: true}, function(tab){
+            chrome.tabs.query({currentWindow: true, active: true}, function(tab){
                 prevWindow.tabIndex = tab[0].index;
                 chrome.windows.create({
                     type: "popup",
@@ -85,7 +85,7 @@ chrome.runtime.onConnect.addListener(function(port) {
     });
     // if (true) {}
     // currentWindow: true
-    chrome.tabs.query({ windowType: 'normal', active: true }, function(tabArray) {
+    chrome.tabs.query({ currentWindow: true, active: true }, function(tabArray) {
         if (tabArray[0].audible && !a.getTab(tabArray[0].id)){
             // a.isMuted(function(isMuted){
             a.init(tabArray[0].id, 100, function(){

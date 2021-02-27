@@ -138,7 +138,7 @@ var a = {
     },
     visuInit: function(id, port){
             if(!id){
-                chrome.tabs.query({ windowType: 'normal', audible: true }, function(tabArray) {
+                chrome.tabs.query({ audible: true }, function(tabArray) {
                     tabArray.forEach((e, n)=>{
                         if(tabsGaines.hasOwnProperty(e.id))
                             id = e.id;
@@ -146,8 +146,12 @@ var a = {
                     a.visuInit(id, port)
                 });
                 return;
+            }else if(a.visualizerInitiated){
+                // return;
+            }else{
+                a.visualizerInitiated = true;
+                a.createAnalyzer(tabsGaines[id])
             }
-            a.createAnalyzer(tabsGaines[id])
 
             function draw() {
                 if(!tabsGaines[id] || !tabsGaines[id].analyser) clearInterval(intw);
@@ -164,6 +168,7 @@ var a = {
                 console.log('disconnected')
                 tabsGaines[id].streamOutput.disconnect(tabsGaines[id].analyser);
                 tabsGaines[id].analyser = null
+                a.visualizerInitiated = false;
                 clearInterval(intw);
             })
     },

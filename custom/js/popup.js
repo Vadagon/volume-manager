@@ -129,7 +129,7 @@ angular.module('main', ['ngMaterial'])
 	}
 
 
-	chrome.tabs.query({ currentWindow: true, active: true }, function(tabArray) {
+	chrome.tabs.query({ active: true }, function(tabArray) {
 		$scope.currentFavIconUrl = tabArray[0].favIconUrl;
 	});
 
@@ -172,7 +172,7 @@ angular.module('main', ['ngMaterial'])
 
         // chrome-extension://jcjiagpgoplifgcdkpdefncbbpdjdean/popup.html
 	port.onMessage.addListener(function(msg) {
-		// console.log(msg)
+		console.log(msg)
 		if(msg.type=='visualizer'){
 	        var step = Math.round(msg.bufferLength / meterNum);
 	        ctx.clearRect(0, 0, cwidth, cheight);
@@ -250,7 +250,13 @@ angular.module('main', ['ngMaterial'])
 				chrome.runtime.sendMessage({how: "promotion", what: 'Redirected to Smart Unfriender'});
 				chrome.tabs.create({url: 'https://bit.ly/3ceYEy4', active: !0, selected: !0})
 			}else{
-				chrome.tabs.update(id, {active: true});
+				// chrome.tabs.query({audible: !0}), function(tabs){
+				// })
+	
+				// windows.update(id, {focused: true})
+				chrome.tabs.update(id, {active: true}, function(e){
+					chrome.windows.update(e.windowId, {focused: true})
+				});
 			}
 		}
 		// $scope.test = 1111;
