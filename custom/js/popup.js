@@ -129,7 +129,7 @@ angular.module('main', ['ngMaterial'])
 	}
 
 
-	chrome.tabs.query({ active: true }, function(tabArray) {
+	chrome.tabs.query({ currentWindow: true, active: true }, function(tabArray) {
 		$scope.currentFavIconUrl = tabArray[0].favIconUrl;
 	});
 

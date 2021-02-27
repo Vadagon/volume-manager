@@ -67,8 +67,7 @@ var a = {
 
                 // connect(tabsGaines[id]);
 
-
-                a.createAudio(tabsGaines[id], tabsLevels[id], stream)
+                if(!tabsGaines[id].audioCtx) a.createAudio(tabsGaines[id], tabsLevels[id], stream)
                 
                 callback&&callback()
             });
