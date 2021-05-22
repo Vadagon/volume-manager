@@ -1,0 +1,39 @@
+{
+  "name": "chrome-extension-react-typescript-boilerplate",
+  "version": "1.1.0",
+  "description": "A boilerplate project to quickly build a Chrome extension using TypeScript and React (built using webpack).",
+  "scripts": {
+    "build": "webpack --config webpack.prod.js",
+    "dev": "webpack --config webpack.dev.js",
+    "watch": "webpack -w --config webpack.dev.js",
+    "start": "webpack -w --config webpack.dev.js"
+  },
+  "author": "Joe Martella",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/chrome": "^0.0.130",
+    "@types/jquery": "^3.5.5",
+    "@types/react": "^16.14.4",
+    "@types/react-dom": "^16.9.11",
+    "autoprefixer": "^10.2.5",
+    "css-loader": "^3.6.0",
+    "node-sass": "^4.14.1",
+    "postcss": "^8.3.0",
+    "sass-loader": "^6.0.7",
+    "style-loader": "^0.20.3",
+    "tailwindcss": "^2.1.2",
+    "ts-loader": "^4.0.1",
+    "typescript": "^3.9.9",
+    "webpack": "^4.46.0",
+    "webpack-chrome-extension-reloader": "^1.3.0",
+    "webpack-cli": "^3.3.12",
+    "webpack-merge": "^4.2.2"
+  },
+  "dependencies": {
+    "@types/node": "^15.6.0",
+    "jquery": "^3.5.1",
+    "postcss-loader": "^4.3.0",
+    "react": "^16.14.0",
+    "react-dom": "^16.14.0"
+  }
+}
