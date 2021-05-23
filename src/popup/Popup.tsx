@@ -5,6 +5,8 @@ import "./Popup.scss";
 import "./main.scss";
 import Home from "./pages/home";
 import Settings from "./pages/settings";
+import {save} from "../utils/storage";
+
 
 interface IProps {}
 interface IState {
@@ -16,10 +18,14 @@ export default class Popup extends React.Component<IProps, IState> {
     this.state = { isToggleOn: true };
 
 
-    if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+    if (localStorage.darkmode  == 'true' || (!('darkmode' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
       document.documentElement.classList.add('dark')
+      localStorage.darkmode = true;
+      save('darkmode', true)
     } else {
       document.documentElement.classList.remove('dark')
+      localStorage.darkmode = false;
+      save('darkmode', false)
     }
     // localStorage.theme = 'dark'
 

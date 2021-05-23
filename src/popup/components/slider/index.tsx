@@ -4,18 +4,18 @@ import "rc-slider/assets/index.css";
 import './slider.scss';
 
 
-function Slider(propsss) {
+function Slider(prop) {
   return (
     <Sliders
-      {...propsss}
-      trackStyle={{ backgroundColor: propsss.color, height: 5 }}
+      {...prop}
+      trackStyle={{ backgroundColor: prop.color, height: 5 }}
       handleStyle={{
         // borderColor: "#fff",
         borderWidth: 5,
         height: 28,
         width: 28,
         marginTop: -11.5,
-        backgroundColor: propsss.color,
+        backgroundColor: prop.color,
       }}
       railStyle={{ backgroundColor: "#777777", height: 5 }}
     />
