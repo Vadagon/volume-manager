@@ -1,0 +1,20 @@
+.rc-slider-handle:active {
+    // border-color: transparent !important;
+    box-shadow: none !important;
+    
+  }
+
+
+  .rc-slider-handle, .rc-slider-handle:hover{
+    // border-color: black !important;
+    @apply border-white;
+  }
+  .dark .rc-slider-handle, .dark .rc-slider-handle:hover{
+    // border-color: black !important;
+    @apply border-gray-800;
+  }
+  // .rc-slider{
+  //   padding: 7px 0 14px 0;
+  //   overflow-y: hidden;
+  //   overflow-x: visible;
+  // }

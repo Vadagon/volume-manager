@@ -33,6 +33,7 @@
     "@types/node": "^15.6.0",
     "jquery": "^3.5.1",
     "postcss-loader": "^4.3.0",
+    "rc-slider": "^9.7.2",
     "react": "^16.14.0",
     "react-dom": "^16.14.0"
   }

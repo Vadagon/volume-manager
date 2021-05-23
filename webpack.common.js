@@ -11,6 +11,7 @@ module.exports = {
   },
   module: {
     rules: [
+      { test: /\.css$/, loader: "style-loader!css-loader" },
       {
         exclude: /node_modules/,
         test: /\.tsx?$/,
@@ -28,12 +29,15 @@ module.exports = {
           },
           {
             loader: "postcss-loader" // Compiles Sass to CSS
+          },
+          {
+            loader: "sass-loader" // Compiles Sass to CSS
           }
         ]
       }
     ]
   },
   resolve: {
-    extensions: [".ts", ".tsx", ".js"]
+    extensions: [".ts", ".tsx", ".js", ".css"]
   }
 };
