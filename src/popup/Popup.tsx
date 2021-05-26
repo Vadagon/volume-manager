@@ -12,7 +12,9 @@ interface IProps {}
 interface IState {
   isToggleOn?: boolean;
 }
+
 export default class Popup extends React.Component<IProps, IState> {
+
   constructor(props) {
     super(props);
     this.state = { isToggleOn: true };
@@ -20,13 +22,13 @@ export default class Popup extends React.Component<IProps, IState> {
 
     if (localStorage.darkmode  == 'true' || (!('darkmode' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
       document.documentElement.classList.add('dark')
-      localStorage.darkmode = true;
       save('darkmode', true)
     } else {
       document.documentElement.classList.remove('dark')
-      localStorage.darkmode = false;
       save('darkmode', false)
     }
+
+
     // localStorage.theme = 'dark'
 
     // This binding is necessary to make `this` work in the callback
@@ -43,7 +45,7 @@ export default class Popup extends React.Component<IProps, IState> {
         <div className="flex flex-row items-center">
           <img
             className="w-10 mr-2"
-            src="assets/images/icon128.png"
+            src="assets/icons/volume-up211.png"
             alt="logo"
           />
           <span className="text-2xl flex-grow">Volume Controller</span>

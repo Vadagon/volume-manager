@@ -14,9 +14,12 @@ function Toggle(props){
   }, []);
 
   function change(){
+    if(props.id == 'darkmode') {
+      document.documentElement.classList.toggle('dark');
+    }
+    chrome.runtime.sendMessage({endpoint: 'settings', how: props.id, data: !on})
     save(props.id, !on); 
     turn(!on); 
-    if(props.id == 'darkmode') document.documentElement.classList.toggle('dark');
   }
 
     return (

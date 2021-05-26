@@ -1,0 +1,68 @@
+#VadagonVolumeStatus{
+	-webkit-transition: all 1s ease-in-out !important;
+	-moz-transition: all 1s ease-in-out !important;
+	-o-transition: all 1s ease-in-out !important;
+	transition: all 1s ease-in-out !important;
+	position: fixed !important;
+	z-index: 999999999999 !important;
+	background-color: rgba(0,0,0,.5);
+	width: 300px !important;
+	height: 300px !important;
+	border-radius: 10px !important;
+	box-sizing: border-box !important;
+	padding: 25px !important;
+	top:50% !important;  
+	left:50% !important;  
+	margin:-125px 0 0 -150px !important; 
+	opacity: 0;
+	pointer-events: none !important; 
+	font-size: 0 !important;
+	box-shadow: 0 0 39px -8px black !important;
+}
+#VadagonVolumeStatus img{
+	box-sizing: content-box !important;
+	height: 170px !important;
+    margin: 30px 40px !important;
+}
+#VadagonVolumeStatus .VadagonVolumeStatusElems{
+	box-sizing: content-box !important;
+	width: 100% !important;
+    position: relative !important;
+    top: 10px !important;
+    padding-bottom: 13.3px !important;
+}
+#VadagonVolumeStatus .VadagonVolumeStatusElems span{
+	width: 8% !important;
+	height: 15px !important;
+	box-sizing: border-box !important;
+	display: inline-block !important;
+	margin: 0 1% !important;
+	background-color: #1c1c1c;
+	opacity: .7;
+}
+#VadagonVolumeStatus .VadagonVolumeStatusElems span:nth-last-child(1){
+	box-sizing: content-box !important;
+	position: absolute !important;
+	right: 0 !important;
+}
+#VadagonVolumeStatus .VadagonVolumeStatusElems div:nth-child(2){
+	box-sizing: content-box !important;
+	position: absolute !important;
+	bottom: 0 !important;
+	left: 0 !important;
+	width: 100% !important;
+}
+#VadagonVolumeStatus .VadagonVolumeStatusElems div:nth-child(2) span:nth-last-child(1){
+	box-sizing: content-box !important;
+	top: 0px !important;
+}
+#VadagonVolumeStatus .VadagonVolumeStatusElems div{
+	box-sizing: content-box !important;
+	position: relative !important;
+}
+#VadagonVolumeStatus .VadagonVolumeStatusElems div:nth-child(2) span{
+	box-sizing: content-box !important;
+	width: 12.2874% !important;
+	margin: 0 1% !important;
+	height: 9px !important;
+}
