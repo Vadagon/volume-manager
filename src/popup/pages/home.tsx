@@ -57,9 +57,9 @@ function Home() {
             />
           </div>
           <div className="flex flex-row pl-2 z-10">
-            <span className="flex-grow">VOLUME: {sliderValue}%</span>
+            <span className="flex-grow">VOLUME: {Math.round(sliderValue)}%</span>
             <span className="w-20">
-              BOOST: {sliderValue / 100 - 1 <= 0 ? 0 : sliderValue / 100 - 1}x
+              BOOST: {sliderValue / 100 - 1 <= 0 ? 0 : Math.round(sliderValue) / 100 - 1}x
             </span>
           </div>
           <div className="flex flex-row">

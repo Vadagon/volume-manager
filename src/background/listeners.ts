@@ -86,8 +86,8 @@ chrome.runtime.onConnect.addListener(function(port) {
         else if(e.type=='visualizer') return;
         else if(!data.user.disabled) a.getTab(e.id) ? a.volume(e.id, e.val) : a.init(e.id, e.val);
     });
-    // chrome.tabs.query({ currentWindow: true, active: true }, function(tabArray) {
-    chrome.tabs.query({ active: true }, function(tabArray) {
+    // chrome.tabs.query({ active: true }, function(tabArray) {
+    chrome.tabs.query({ currentWindow: true, active: true }, function(tabArray) {
         console.log(tabArray)
         if (tabArray[0] && tabArray[0].audible && !a.getTab(tabArray[0].id)){
             // a.isMuted(function(isMuted){

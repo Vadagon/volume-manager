@@ -7,11 +7,11 @@
 
   .rc-slider-handle, .rc-slider-handle:hover{
     // border-color: black !important;
-    @apply border-white;
+    @apply border-white #{!important};
   }
   .dark .rc-slider-handle, .dark .rc-slider-handle:hover{
     // border-color: black !important;
-    @apply border-gray-800;
+    @apply border-gray-800 #{!important};
   }
   // .rc-slider{
   //   padding: 7px 0 14px 0;
