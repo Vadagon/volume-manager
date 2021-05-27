@@ -11,14 +11,32 @@ chrome.tabs.onRemoved.addListener(function(a) {
         })
 });
 
+function increaseVolume(){
+    chrome.tabs.query({ currentWindow: true, active: true }, function(tabArray) {
+        var id = tabArray[0].id;
+        if (a.getTab(id)) {
+            var val = data.tabsLevels[id] * 100;
+            if(val <= 100) val = 150;
+            else if(val <= 150) val = 300;
+            else if(val <= 300) val = 500;
+            else if(val <= 500) val = 800;
+            else if(val <= 800) val = 100;
+            
+            data.tabsLevels[id] = val / 100;
+            a.volume(id, val);
+        } else {
+            chrome.browserAction.setIcon({path: `assets/icons/icon1_${2}.png`});
+            data.tabsLevels[id] = 150 / 100;
+            a.init(id, 150);
+        }
+
+    });
+}
 
 // CHROME SHORTCUTS
-chrome.commands.onCommand.addListener(function(command) {
-    if (command.indexOf("toggle-up") != -1)
-        mainClicker(1)
-    if (command.indexOf("toggle-down") != -1)
-        mainClicker(-1)
-});
+chrome.commands.onCommand.addListener(increaseVolume);
+
+chrome.browserAction.onClicked.addListener(increaseVolume);
 
 
 // AUDIO CAPTURE CHANGES listener

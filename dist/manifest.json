@@ -8,8 +8,7 @@
 
   "browser_action": {
     "default_title": "__MSG_app_name__",
-    "default_popup": "popup.html",
-    "default_icon": "assets/icons/volume-up211.png"
+    "default_icon": "assets/icons/icon1_1.png"
   },
 
   "background": {
@@ -26,20 +25,13 @@
   ],
   "offline_enabled": true,
   "icons": {
-    "128": "assets/icons/volume-up211.png"
+    "128": "assets/icons/icon1_5.png"
   },
   "commands": {
-    "toggle-up-1": {
+    "_execute_browser_action": {
       "suggested_key": {
         "default": "Alt+Up"
-      },
-      "description": "Volume up"
-    },
-    "toggle-down-1": {
-      "suggested_key": {
-        "default": "Alt+Down"
-      },
-      "description": "Volume down"
+      }
     }
   },
   "permissions": ["tabCapture", "activeTab", "tabs", "storage", "<all_urls>"],

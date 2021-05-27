@@ -52,7 +52,7 @@ export var a = {
                 audio: !0,
                 video: !1
             }, function(stream) {
-                chrome.browserAction.setBadgeText({tabId: id, text: val.toString()})
+                // chrome.browserAction.setBadgeText({tabId: id, text: val.toString()})
                 data.tabsLevels[id] = parseFloat(val) / 100;
                 data.tabsGaines[id] = {};
 
@@ -138,7 +138,15 @@ export var a = {
         });
     },
     volume: function(id, val) {
-        chrome.browserAction.setBadgeText({tabId: id, text: val.toString()})
+        var iconLevel = 1;
+        // chrome.browserAction.setBadgeText({tabId: id, text: val.toString()})
+        if(val <= 100) iconLevel = 1;
+        else if(val <= 150) iconLevel = 2;
+        else if(val <= 300) iconLevel = 3;
+        else if(val <= 500) iconLevel = 4;
+        else if(val <= 800) iconLevel = 5;
+        chrome.browserAction.setIcon({path: `assets/icons/icon1_${iconLevel}.png`});
+
         data.tabsLevels[id] = parseFloat(val) / 100;
         data.tabsGaines[id].nodeGain.gain.setTargetAtTime(data.tabsLevels[id], 0, 0.1);
     },
