@@ -1,8 +1,8 @@
 {
     "app_name": {
-        "message": "Ελεγκτής όγκου"
+        "message": "Ενισχυτής όγκου"
     },
     "app_description": {
-        "message": "Αναμνηστικός"
+        "message": "Master Volume για να αυξήσετε την καρτέλα του προγράμματος περιήγησης!"
     }
 }

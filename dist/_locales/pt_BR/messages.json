@@ -1,8 +1,8 @@
 {
     "app_name": {
-        "message": "Volume Controller"
+        "message": "Booster de volume"
     },
     "app_description": {
-        "message": "Booster de som"
+        "message": "Mestre de volume para aumentar o volume da aba do navegador!"
     }
 }

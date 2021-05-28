@@ -1,8 +1,8 @@
 {
     "app_name": {
-        "message": "Controlador de volumen"
+        "message": "Refuerzo de volumen"
     },
     "app_description": {
-        "message": "Refuerzo de sonido"
+        "message": "¡Master de volumen para aumentar el volumen de la pestaña del navegador!"
     }
 }

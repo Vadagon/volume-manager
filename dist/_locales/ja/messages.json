@@ -1,8 +1,8 @@
 {
     "app_name": {
-        "message": "ボリュームコントローラ"
+        "message": "ボリュームブースター"
     },
     "app_description": {
-        "message": "サウンドブースター"
+        "message": "ブラウザタブの音量を増やすボリュームマスタ！"
     }
 }

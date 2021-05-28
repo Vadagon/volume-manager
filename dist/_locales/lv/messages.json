@@ -1,8 +1,8 @@
 {
     "app_name": {
-        "message": "Apjoma kontrolieris"
+        "message": "Apjoma pastiprinātājs"
     },
     "app_description": {
-        "message": "Skaņas pastiprinātājs"
+        "message": "Skaļuma meistars, lai palielinātu pārlūkprogrammas cilnes apjomu!"
     }
 }
