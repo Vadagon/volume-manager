@@ -1,8 +1,8 @@
 {
     "app_name": {
-        "message": "Apimties stiprintuvas"
+        "message": "Garso stiprintuvas"
     },
     "app_description": {
-        "message": "Garsumo magistras padidinti naršyklės skirtuko tūrį!"
+        "message": "Garso stiprintuvas, skirtas padidinti naršyklės garsą!"
     }
 }

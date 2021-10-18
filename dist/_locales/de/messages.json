@@ -1,8 +1,8 @@
 {
     "app_name": {
-        "message": "Volumen-Booster."
+        "message": "Lautstärke-Booster"
     },
     "app_description": {
-        "message": "Volume-Master, um Browser-Registerkarte-Lautstärke zu erhöhen!"
+        "message": "Lautstärkeregler zur Verbesserung des Browser-Sounds!"
     }
 }

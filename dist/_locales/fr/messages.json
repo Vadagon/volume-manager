@@ -1,8 +1,8 @@
 {
     "app_name": {
-        "message": "Volume Booster"
+        "message": "Amplificateur de volume"
     },
     "app_description": {
-        "message": "Volume Master pour augmenter le volume de l'onglet Navigateur!"
+        "message": "Amplificateur de volume pour augmenter le son du navigateur !"
     }
 }
