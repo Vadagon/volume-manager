@@ -1,8 +1,8 @@
 {
     "app_name": {
-        "message": "Garso valdiklis"
+        "message": "Garsumo valdiklis"
     },
     "app_description": {
-        "message": "Garso stiprintuvas"
+        "message": "Padidinkite garsumą x6. Skirtukų garsumą valdykite atskirai."
     }
 }

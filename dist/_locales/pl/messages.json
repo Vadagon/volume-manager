@@ -1,8 +1,8 @@
 {
     "app_name": {
-        "message": "Kontroler objętościowy."
+        "message": "Kontroler głośności"
     },
     "app_description": {
-        "message": "Dźwięk Booster."
+        "message": "Zwiększ swoją głośność x6. Kontroluj głośność kart osobno."
     }
 }

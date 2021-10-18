@@ -1,8 +1,8 @@
 {
     "app_name": {
-        "message": "Helitugevuse töötleja"
+        "message": "Helitugevuse regulaator"
     },
     "app_description": {
-        "message": "Helisaaster"
+        "message": "Suurendage helitugevust x6. Juhtige vahekaartide helitugevust eraldi."
     }
 }

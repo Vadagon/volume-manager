@@ -1,8 +1,8 @@
 {
     "app_name": {
-        "message": "Apjoma kontrolieris"
+        "message": "Skaļuma regulators"
     },
     "app_description": {
-        "message": "Skaņas pastiprinātājs"
+        "message": "Palieliniet skaļumu x6. Atsevišķi kontrolējiet cilņu skaļumu."
     }
 }

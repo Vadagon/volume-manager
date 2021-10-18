@@ -1,8 +1,8 @@
 {
     "app_name": {
-        "message": "Volume Controller"
+        "message": "Lautstärkeregler"
     },
     "app_description": {
-        "message": "Sound-Booster"
+        "message": "Erhöhen Sie Ihre Lautstärke x6. Steuern Sie die Lautstärke der Registerkarten separat."
     }
 }

@@ -1,8 +1,8 @@
 {
     "app_name": {
-        "message": "Volumecontroller"
+        "message": "Volumeregelaar"
     },
     "app_description": {
-        "message": "Geluidsbooster"
+        "message": "Verhoog uw volume x6. Regel het volume van de tabbladen afzonderlijk."
     }
 }

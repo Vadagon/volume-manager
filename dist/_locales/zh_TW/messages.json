@@ -1,8 +1,8 @@
 {
     "app_name": {
-        "message": "卷控制器"
+        "message": "音量控制器"
     },
     "app_description": {
-        "message": "聲音增壓器"
+        "message": "提高音量 x6。分別控制標籤的音量。"
     }
 }

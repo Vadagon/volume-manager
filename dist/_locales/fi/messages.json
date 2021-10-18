@@ -1,8 +1,8 @@
 {
     "app_name": {
-        "message": "Äänenvoimakkuudenohjain"
+        "message": "Äänenvoimakkuuden säädin"
     },
     "app_description": {
-        "message": "Äänenvalmistus"
+        "message": "Lisää äänenvoimakkuutta x6. Säädä välilehtien äänenvoimakkuutta erikseen."
     }
 }

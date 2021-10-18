@@ -1,8 +1,8 @@
 {
     "app_name": {
-        "message": "ボリュームコントローラ"
+        "message": "ボリュームコントローラー"
     },
     "app_description": {
-        "message": "サウンドブースター"
+        "message": "ボリュームを6倍にします。タブの音量を個別に制御します。"
     }
 }

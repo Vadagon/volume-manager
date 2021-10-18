@@ -1,8 +1,8 @@
 {
     "app_name": {
-        "message": "Volume Controller"
+        "message": "Contrôleur de volume"
     },
     "app_description": {
-        "message": "Sonore"
+        "message": "Boostez votre volume x6. Contrôlez le volume des onglets séparément."
     }
 }

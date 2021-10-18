@@ -1,8 +1,8 @@
 {
     "app_name": {
-        "message": "Objemový regulátor"
+        "message": "Ovladač hlasitosti"
     },
     "app_description": {
-        "message": "Zvuk Booster."
+        "message": "Zvyšte svou hlasitost x6. Hlasitost karet můžete ovládat samostatně."
     }
 }

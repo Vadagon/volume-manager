@@ -1,8 +1,8 @@
 {
     "app_name": {
-        "message": "Kontroler glasnoće"
+        "message": "Regulator glasnoće"
     },
     "app_description": {
-        "message": "Zvučni pojačivač"
+        "message": "Povećajte glasnoću x6. Zasebno kontrolirajte glasnoću kartica."
     }
 }

@@ -1,8 +1,8 @@
 {
     "app_name": {
-        "message": "Volume Controller"
+        "message": "Controllo del volume"
     },
     "app_description": {
-        "message": "Sound Booster."
+        "message": "Aumenta il tuo volume x6. Controlla il volume delle schede separatamente."
     }
 }

@@ -1,8 +1,8 @@
 {
     "app_name": {
-        "message": "Volymkontrollant"
+        "message": "Volymkontroll"
     },
     "app_description": {
-        "message": "Ljudbooster"
+        "message": "Öka din volym x6. Kontrollera volymen på flikarna separat."
     }
 }

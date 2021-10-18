@@ -1,8 +1,8 @@
 {
     "app_name": {
-        "message": "Volumen controller."
+        "message": "Volumenregulator"
     },
     "app_description": {
-        "message": "Lyd booster."
+        "message": "Forøg din lydstyrke x6. Kontroller lydstyrken på fanerne separat."
     }
 }
