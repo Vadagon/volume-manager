@@ -1,8 +1,0 @@
-Control Volume on Chrome™. Master volume of each tab of your browser.
-
- ❗️❗️❗️ Why you should choose Volume Controller over volume master / volume controller / volume booster / audio enhancer
-   ⭐️ You will be able to go to full screen on a video like normal (instead of being forced to press f11)
-   ⭐️ Shortcut for the booster
-
-Disclaimer:
-This extension uses Google Analytics to collect extension usage statistics to help improve user experience. 
