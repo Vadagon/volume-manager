@@ -1,8 +1,8 @@
-import React, { Component, useEffect } from 'react';
-import Slider from '../components/slider';
+import React, { Component, useEffect } from "react";
+import Slider from "../components/slider";
 
-import * as volume from '../volumeController';
-import { currentLevel } from '../volumeController';
+import * as volume from "../volumeController";
+import { currentLevel } from "../volumeController";
 
 // interface IProps {}
 // interface IState {
@@ -14,7 +14,7 @@ function Home() {
   const [tabs, updateTabs] = React.useState<any[]>([]);
   const [OS, updateOS] = React.useState(false);
   const [currentTabFavicon, setCurrentTabFavicon] = React.useState(
-    '/assets/images/file.png'
+    "/assets/images/file.png"
   );
 
   useEffect(() => {
@@ -24,7 +24,7 @@ function Home() {
       // tabbs = tabbs.filter(e=>e.id != volume.curTab.id)
       updateTabs(tabbs);
       setSliderValue(volume.currentLevel);
-      if (volume.OS == 'mac') updateOS(true);
+      if (volume.OS == "mac") updateOS(true);
       if (
         volume.curTab &&
         volume.curTab.favIconUrl &&
@@ -32,23 +32,26 @@ function Home() {
       )
         setCurrentTabFavicon(volume.curTab.favIconUrl);
     });
+    chrome.runtime.getPlatformInfo(function (info) {
+      updateOS(info.os == "mac");
+    });
   }, []);
 
   return (
     <div>
       <p className="mt-1">
-        You can control volume of the current tab with the slider below or{' '}
+        You can control volume of the current tab with the slider below or{" "}
         <span
           className="text-blue-500 cursor-pointer"
           onClick={() =>
             chrome.tabs.create({
-              url: 'chrome://extensions/shortcuts',
+              url: "chrome://extensions/shortcuts",
               active: !0,
               selected: !0,
             })
           }
         >
-          {OS ? '⌥' : 'Alt'} + ↓↑
+          {OS ? "⌥" : "Alt"} + ↓↑
         </span>
       </p>
       <div className="flex flex-row items-start my-5 mt-6 flex-wrap">
@@ -73,7 +76,7 @@ function Home() {
               VOLUME: {Math.round(sliderValue)}%
             </span>
             <span className="w-20">
-              BOOST:{' '}
+              BOOST:{" "}
               {sliderValue / 100 - 1 <= 0
                 ? 0
                 : Math.round(sliderValue) / 100 - 1}

@@ -1,6 +1,3 @@
-// import $ from "jquery";
-// console.log(111);
-
 var div = document.createElement('div');
 div.setAttribute('id', 'VadagonVolumeStatus');
 

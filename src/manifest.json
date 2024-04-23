@@ -9,13 +9,29 @@
     "activeTab",
     "tabs",
     "storage",
-    "offscreen"
+    "offscreen",
+    "commands",
+    "scripting"
   ],
   "host_permissions": [
     "http://*/*",
     "https://*/*",
     "<all_urls>"
   ],
+  "commands": {
+    "toggle-up-1": {
+      "suggested_key": {
+        "default": "Alt+Up"
+      },
+      "description": "Volume up"
+    },
+    "toggle-down-1": {
+      "suggested_key": {
+        "default": "Alt+Down"
+      },
+      "description": "Volume down"
+    }
+  },
   "background": {
     "service_worker": "background.bundle.js",
     "type": "module"
@@ -36,10 +52,10 @@
         "<all_urls>"
       ],
       "js": [
-        "contentScript.bundle.js"
+        "assets/contentScript.js"
       ],
       "css": [
-        "content.styles.css"
+        "assets/css/content.styles.css"
       ]
     }
   ],

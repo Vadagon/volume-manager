@@ -1,58 +1,82 @@
-import data from './globals';
+import data from "./globals";
 // chrome-extension://jcjiagpgoplifgcdkpdefncbbpdjdean/popup.html
 // IN-TAB VOLUME INDICATOR handler
-export function showVolumeInTabFunc(level: any) {
-  var showVolumeInTab =
-    "var x = document.querySelectorAll('#VadagonVolumeStatus .VadagonVolumeStatusElems span'); for (var i = " +
-    17 +
-    " - 1; i >= 0; i--) {x[i].style.backgroundColor = '#1c1c1c';}";
-  showVolumeInTab =
-    showVolumeInTab +
-    "var b = document.getElementById('VadagonVolumeStatus'); b.style.marginTop='-150px'; b.style.opacity = 0.85; " +
-    "if(T){clearTimeout(T);} var T = setTimeout(function() { b.style.marginTop='-125px'; b.style.opacity = 0;  }, 3000);";
-  if (level > 1) {
-    showVolumeInTab =
-      showVolumeInTab +
-      'for (var i = ' +
-      10 +
-      " - 1; i >= 0; i--) {x[i].style.backgroundColor = 'white';} for (var i = " +
-      (level + 9) +
-      " - 1; i >= 10; i--) {x[i].style.backgroundColor = '#ff613f';}";
-  } else {
-    showVolumeInTab =
-      showVolumeInTab +
-      'for (var i = ' +
-      level * 10 +
-      " - 1; i >= 0; i--) {x[i].style.backgroundColor = 'white';}";
-  }
-
-  chrome.tabs.executeScript({ code: showVolumeInTab });
+export function showVolumeInTabFunc(level: any, tabId: number) {
+  const showVolumeInTab = (level:any) => {
+    var x = document.querySelectorAll<HTMLElement>(
+      "#VadagonVolumeStatus .VadagonVolumeStatusElems span"
+    );
+    for (var i = 17 - 1; i >= 0; i--) {
+      x[i].style.backgroundColor = "#1c1c1c";
+    }
+    var b = document.getElementById("VadagonVolumeStatus");
+    if (b == null) return;
+    b.style.marginTop = "-150px";
+    b.style.opacity = "0.85";
+    // @ts-ignore
+    if (T) {
+      // @ts-ignore
+      clearTimeout(T);
+    }
+    var T = setTimeout(function () {
+      if (b == null) return;
+      b.style.marginTop = "-125px";
+      b.style.opacity = "0";
+    }, 3000);
+    if (level > 1) {
+      for (var i = 10 - 1; i >= 0; i--) {
+        x[i].style.backgroundColor = "white";
+      }
+      for (var i = level + 9 - 1; i >= 10; i--) {
+        x[i].style.backgroundColor = "#ff613f";
+      }
+    } else {
+      for (var i = level * 10 - 1; i >= 0; i--) {
+        x[i].style.backgroundColor = "white";
+      }
+    }
+  };
+  chrome.scripting
+    .executeScript({
+      func: showVolumeInTab,
+      args: [level],
+      injectImmediately: true,
+      target: { tabId },
+    })
+    .then((eee) => console.log("12", eee))
+    .catch((er) => console.log("1231", er));
+  // chrome.tabs.executeScript({ code: showVolumeInTab });
 }
 
 // SHORTCUTS HANDLER
-// export function mainClicker(e: any) {
-//   chrome.tabs.query({ currentWindow: true, active: true }, function (tabArray) {
-//     var id = tabArray[0].id ?? 0;
-//     if (a.getTab(id)) {
-//       var resFloat;
-//       if (data.tabsLevels[id] < 1 || (data.tabsLevels[id] == 1 && e < 0)) {
-//         resFloat = parseInt(Math.floor(data.tabsLevels[id] * 10) + e) / 10;
-//       } else {
-//         resFloat = data.tabsLevels[id] + e;
-//       }
-//       if (resFloat > 8) resFloat = 8;
-//       if (resFloat < 0) resFloat = 0;
-//       data.tabsLevels[id] = resFloat;
-//       showVolumeInTabFunc(data.tabsLevels[id]);
-//       a.volume(id, data.tabsLevels[id] * 100);
-//     } else {
-//       a.isMuted(function (isMuted?: boolean) {
-//         showVolumeInTabFunc(isMuted ? 0 : 1);
-//         a.init(id, isMuted ? 0 : 100);
-//       });
-//     }
-//   });
-// }
+export function mainClicker(e: any) {
+  chrome.tabs.query(
+    { currentWindow: true, active: true },
+    async function (tabArray) {
+      const _data = await a.offScreenData();
+      data.currentTab = tabArray[0];
+      const id = data.currentTab.id ?? -19;
+      if (_data.tabsLevels.hasOwnProperty(id)) {
+        var resFloat;
+        if (_data.tabsLevels[id] < 1 || (_data.tabsLevels[id] == 1 && e < 0)) {
+          resFloat = parseInt(Math.floor(_data.tabsLevels[id] * 10) + e) / 10;
+        } else {
+          resFloat = _data.tabsLevels[id] + e;
+        }
+        if (resFloat > 8) resFloat = 8;
+        if (resFloat < 0) resFloat = 0;
+        _data.tabsLevels[id] = resFloat;
+        showVolumeInTabFunc(_data.tabsLevels[id], id);
+        a.volume(id, _data.tabsLevels[id] * 100);
+      } else {
+        a.isMuted(function (isMuted?: boolean) {
+          showVolumeInTabFunc(isMuted ? 0 : 1, id);
+          a.init(id, isMuted ? 0 : 100);
+        });
+      }
+    }
+  );
+}
 
 // AUDIO MAIN CORE FUNCTIONS
 export var a = {
@@ -117,24 +141,24 @@ export var a = {
   offScreenVolume: function (tabId: number, val: number, streamId?: string) {
     // console.log('offScreenVolume', tabId, val, streamId);
     chrome.runtime.sendMessage({
-      type: 'volume',
-      target: 'offscreen',
+      type: "volume",
+      target: "offscreen",
       tabId: tabId,
       val: val,
       streamId: streamId,
     });
   },
   offScreenDelete: function (tabId: number) {
-    console.log('offScreenDelete', tabId);
+    console.log("offScreenDelete", tabId);
   },
   offScreenDisableAll: function () {
     // for (var tabId in data.tabsLevels)
-    console.log('offScreenDisable', 'tabId');
+    console.log("offScreenDisable", "tabId");
   },
   offScreenData: async function () {
     let res = await chrome.runtime.sendMessage({
-      type: 'data',
-      target: 'offscreen',
+      type: "data",
+      target: "offscreen",
     });
     return res;
   },

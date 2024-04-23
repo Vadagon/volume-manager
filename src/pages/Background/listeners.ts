@@ -1,6 +1,6 @@
 // TABS REMOVER listener - to purge memory
 import data, { dataInit } from './globals';
-import { a } from './core';
+import { a, mainClicker } from './core';
 
 chrome.tabs.onRemoved.addListener(function (tabId) {
   a.offScreenDelete(tabId);
@@ -11,11 +11,11 @@ chrome.tabs.onRemoved.addListener(function (tabId) {
   //   });
 });
 
-// // CHROME SHORTCUTS
-// chrome.commands.onCommand.addListener(function (command) {
-//   if (command.indexOf('toggle-up') != -1) mainClicker(1);
-//   if (command.indexOf('toggle-down') != -1) mainClicker(-1);
-// });
+// CHROME SHORTCUTS
+chrome.commands.onCommand.addListener(function (command) {
+  if (command.indexOf('toggle-up') != -1) mainClicker(1);
+  if (command.indexOf('toggle-down') != -1) mainClicker(-1);
+});
 
 // // AUDIO CAPTURE CHANGES listener
 // chrome.tabCapture.onStatusChanged.addListener(function (info) {
