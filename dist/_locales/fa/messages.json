@@ -1,8 +1,18 @@
 {
-    "app_name": {
-        "message": "کنترل کننده صدا"
-    },
-    "app_description": {
-        "message": "حجم خود را 6 برابر افزایش دهید. حجم برگه ها را جداگانه کنترل کنید."
-    }
+  "app_name": {
+    "message": "کنترل صدا & تقویت‌کننده",
+    "description": "Full extension name shown in the Chrome Web Store."
+  },
+  "app_short_name": {
+    "message": "کنترل صدا",
+    "description": "Shortened name for the toolbar and context menus."
+  },
+  "ui_app_name": {
+    "message": "کنترل صدا",
+    "description": "Name shown in the popup header."
+  },
+  "app_description": {
+    "message": "صدای هر زبانه را تا ۶۰۰٪ تقویت کنید، هر زبانه را جداگانه کنترل کنید و صدا را با اکولایزر داخلی تنظیم کنید.",
+    "description": "Store listing description."
+  }
 }

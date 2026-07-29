@@ -1,8 +1,18 @@
 {
-    "app_name": {
-        "message": "볼륨 컨트롤러"
-    },
-    "app_description": {
-        "message": "볼륨을 6배 높이십시오. 탭의 볼륨을 별도로 제어하십시오."
-    }
+  "app_name": {
+    "message": "볼륨 컨트롤러 & 부스터",
+    "description": "Full extension name shown in the Chrome Web Store."
+  },
+  "app_short_name": {
+    "message": "볼륨 컨트롤러",
+    "description": "Shortened name for the toolbar and context menus."
+  },
+  "ui_app_name": {
+    "message": "볼륨 컨트롤러",
+    "description": "Name shown in the popup header."
+  },
+  "app_description": {
+    "message": "모든 탭의 소리를 최대 600%까지 키우고, 탭별로 따로 조절하며, 내장 이퀄라이저로 음색을 다듬으세요.",
+    "description": "Store listing description."
+  }
 }

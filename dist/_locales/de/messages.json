@@ -1,8 +1,18 @@
 {
-    "app_name": {
-        "message": "Lautstärkeregler"
-    },
-    "app_description": {
-        "message": "Erhöhen Sie Ihre Lautstärke x6. Steuern Sie die Lautstärke der Registerkarten separat."
-    }
+  "app_name": {
+    "message": "Lautstärkeregler & Verstärker",
+    "description": "Full extension name shown in the Chrome Web Store."
+  },
+  "app_short_name": {
+    "message": "Lautstärkeregler",
+    "description": "Shortened name for the toolbar and context menus."
+  },
+  "ui_app_name": {
+    "message": "Lautstärkeregler",
+    "description": "Name shown in the popup header."
+  },
+  "app_description": {
+    "message": "Verstärken Sie jeden Tab auf bis zu 600 %, steuern Sie jeden Tab einzeln und formen Sie den Klang mit einem integrierten Equalizer.",
+    "description": "Store listing description."
+  }
 }

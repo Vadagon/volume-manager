@@ -1,32 +1,517 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/* Volume Controller - popup shell.
+   Plain CSS custom properties rather than a utility framework: the popup is one
+   screen, and the theme has to flip on a class without a build step in the way. */
 
-// Chrome applies an 8px margin by default (gross).
+:root {
+  --bg: #ffffff;
+  --fg: #15161a;
+  --muted: #7c8091;
+  --line: #e9eaf0;
+  --surface: #f4f5f9;
+  --surface-hi: #eceef6;
+  --accent: #6d5efc;
+  --accent-soft: #ece9ff;
+  --boost: #ff8f3c;
+  --star: #f5b642;
+  --lift: 0 1px 2px rgba(20, 22, 40, 0.06), 0 6px 18px rgba(20, 22, 40, 0.06);
+}
 
-html, body{
-	min-height: 100px;
-	min-width: 350px;
-	width: 350px;
-	/*width: 800px;*/
-	height: auto;
+:root.dark {
+  --bg: #15161c;
+  --fg: #eceef6;
+  --muted: #8b90a4;
+  --line: #25272f;
+  --surface: #1e202a;
+  --surface-hi: #272a36;
+  --accent: #8b7dff;
+  --accent-soft: #2a2650;
+  --boost: #ffa257;
+  --star: #ffc65c;
+  --lift: none;
 }
-body {
-    margin: 0px;
-    // background-color: $background-color;
-    // border: 2px solid $primary-color;
-    // color: $primary-color;
-    display: block;
-}
-*:focus, *:focus{
-    outline: none !important;
-}
+
 * {
-  -webkit-touch-callout: none; /* iOS Safari */
-    -webkit-user-select: none; /* Safari */
-     -khtml-user-select: none; /* Konqueror HTML */
-       -moz-user-select: none; /* Old versions of Firefox */
-        -ms-user-select: none; /* Internet Explorer/Edge */
-            user-select: none; /* Non-prefixed version, currently
-                                  supported by Chrome, Edge, Opera and Firefox */
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  width: 360px;
+  background: var(--bg);
+}
+
+body {
+  color: var(--fg);
+  font: 13px/1.45 -apple-system, BlinkMacSystemFont, 'Segoe UI', Inter, Roboto,
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  user-select: none;
+}
+
+// The theme swap should animate, but not on first paint - `.ready` is added a
+// tick after mount so the popup never flashes from light to dark.
+body.ready,
+body.ready * {
+  transition: background-color 0.18s ease, color 0.18s ease,
+    border-color 0.18s ease;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+  border: 0;
+  background: none;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+.shell {
+  padding: 14px 14px 10px;
+}
+
+/* ------------------------------------------------------------------ head */
+
+.head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.head__mark {
+  flex: none;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  object-fit: contain;
+}
+
+.head__text {
+  flex: 1;
+  min-width: 0;
+
+  h1 {
+    font-size: 15px;
+    font-weight: 650;
+    letter-spacing: -0.01em;
+  }
+
+  p {
+    margin-top: 1px;
+    font-size: 11px;
+    color: var(--muted);
+  }
+}
+
+.icon-btn {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 9px;
+  background: var(--surface);
+  color: var(--muted);
+
+  svg {
+    width: 15px;
+    height: 15px;
+    fill: currentColor;
+  }
+
+  &:hover {
+    background: var(--surface-hi);
+    color: var(--fg);
+  }
+}
+
+/* --------------------------------------------------------------- readout */
+
+.readout {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 6px;
+  margin: 16px 0 2px;
+
+  &__value {
+    font-size: 40px;
+    font-weight: 680;
+    line-height: 1;
+    letter-spacing: -0.035em;
+    font-variant-numeric: tabular-nums;
+  }
+
+  &__unit {
+    padding-bottom: 4px;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--muted);
+  }
+
+  &.is-boosted &__value {
+    color: var(--boost);
+  }
+
+  &.is-silent &__value {
+    color: var(--muted);
+  }
+}
+
+.readout__reset {
+  position: absolute;
+  right: 0;
+  bottom: 4px;
+  padding: 3px 6px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--accent);
+
+  &:hover {
+    background: var(--accent-soft);
+  }
+}
+
+/* ---------------------------------------------------------------- slider */
+
+.slider {
+  position: relative;
+  // No horizontal padding: the unity tick is positioned against this box while
+  // the track gradient is positioned against the input's box, and the two must
+  // share a coordinate space to stay aligned.
+  padding: 10px 0 0;
+
+  input[type='range'] {
+    display: block;
+    width: 100%;
+    height: 22px;
+    margin: 0;
+    background: none;
+    cursor: pointer;
+    -webkit-appearance: none;
+    appearance: none;
+  }
+
+  input[type='range']::-webkit-slider-runnable-track {
+    height: 8px;
+    border-radius: 99px;
+    background: var(--track);
+  }
+
+  // A pill thumb rather than a circle - it reads as a fader cap and lines up
+  // with the unity notch behind it.
+  input[type='range']::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 10px;
+    height: 22px;
+    margin-top: -7px;
+    border: 2.5px solid var(--thumb);
+    border-radius: 5px;
+    background: var(--bg);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.22);
+  }
+
+  // Tick at 100 %, where the extension stops attenuating and starts boosting.
+  // `left` is supplied by the component in the same coordinate space as the
+  // thumb, so the two stay locked together at every width.
+  &__unity {
+    position: absolute;
+    top: 10px;
+    margin-left: -1px; // centre the 2px tick on the computed point
+    width: 2px;
+    height: 8px;
+    border-radius: 1px;
+    background: var(--bg);
+    opacity: 0.85;
+    pointer-events: none;
+  }
+}
+
+.scale {
+  display: flex;
+  justify-content: space-between;
+  padding: 2px 0 0;
+  font-size: 10.5px;
+  letter-spacing: 0.03em;
+  color: var(--muted);
+
+  b {
+    font-weight: 600;
+  }
+}
+
+/* -------------------------------------------------------------- presets */
+
+.segments {
+  display: flex;
+  gap: 3px;
+  margin-top: 14px;
+  padding: 3px;
+  border-radius: 11px;
+  background: var(--surface);
+
+  button {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    padding: 7px 4px;
+    border-radius: 8px;
+    font-size: 11.5px;
+    font-weight: 600;
+    color: var(--muted);
+
+    svg {
+      width: 12px;
+      height: 12px;
+      fill: currentColor;
+      opacity: 0.85;
+    }
+
+    &:hover {
+      color: var(--fg);
+    }
+
+    &.is-on {
+      background: var(--bg);
+      color: var(--accent);
+      box-shadow: var(--lift);
+    }
+  }
+}
+
+:root.dark .segments button.is-on {
+  background: var(--surface-hi);
+}
+
+/* --------------------------------------------------------------- restore */
+
+.restore {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  width: 100%;
+  margin-top: 9px;
+  padding: 8px 10px;
+  border: 1px dashed var(--line);
+  border-radius: 10px;
+  font-size: 11.5px;
+  text-align: left;
+  color: var(--muted);
+
+  svg {
+    flex: none;
+    width: 12px;
+    height: 12px;
+    fill: currentColor;
+  }
+
+  b {
+    font-weight: 600;
+    color: var(--fg);
+  }
+
+  &:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+
+    b {
+      color: var(--accent);
+    }
+  }
+}
+
+/* ------------------------------------------------------------------ tabs */
+
+.rule {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin: 18px 0 6px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--muted);
+
+  &::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--line);
+  }
+}
+
+.tab {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin: 0 -8px;
+  padding: 7px 8px;
+  width: calc(100% + 16px);
+  border-radius: 9px;
+  text-align: left;
+
+  &:hover {
+    background: var(--surface);
+  }
+
+  &__icon {
+    flex: none;
+    width: 16px;
+    height: 16px;
+    border-radius: 3px;
+    object-fit: contain;
+  }
+
+  &__title {
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    font-size: 12.5px;
+  }
+
+  &__level {
+    flex: none;
+    padding: 2px 6px;
+    border-radius: 6px;
+    font-size: 10.5px;
+    font-weight: 650;
+    font-variant-numeric: tabular-nums;
+    color: var(--accent);
+    background: var(--accent-soft);
+  }
+
+  &.is-current &__level {
+    color: #fff;
+    background: var(--accent);
+  }
+}
+
+.eqbars {
+  display: flex;
+  align-items: flex-end;
+  gap: 1.5px;
+  flex: none;
+  width: 12px;
+  height: 11px;
+
+  i {
+    flex: 1;
+    border-radius: 1px;
+    background: var(--accent);
+    animation: eqpulse 1s ease-in-out infinite;
+  }
+
+  i:nth-child(2) {
+    animation-delay: 0.25s;
+  }
+  i:nth-child(3) {
+    animation-delay: 0.5s;
+  }
+}
+
+@keyframes eqpulse {
+  0%,
+  100% {
+    height: 30%;
+  }
+  50% {
+    height: 100%;
+  }
+}
+
+.empty {
+  padding: 10px 0 2px;
+  font-size: 12px;
+  color: var(--muted);
+  text-align: center;
+}
+
+/* ---------------------------------------------------------------- review */
+
+.review {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 14px;
+  padding: 11px 12px;
+  border-radius: 11px;
+  background: var(--surface);
+
+  &__text {
+    flex: 1;
+    min-width: 0;
+
+    strong {
+      display: block;
+      font-size: 12px;
+      font-weight: 650;
+    }
+
+    span {
+      font-size: 10.5px;
+      color: var(--muted);
+    }
+  }
+
+  &__stars {
+    display: flex;
+    gap: 2px;
+    flex: none;
+  }
+
+  &__star {
+    display: grid;
+    place-items: center;
+    width: 19px;
+    height: 19px;
+    color: var(--star);
+
+    svg {
+      width: 15px;
+      height: 15px;
+      fill: currentColor;
+      transition: transform 0.12s ease;
+    }
+
+    &:hover svg {
+      transform: scale(1.22);
+    }
+  }
+
+  &__close {
+    flex: none;
+    align-self: flex-start;
+    margin: -4px -4px 0 0;
+    padding: 2px 4px;
+    font-size: 14px;
+    line-height: 1;
+    color: var(--muted);
+
+    &:hover {
+      color: var(--fg);
+    }
+  }
+}
+
+.notice {
+  margin-top: 12px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  font-size: 11.5px;
+  line-height: 1.5;
+  color: var(--muted);
+  background: var(--surface);
 }

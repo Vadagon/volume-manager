@@ -1,8 +1,18 @@
 {
-    "app_name": {
-        "message": "Garsumo valdiklis"
-    },
-    "app_description": {
-        "message": "Padidinkite garsumą x6. Skirtukų garsumą valdykite atskirai."
-    }
+  "app_name": {
+    "message": "Garsumo valdiklis & Stiprintuvas",
+    "description": "Full extension name shown in the Chrome Web Store."
+  },
+  "app_short_name": {
+    "message": "Garsumo valdiklis",
+    "description": "Shortened name for the toolbar and context menus."
+  },
+  "ui_app_name": {
+    "message": "Garsumo valdiklis",
+    "description": "Name shown in the popup header."
+  },
+  "app_description": {
+    "message": "Sustiprinkite bet kurį skirtuką iki 600 %, valdykite kiekvieną skirtuką atskirai ir formuokite garsą integruotu glodintuvu.",
+    "description": "Store listing description."
+  }
 }

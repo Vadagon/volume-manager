@@ -1,8 +1,18 @@
 {
-    "app_name": {
-        "message": "Bộ điều khiển âm lượng"
-    },
-    "app_description": {
-        "message": "Tăng âm lượng của bạn lên x6. Kiểm soát âm lượng của các tab riêng biệt."
-    }
+  "app_name": {
+    "message": "Bộ điều chỉnh âm lượng & Bộ khuếch đại",
+    "description": "Full extension name shown in the Chrome Web Store."
+  },
+  "app_short_name": {
+    "message": "Bộ điều chỉnh âm lượng",
+    "description": "Shortened name for the toolbar and context menus."
+  },
+  "ui_app_name": {
+    "message": "Bộ điều chỉnh âm lượng",
+    "description": "Name shown in the popup header."
+  },
+  "app_description": {
+    "message": "Khuếch đại mọi thẻ lên đến 600%, điều chỉnh từng thẻ riêng biệt và tinh chỉnh âm thanh bằng bộ chỉnh âm tích hợp.",
+    "description": "Store listing description."
+  }
 }

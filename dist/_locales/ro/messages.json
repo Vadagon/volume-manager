@@ -1,8 +1,18 @@
 {
-    "app_name": {
-        "message": "Controler de volum"
-    },
-    "app_description": {
-        "message": "Creșteți volumul x6. Controlați separat volumul filelor."
-    }
+  "app_name": {
+    "message": "Control volum & Amplificator",
+    "description": "Full extension name shown in the Chrome Web Store."
+  },
+  "app_short_name": {
+    "message": "Control volum",
+    "description": "Shortened name for the toolbar and context menus."
+  },
+  "ui_app_name": {
+    "message": "Control volum",
+    "description": "Name shown in the popup header."
+  },
+  "app_description": {
+    "message": "Amplifică orice filă până la 600%, controlează fiecare filă separat și modelează sunetul cu un egalizator încorporat.",
+    "description": "Store listing description."
+  }
 }

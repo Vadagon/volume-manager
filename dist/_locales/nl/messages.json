@@ -1,8 +1,18 @@
 {
-    "app_name": {
-        "message": "Volumeregelaar"
-    },
-    "app_description": {
-        "message": "Verhoog uw volume x6. Regel het volume van de tabbladen afzonderlijk."
-    }
+  "app_name": {
+    "message": "Volumeregelaar & Versterker",
+    "description": "Full extension name shown in the Chrome Web Store."
+  },
+  "app_short_name": {
+    "message": "Volumeregelaar",
+    "description": "Shortened name for the toolbar and context menus."
+  },
+  "ui_app_name": {
+    "message": "Volumeregelaar",
+    "description": "Name shown in the popup header."
+  },
+  "app_description": {
+    "message": "Versterk elk tabblad tot 600%, regel elk tabblad afzonderlijk en vorm het geluid met een ingebouwde equalizer.",
+    "description": "Store listing description."
+  }
 }

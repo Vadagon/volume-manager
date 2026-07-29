@@ -1,8 +1,18 @@
 {
-    "app_name": {
-        "message": "Контролер гучності"
-    },
-    "app_description": {
-        "message": "Збільште гучність x6. Окремо регулюйте гучність вкладок."
-    }
+  "app_name": {
+    "message": "Регулятор гучності & Підсилювач",
+    "description": "Full extension name shown in the Chrome Web Store."
+  },
+  "app_short_name": {
+    "message": "Регулятор гучності",
+    "description": "Shortened name for the toolbar and context menus."
+  },
+  "ui_app_name": {
+    "message": "Регулятор гучності",
+    "description": "Name shown in the popup header."
+  },
+  "app_description": {
+    "message": "Підсильте будь-яку вкладку до 600 %, керуйте кожною вкладкою окремо та налаштуйте звук вбудованим еквалайзером.",
+    "description": "Store listing description."
+  }
 }

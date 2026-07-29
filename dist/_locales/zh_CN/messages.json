@@ -1,8 +1,18 @@
 {
-    "app_name": {
-        "message": "音量控制器"
-    },
-    "app_description": {
-        "message": "提高音量 x6。分别控制标签的音量。"
-    }
+  "app_name": {
+    "message": "音量控制器 & 增强器",
+    "description": "Full extension name shown in the Chrome Web Store."
+  },
+  "app_short_name": {
+    "message": "音量控制器",
+    "description": "Shortened name for the toolbar and context menus."
+  },
+  "ui_app_name": {
+    "message": "音量控制器",
+    "description": "Name shown in the popup header."
+  },
+  "app_description": {
+    "message": "将任意标签页音量提升至 600%，逐个标签独立调节，并用内置均衡器塑造音色。",
+    "description": "Store listing description."
+  }
 }

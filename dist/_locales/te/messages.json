@@ -1,8 +1,18 @@
 {
-    "app_name": {
-        "message": "వాల్యూమ్ కంట్రోలర్"
-    },
-    "app_description": {
-        "message": "మీ వాల్యూమ్ x6 ని పెంచండి. ట్యాబ్‌ల వాల్యూమ్‌ని విడిగా నియంత్రించండి."
-    }
+  "app_name": {
+    "message": "వాల్యూమ్ కంట్రోలర్ & బూస్టర్",
+    "description": "Full extension name shown in the Chrome Web Store."
+  },
+  "app_short_name": {
+    "message": "వాల్యూమ్ కంట్రోలర్",
+    "description": "Shortened name for the toolbar and context menus."
+  },
+  "ui_app_name": {
+    "message": "వాల్యూమ్ కంట్రోలర్",
+    "description": "Name shown in the popup header."
+  },
+  "app_description": {
+    "message": "ఏ ట్యాబ్ ధ్వనినైనా 600% వరకు పెంచండి, ప్రతి ట్యాబ్‌ను విడిగా నియంత్రించండి, ఈక్వలైజర్‌తో ధ్వనిని మలచండి.",
+    "description": "Store listing description."
+  }
 }

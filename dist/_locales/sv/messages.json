@@ -1,8 +1,18 @@
 {
-    "app_name": {
-        "message": "Volymkontroll"
-    },
-    "app_description": {
-        "message": "Öka din volym x6. Kontrollera volymen på flikarna separat."
-    }
+  "app_name": {
+    "message": "Volymkontroll & Förstärkare",
+    "description": "Full extension name shown in the Chrome Web Store."
+  },
+  "app_short_name": {
+    "message": "Volymkontroll",
+    "description": "Shortened name for the toolbar and context menus."
+  },
+  "ui_app_name": {
+    "message": "Volymkontroll",
+    "description": "Name shown in the popup header."
+  },
+  "app_description": {
+    "message": "Förstärk vilken flik som helst upp till 600 %, styr varje flik separat och forma ljudet med en inbyggd equalizer.",
+    "description": "Store listing description."
+  }
 }

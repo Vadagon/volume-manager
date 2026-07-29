@@ -1,8 +1,18 @@
 {
-    "app_name": {
-        "message": "Volumenregulator"
-    },
-    "app_description": {
-        "message": "Forøg din lydstyrke x6. Kontroller lydstyrken på fanerne separat."
-    }
+  "app_name": {
+    "message": "Lydstyrkekontrol & Booster",
+    "description": "Full extension name shown in the Chrome Web Store."
+  },
+  "app_short_name": {
+    "message": "Lydstyrkekontrol",
+    "description": "Shortened name for the toolbar and context menus."
+  },
+  "ui_app_name": {
+    "message": "Lydstyrkekontrol",
+    "description": "Name shown in the popup header."
+  },
+  "app_description": {
+    "message": "Forstærk enhver fane op til 600 %, styr hver fane for sig, og form lyden med en indbygget equalizer.",
+    "description": "Store listing description."
+  }
 }

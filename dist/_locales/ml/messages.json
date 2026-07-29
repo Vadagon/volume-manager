@@ -1,8 +1,18 @@
 {
-    "app_name": {
-        "message": "വോളിയം കൺട്രോളർ"
-    },
-    "app_description": {
-        "message": "നിങ്ങളുടെ വോളിയം x6 വർദ്ധിപ്പിക്കുക. ടാബുകളുടെ അളവ് പ്രത്യേകം നിയന്ത്രിക്കുക."
-    }
+  "app_name": {
+    "message": "വോളിയം കൺട്രോളർ & ബൂസ്റ്റർ",
+    "description": "Full extension name shown in the Chrome Web Store."
+  },
+  "app_short_name": {
+    "message": "വോളിയം കൺട്രോളർ",
+    "description": "Shortened name for the toolbar and context menus."
+  },
+  "ui_app_name": {
+    "message": "വോളിയം കൺട്രോളർ",
+    "description": "Name shown in the popup header."
+  },
+  "app_description": {
+    "message": "ഏത് ടാബിന്റെയും ശബ്ദം 600% വരെ കൂട്ടുക, ഓരോ ടാബും വെവ്വേറെ നിയന്ത്രിക്കുക, ഇക്വലൈസർ ഉപയോഗിച്ച് ശബ്ദം ക്രമീകരിക്കുക.",
+    "description": "Store listing description."
+  }
 }

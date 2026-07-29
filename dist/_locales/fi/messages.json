@@ -1,8 +1,18 @@
 {
-    "app_name": {
-        "message": "Äänenvoimakkuuden säädin"
-    },
-    "app_description": {
-        "message": "Lisää äänenvoimakkuutta x6. Säädä välilehtien äänenvoimakkuutta erikseen."
-    }
+  "app_name": {
+    "message": "Äänenvoimakkuuden säädin & Vahvistin",
+    "description": "Full extension name shown in the Chrome Web Store."
+  },
+  "app_short_name": {
+    "message": "Äänenvoimakkuuden säädin",
+    "description": "Shortened name for the toolbar and context menus."
+  },
+  "ui_app_name": {
+    "message": "Äänenvoimakkuuden säädin",
+    "description": "Name shown in the popup header."
+  },
+  "app_description": {
+    "message": "Vahvista mitä tahansa välilehteä jopa 600 %:iin, säädä jokaista välilehteä erikseen ja muotoile ääntä taajuuskorjaimella.",
+    "description": "Store listing description."
+  }
 }

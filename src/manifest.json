@@ -1,6 +1,7 @@
 {
   "manifest_version": 3,
   "name": "__MSG_app_name__",
+  "short_name": "__MSG_app_short_name__",
   "description": "__MSG_app_description__",
   "default_locale": "en",
   "author": "Vadagon",
@@ -9,29 +10,8 @@
     "activeTab",
     "tabs",
     "storage",
-    "offscreen",
-    "commands",
-    "scripting"
+    "offscreen"
   ],
-  "host_permissions": [
-    "http://*/*",
-    "https://*/*",
-    "<all_urls>"
-  ],
-  "commands": {
-    "toggle-up-1": {
-      "suggested_key": {
-        "default": "Alt+Up"
-      },
-      "description": "Volume up"
-    },
-    "toggle-down-1": {
-      "suggested_key": {
-        "default": "Alt+Down"
-      },
-      "description": "Volume down"
-    }
-  },
   "background": {
     "service_worker": "background.bundle.js",
     "type": "module"
@@ -39,34 +19,17 @@
   "action": {
     "default_title": "__MSG_app_name__",
     "default_popup": "popup.html",
-    "default_icon": "assets/icons/volume-up211.png"
+    "default_icon": {
+      "16": "assets/icons/icon16.png",
+      "32": "assets/icons/icon32.png",
+      "48": "assets/icons/icon48.png",
+      "128": "assets/icons/icon128.png"
+    }
   },
   "icons": {
-    "128": "assets/icons/volume-up211.png"
-  },
-  "content_scripts": [
-    {
-      "matches": [
-        "http://*/*",
-        "https://*/*",
-        "<all_urls>"
-      ],
-      "js": [
-        "assets/contentScript.js"
-      ],
-      "css": [
-        "assets/css/content.styles.css"
-      ]
-    }
-  ],
-  "web_accessible_resources": [
-    {
-      "resources": [
-        "content.styles.css",
-        "icon-128.png",
-        "icon-34.png"
-      ],
-      "matches": []
-    }
-  ]
+    "16": "assets/icons/icon16.png",
+    "32": "assets/icons/icon32.png",
+    "48": "assets/icons/icon48.png",
+    "128": "assets/icons/icon128.png"
+  }
 }

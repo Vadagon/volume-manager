@@ -1,8 +1,18 @@
 {
-    "app_name": {
-        "message": "தொகுதி கட்டுப்பாட்டாளர்"
-    },
-    "app_description": {
-        "message": "உங்கள் தொகுதி x6 ஐ அதிகரிக்கவும். தாவல்களின் அளவை தனித்தனியாக கட்டுப்படுத்தவும்."
-    }
+  "app_name": {
+    "message": "ஒலியளவு கட்டுப்படுத்தி & பூஸ்டர்",
+    "description": "Full extension name shown in the Chrome Web Store."
+  },
+  "app_short_name": {
+    "message": "ஒலியளவு கட்டுப்படுத்தி",
+    "description": "Shortened name for the toolbar and context menus."
+  },
+  "ui_app_name": {
+    "message": "ஒலியளவு கட்டுப்படுத்தி",
+    "description": "Name shown in the popup header."
+  },
+  "app_description": {
+    "message": "எந்தத் தாவலின் ஒலியையும் 600% வரை உயர்த்துங்கள், ஒவ்வொரு தாவலையும் தனித்தனியே கட்டுப்படுத்துங்கள், ஈக்வலைசரால் ஒலியை வடிவமையுங்கள்.",
+    "description": "Store listing description."
+  }
 }

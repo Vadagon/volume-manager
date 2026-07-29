@@ -1,8 +1,18 @@
 {
-    "app_name": {
-        "message": "Hangerőszabályzó"
-    },
-    "app_description": {
-        "message": "Növelje hangerejét x6. Külön szabályozhatja a fülek hangerejét."
-    }
+  "app_name": {
+    "message": "Hangerőszabályzó & Erősítő",
+    "description": "Full extension name shown in the Chrome Web Store."
+  },
+  "app_short_name": {
+    "message": "Hangerőszabályzó",
+    "description": "Shortened name for the toolbar and context menus."
+  },
+  "ui_app_name": {
+    "message": "Hangerőszabályzó",
+    "description": "Name shown in the popup header."
+  },
+  "app_description": {
+    "message": "Erősítsen fel bármely lapot akár 600%-ig, szabályozzon minden lapot külön, és formálja a hangzást beépített hangszínszabályzóval.",
+    "description": "Store listing description."
+  }
 }

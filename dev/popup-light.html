@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Volume Controller — light preview</title>
+    <!-- Resolve relative asset paths (icons) exactly as build/popup.html does. -->
+    <base href="../build/" />
+    <script>
+      window.PREVIEW = { theme: 'light', captured: true };
+    </script>
+    <script src="../dev/chrome-stub.js"></script>
+  </head>
+  <body>
+    <div id="popup"></div>
+    <script src="popup.bundle.js"></script>
+  </body>
+</html>

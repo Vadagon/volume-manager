@@ -1,8 +1,18 @@
 {
-    "app_name": {
-        "message": "Контролер за сила на звука"
-    },
-    "app_description": {
-        "message": "Увеличете силата на звука x6. Контролирайте силата на звука на разделите отделно."
-    }
+  "app_name": {
+    "message": "Контрол на звука & Усилвател",
+    "description": "Full extension name shown in the Chrome Web Store."
+  },
+  "app_short_name": {
+    "message": "Контрол на звука",
+    "description": "Shortened name for the toolbar and context menus."
+  },
+  "ui_app_name": {
+    "message": "Контрол на звука",
+    "description": "Name shown in the popup header."
+  },
+  "app_description": {
+    "message": "Усилете всеки раздел до 600%, управлявайте всеки раздел поотделно и оформете звука с вграден еквалайзер.",
+    "description": "Store listing description."
+  }
 }

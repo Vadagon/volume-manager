@@ -1,8 +1,18 @@
 {
-    "app_name": {
-        "message": "Regulator glasnoće"
-    },
-    "app_description": {
-        "message": "Povećajte glasnoću x6. Zasebno kontrolirajte glasnoću kartica."
-    }
+  "app_name": {
+    "message": "Kontrola glasnoće & Pojačalo",
+    "description": "Full extension name shown in the Chrome Web Store."
+  },
+  "app_short_name": {
+    "message": "Kontrola glasnoće",
+    "description": "Shortened name for the toolbar and context menus."
+  },
+  "ui_app_name": {
+    "message": "Kontrola glasnoće",
+    "description": "Name shown in the popup header."
+  },
+  "app_description": {
+    "message": "Pojačajte bilo koju karticu do 600 %, upravljajte svakom karticom zasebno i oblikujte zvuk ugrađenim ekvilizatorom.",
+    "description": "Store listing description."
+  }
 }

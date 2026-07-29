@@ -1,12 +1,8 @@
 {
-  "name": "chrome-extension-boilerplate-react",
-  "version": "2.1.2",
-  "description": "A chrome extension boilerplate built with React 18, Webpack 5, and Webpack Dev Server 4",
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/lxieyang/chrome-extension-boilerplate-react.git"
-  },
+  "name": "volume-controller-and-booster",
+  "version": "2.2.0",
+  "description": "Volume Controller & Booster - boost any tab up to 600% with per-tab control and an audio equaliser.",
+  "license": "UNLICENSED",
   "scripts": {
     "build": "node utils/build.js",
     "start": "node utils/webserver.js",
@@ -14,14 +10,10 @@
   },
   "dependencies": {
     "autoprefixer": "^10.4.19",
-    "install": "^0.13.0",
-    "npm": "^10.5.2",
     "postcss": "^8.4.38",
     "postcss-loader": "^8.1.1",
-    "rc-slider": "^10.5.0",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "tailwindcss": "^3.4.3"
+    "react-dom": "^18.2.0"
   },
   "devDependencies": {
     "@babel/core": "^7.20.12",

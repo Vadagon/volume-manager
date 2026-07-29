@@ -1,8 +1,18 @@
 {
-    "app_name": {
-        "message": "تحكم بحجم الصوت"
-    },
-    "app_description": {
-        "message": "زيادة حجم الصوت الخاص بك x6. التحكم في حجم علامات التبويب بشكل منفصل."
-    }
+  "app_name": {
+    "message": "متحكم مستوى الصوت & معزز",
+    "description": "Full extension name shown in the Chrome Web Store."
+  },
+  "app_short_name": {
+    "message": "متحكم مستوى الصوت",
+    "description": "Shortened name for the toolbar and context menus."
+  },
+  "ui_app_name": {
+    "message": "متحكم مستوى الصوت",
+    "description": "Name shown in the popup header."
+  },
+  "app_description": {
+    "message": "ارفع صوت أي تبويب حتى 600%، وتحكم بكل تبويب على حدة، واضبط الصوت بمعادل مدمج.",
+    "description": "Store listing description."
+  }
 }

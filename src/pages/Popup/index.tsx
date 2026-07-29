@@ -1,13 +1,7 @@
-import * as React from 'react';
-import * as ReactDOM from 'react-dom';
-import Popup from './Popup';
+import React from 'react';
 import { createRoot } from 'react-dom/client';
-
-// import hotreload from '../../utils/hotreload';
-// hotreload();
+import App from './App';
+import './popup.scss';
 
 const container = document.getElementById('popup');
-const root = createRoot(container!); // createRoot(container!) if you use TypeScript
-chrome.tabs.query({ active: true, currentWindow: true }, (tab) => {
-  root.render(<Popup />);
-});
+if (container) createRoot(container).render(<App />);

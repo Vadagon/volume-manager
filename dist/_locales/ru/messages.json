@@ -1,8 +1,18 @@
 {
-    "app_name": {
-        "message": "Регулятор громкости"
-    },
-    "app_description": {
-        "message": "Увеличьте громкость в 6 раз. Регулируйте громкость вкладок отдельно."
-    }
+  "app_name": {
+    "message": "Регулятор громкости & Усилитель",
+    "description": "Full extension name shown in the Chrome Web Store."
+  },
+  "app_short_name": {
+    "message": "Регулятор громкости",
+    "description": "Shortened name for the toolbar and context menus."
+  },
+  "ui_app_name": {
+    "message": "Регулятор громкости",
+    "description": "Name shown in the popup header."
+  },
+  "app_description": {
+    "message": "Усильте любую вкладку до 600 %, управляйте каждой вкладкой отдельно и настройте звук встроенным эквалайзером.",
+    "description": "Store listing description."
+  }
 }

@@ -1,8 +1,18 @@
 {
-    "app_name": {
-        "message": "የድምጽ መቆጣጠሪያ"
-    },
-    "app_description": {
-        "message": "የእርስዎን ድምጽ x6 ከፍ ያድርጉ። የትሮቹን ብዛት በተናጠል ይቆጣጠሩ።"
-    }
+  "app_name": {
+    "message": "የድምጽ መቆጣጠሪያ & አጉልቶ ማሳያ",
+    "description": "Full extension name shown in the Chrome Web Store."
+  },
+  "app_short_name": {
+    "message": "የድምጽ መቆጣጠሪያ",
+    "description": "Shortened name for the toolbar and context menus."
+  },
+  "ui_app_name": {
+    "message": "የድምጽ መቆጣጠሪያ",
+    "description": "Name shown in the popup header."
+  },
+  "app_description": {
+    "message": "ማንኛውንም ትር እስከ 600% ድረስ ያጉሉ፣ እያንዳንዱን ትር ለብቻው ይቆጣጠሩ እና ድምጹን በተሰናዳ ማስተካከያ ያስተካክሉ።",
+    "description": "Store listing description."
+  }
 }
